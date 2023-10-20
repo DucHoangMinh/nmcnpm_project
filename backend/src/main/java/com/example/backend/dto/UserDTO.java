@@ -1,17 +1,24 @@
 package com.example.backend.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
+import java.sql.Date;
+
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterDto {
-    private String name;
-    private String username;
+public class UserDTO{
+    private Long id;
+    private String fullname;
     private String email;
-    private String password;
+    private String role;
+    private Date dob;
+    private Long phone;
+    private boolean sex;
 }
+
