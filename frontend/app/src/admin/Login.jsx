@@ -1,23 +1,32 @@
 import './css/login.css'
 import React, {useState} from "react";
+import api from "../service/api";
 export const Login = () => {
-    const [username, setUsername] = useState('')
+    const [email, setemail] = useState('')
     const [password, setPassword] = useState('')
+    const login = async () => {
+        const data = await api.post('login', {
+            email,
+            password
+        })
+        console.log(data)
+    }
+
     return  (
     <div className="container-fluid">
         <div className="row">
             <div className="col bg-secondary-subtle vh-100 d-flex align-items-center justify-content-center p-md-5 p-sm-3">
-                <form>
+                <form onSubmit={e => {e.preventDefault(); login()}}>
                     <div className="header">
                         <h2 className="fw-bold text-center">ĐĂNG NHẬP HỆ THỐNG QUẢN TRỊ</h2>
                     </div>
                     <div className="form-login">
                         <div className="mt-5">
-                            <label className="form-label fs-3" for="username">Tài khoản</label>
-                            <input className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} type="text" name="username" id="username"/>
+                            <label className="form-label fs-3" for="email">Tài khoản</label>
+                            <input className="form-control" value={email} onChange={(e) => setemail(e.target.value)} type="text" name="email" id="email"/>
                         </div>
                         <div className="mt-3">
-                            <label className="form-label fs-3" for="username">Mật khẩu</label>
+                            <label className="form-label fs-3" for="email">Mật khẩu</label>
                             <input className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} type="password" name="password" id="password"/>
                         </div>
                         <div className="mt-2 d-flex justify-content-between">
@@ -27,7 +36,7 @@ export const Login = () => {
                             </div>
                             <i className="fs-6"><a className="nav-link" href="#">Bạn quên mật khẩu ?</a></i>
                         </div>
-                        <button className="mt-3 btn btn-primary px-4 shadow" name="login">Đăng nhập</button>
+                        <button type={"submit"} onClick={login} className="mt-3 btn btn-primary px-4 shadow" name="login">Đăng nhập</button>
                     </div>
                 </form> 
             </div>

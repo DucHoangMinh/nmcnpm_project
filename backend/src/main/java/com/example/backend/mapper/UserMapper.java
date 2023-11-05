@@ -16,6 +16,7 @@ public class UserMapper {
         userDTO.setPhone(user.getPhone());
         userDTO.setEmail(user.getEmail());
         userDTO.setSex(user.getSex());
+        userDTO.setFullname(user.getFullname());
         return userDTO;
     }
 }
