@@ -24,7 +24,6 @@ public class Payment {
     private Room room;
 
     @Column(name = "is_completed")
-    private Boolean isCompleted; // check đã nộp
-
+    private boolean completed; // check đã nộp
 
 }
