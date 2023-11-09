@@ -22,16 +22,12 @@ public class Fee {
     private Float price;
     private String description; // Mô tả về loại phí
     private boolean mandatory;
-
     @Column(name = "due_time")
     private LocalDate dueTime;
-
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
     @OneToMany(mappedBy = "fee")
     Set<Payment> payments;
 
