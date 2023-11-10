@@ -5,6 +5,7 @@ import com.example.backend.model.ResponseModel;
 import com.example.backend.service.ServiceImpl.RoomServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,9 +51,19 @@ public class RoomController {
             ));
         }
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<ResponseModel> getRoomById(@PathVariable Long id) {
+    @GetMapping("/find")
+    //http://localhost:8080/api/v1/rooms/find?id=2
+    //http://localhost:8080/api/v1/rooms/find?address=B500
+    public ResponseEntity<ResponseModel> getRoom(@RequestParam(value = "id", required = false) Long id, @RequestParam(value = "address",required = false) String address) {
         try {
+            if (address != null) {
+                RoomDTO roomDTO = roomService.getRoomByAddress(address);
+                return ResponseEntity.ok(new ResponseModel(
+                        "ok",
+                        "Xem phòng",
+                        roomDTO
+                ));
+            }
             RoomDTO roomDTO = roomService.getRoomById(id);
             return ResponseEntity.ok(new ResponseModel(
                     "ok",
@@ -67,23 +78,7 @@ public class RoomController {
             ));
         }
     }
-    @GetMapping("/{address}")
-    public ResponseEntity<ResponseModel> getRoomByAddress(@PathVariable String address) {
-        try {
-            RoomDTO roomDTO = roomService.getRoomByAddress(address);
-            return ResponseEntity.ok(new ResponseModel(
-                    "ok",
-                    "Xem phòng",
-                    roomDTO
-            ));
-        } catch (Exception message) {
-            return ResponseEntity.badRequest().body(new ResponseModel(
-                    "failed",
-                    message.getMessage(),
-                    ""
-            ));
-        }
-    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ResponseModel> updateRoom(@PathVariable Long id, @RequestBody RoomDTO roomDTO) {
         try{
@@ -102,7 +97,24 @@ public class RoomController {
         }
     }
 
-    // Xóa ở đây là đánh dấu active:false, nghĩa là không có người ở
+    @PatchMapping("/{id}")
+    //http://localhost:8080/api/v1/rooms/3?active=false
+    public ResponseEntity<ResponseModel> setActivate(@PathVariable Long id, @RequestParam("active") boolean active) {
+        try{
+            RoomDTO newRoom = roomService.activateRoom(id, active);
+            return ResponseEntity.ok(new ResponseModel(
+                    "ok",
+                    "Cập nhật trạng thái phòng thành công",
+                    newRoom
+            ));
+        } catch (Exception message) {
+            return ResponseEntity.badRequest().body(new ResponseModel(
+                    "failed",
+                    message.getMessage(),
+                    ""
+            ));
+        }
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseModel> deleteRoom(@PathVariable Long id) {
         try {

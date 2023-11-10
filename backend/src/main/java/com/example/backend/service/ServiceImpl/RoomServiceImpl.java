@@ -66,6 +66,16 @@ public class RoomServiceImpl implements RoomService {
     public void deleteRoomById(Long id) {
         Room room = roomRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + id));
-        room.setActive(false);
+        roomRepository.delete(room);
+    }
+
+    @Override
+    public RoomDTO activateRoom(Long id, boolean active) {
+        Room room = roomRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + id));
+        room.setActive(active);
+        roomRepository.save(room);
+        RoomDTO roomDTO = modelMapper.map(room, RoomDTO.class);
+        return roomDTO;
     }
 }
