@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.dto.FeeDTO;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.service.FeeService;
+import com.example.backend.service.ServiceImpl.FeeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,8 @@ import java.util.List;
 @RequestMapping("/api/vi/fees")
 @RequiredArgsConstructor
 public class FeeController {
-    private final FeeService feeService;
+    @Autowired
+    private final FeeServiceImpl feeService;
     @PostMapping("")
     public ResponseEntity<ResponseModel> createFee(@RequestBody FeeDTO feeDTO) {
         try {

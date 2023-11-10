@@ -6,11 +6,16 @@ import com.example.backend.model.Fee;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.repository.FeeRepository;
 import com.example.backend.service.FeeService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 @RequiredArgsConstructor
+@Service
+@Data
 public class FeeServiceImpl implements FeeService {
     private final FeeRepository feeRepository;
     private final ModelMapper modelMapper;
