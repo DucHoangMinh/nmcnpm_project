@@ -18,4 +18,6 @@ public class RoomDTO {
     @JsonProperty("type_room")
     private String typeRoom;
     private Float area; // diện tích căn
+    @JsonProperty("is_active")
+    private boolean active; // true nếu có người ở
 }

@@ -5,19 +5,24 @@ import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.model.Room;
 import com.example.backend.repository.RoomRepository;
 import com.example.backend.service.RoomService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
+@Data
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
     private final ModelMapper modelMapper;
     @Override
     public RoomDTO createRoom(RoomDTO roomDTO) {
         Room room = modelMapper.map(roomDTO, Room.class);
+        room.setActive(true);
         Room newRoom = roomRepository.save(room);
         roomDTO.setId(newRoom.getId());
         return roomDTO ;
@@ -61,6 +66,6 @@ public class RoomServiceImpl implements RoomService {
     public void deleteRoomById(Long id) {
         Room room = roomRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + id));
-        roomRepository.delete(room);
+        room.setActive(false);
     }
 }
