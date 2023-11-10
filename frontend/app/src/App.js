@@ -1,14 +1,15 @@
-import { Login } from './admin/Login';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Login } from './admin/modules/authorize/Login';
+import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/admin/login" element={<Login />}>
-          {/* <Route index element={<Home />} /> */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <div className="App">
+          <Route path="/" exact component={Login} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+          <Route component={NotFound}/>
+      </div>
+    </Router>
   );
 }
 
