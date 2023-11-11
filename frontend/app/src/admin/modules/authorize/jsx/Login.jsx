@@ -1,40 +1,49 @@
 import React, {useEffect, useState} from "react"
-import Swal from 'sweetalert2'
-import $ from 'jquery'
-import './css/login.css'
-import React, {useState} from "react";
-import api from "../service/api";
+import '../css/login.css';
+import { useNavigate } from "react-router-dom";
+import showNotice from "../../../../common/showNotice";
+import api from "../../../../service/api";
 export const Login = () => {
-    const [email, setemail] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    let loading = false
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
-    const handleLogin = async (e) => {
-        e.preventDefault();
-    }
-    const login = async () => {
-        const data = await api.post('login', {
+    let navigate = useNavigate();
+    const handleLogin = async () => {
+        let data = await api.post('login', {
             email,
             password
+        }).then(response => {
+            console.log('Response:', response.data);
         })
-        console.log(data)
+        .catch(error => {
+            console.error('Error:', error);
+          });
+               
+        // if(response.status===200) {
+        //     const tokenData = {
+        //         token: data.accessToken,
+        //         tokenType: data.tokenType
+        //       };
+        //     localStorage.setItem('tokenData', JSON.stringify(tokenData))
+        //     showNotice(1, "Login success")
+        //     navigate('')
+        // }
     }
 
     return  (
     <div className="container-fluid">
         <div className="row">
             <div className="col bg-secondary-subtle vh-100 d-flex align-items-center justify-content-center p-md-5 p-sm-3">
-                <form onSubmit={e => {e.preventDefault(); login()}}>
+                <form onSubmit={e => {e.preventDefault(); handleLogin()}}>
                     <div className="header">
                         <h2 className="fw-bold text-center">ĐĂNG NHẬP HỆ THỐNG QUẢN TRỊ</h2>
                     </div>
                     <div className="form-login">
                         <div className="mt-5">
-                            <label className="form-label fs-3" for="email">Tài khoản</label>
-                            <input className="form-control" value={email} onChange={(e) => setemail(e.target.value)} type="text" name="email" id="email"/>
+                            <label className="form-label fs-3" htmlFor="email">Tài khoản</label>
+                            <input className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email"/>
                         </div>
                         <div className="mt-3">
-                            <label className="form-label fs-3" for="email">Mật khẩu</label>
+                            <label className="form-label fs-3" htmlFor="password">Mật khẩu</label>
                             <input className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} type="password" name="password" id="password"/>
                         </div>
                         <div className="mt-2 d-flex justify-content-between">
@@ -44,7 +53,7 @@ export const Login = () => {
                             </div>
                             <i className="fs-6"><a className="nav-link" href="#">Bạn quên mật khẩu ?</a></i>
                         </div>
-                        <button type={"submit"} onClick={login} className="mt-3 btn btn-primary px-4 shadow" name="login">Đăng nhập</button>
+                        <button type="submit" className="mt-3 btn btn-primary px-4 shadow" name="login">Đăng nhập</button>
                     </div>
                 </form> 
             </div>
