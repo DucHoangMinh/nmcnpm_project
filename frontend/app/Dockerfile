@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM node:21-alpine3.17
 
 WORKDIR /app/frontend
 
@@ -12,4 +12,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the React app
-CMD ["npm", "start"]
+CMD ["npm", "start"]    
