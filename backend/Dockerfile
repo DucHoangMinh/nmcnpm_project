@@ -1,4 +1,4 @@
-FROM openjdk:22-oracle
+FROM openjdk:17-oracle
 
 WORKDIR app/api
 
