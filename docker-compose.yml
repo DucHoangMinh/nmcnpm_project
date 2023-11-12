@@ -9,9 +9,7 @@ services:
     volumes:
       - './frontend/app:/app/web'
       - './frontend/app/node_modules:/app/web/node_modules'
-    ports:
-      - '1000:1000'
-    command: ["npm", "run", "start", "--", "--port", "1000"]
+    command: ["npm", "run", "start"]
   api:
     container_name: api
     build:
