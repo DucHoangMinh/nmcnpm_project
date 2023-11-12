@@ -1,14 +1,12 @@
-import { Login } from './admin/Login';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {AdminAuhorizeRoute} from './admin/modules/authorize/route';
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/admin/login" element={<Login />}>
-          {/* <Route index element={<Home />} /> */}
-        </Route>
+        <Route path="/admin/*" element={<AdminAuhorizeRoute/>} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
