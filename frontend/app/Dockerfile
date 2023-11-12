@@ -1,15 +1,3 @@
-FROM node:21-alpine3.17
+FROM node:18.10.0
 
-WORKDIR /app/frontend
-
-COPY package*.json ./
-
-# Install app dependencies
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-# Start the React app
-CMD ["npm", "start"]    
+WORKDIR /app/web
