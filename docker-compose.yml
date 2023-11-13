@@ -1,17 +1,17 @@
 
 services:
   web:
+    container_name: web
     build:
-      context: ./frontend
+      context: ./frontend/app
       dockerfile: Dockerfile
-    working_dir: /src/web
-    user: "1000:1000"
+    #    env_file: .env
     volumes:
-      - ./frontend:/src/web
+      - './frontend/app:/app/web'
+      - './frontend/app/node_modules:/app/web/node_modules'
     ports:
-      - "8080:8080"
-    command: [ "npm", "run", "serve" ]
-
+      - '1000:1000'
+    command: ["npm", "run", "start", "--", "--port", "1000"]
   api:
     container_name: api
     build:
@@ -21,7 +21,7 @@ services:
       - './backend:/app/api'
       - './api/build/libs/api-0.0.1-SNAPSHOT.jar:/app/api/build/libs/api-0.0.1-SNAPSHOT.jar'
     ports:
-      - 1001:8080
+      - 8080:8080
       - 1003:35729
     depends_on:
       - db
@@ -41,6 +41,6 @@ services:
     volumes:
       - my-db:/var/ lib/mysql
     ports:
-      - '3309:3306'
+      - '3306:3306'
 volumes:
     my-db:
