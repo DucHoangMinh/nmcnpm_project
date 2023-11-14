@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Apartment Manager</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <link href rel="icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Apartment Manager_files/css2" rel="stylesheet"> 
+
+    <link href="./Apartment Manager_files/all.min.css" rel="stylesheet">
+    <link href="./Apartment Manager_files/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="./Apartment Manager_files/animate.min.css" rel="stylesheet">
+    <link href="./Apartment Manager_files/owl.carousel.min.css" rel="stylesheet">
+    <link href="./Apartment Manager_files/lightbox.min.css" rel="stylesheet">
+
+    <link href="./Apartment Manager_files/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="./Apartment Manager_files/style.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" style="top: -100px;">
+        <a href="file:///E:/android/Apartment%20Manager.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">Apartment Manager</h2>
+        </a>
+        
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="./Apartment Manager.html" class="nav-item nav-link">Home</a>
+                <a href="" class="nav-item nav-link active">Tạo phí</a>
+                <a href="" class="nav-item nav-link">Quản lý dân cư</a>
+                <a href="" class="nav-item nav-link">Quản lý tạm trú</a>
+            </div>
+            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Tên người dùng</a>
+        </div>
+    </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Trang quản lý thu phí chung cư</h2>
+
+    <!-- Form nhập thông tin -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Nhập thông tin khoản phí
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nhập phí</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputService">Đơn giá phí dịch vụ</label>
+                  <input type="text" class="form-control" id="inputService" placeholder="Nhập số tiền">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputManager">Đơn giá phí quản lý</label>
+                  <input type="text" class="form-control" id="inputManager" placeholder="Nhập số tiền">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputMonth">Tháng</label>
+                  <input type="month" class="form-control" id="inputMonth">
+                </div>
+              </div>
+              
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-primary">Lưu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Danh sách các khoản thu -->
+    <div class="mt-4">
+      <h3>Danh sách thu phí</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Căn hộ</th>
+            <th scope="col">Số tiền</th>
+            <th scope="col">Tháng</th>
+            <th scope="col">Đã thu</th>
+          </tr>
+          
+        </thead>
+        <tbody>
+          <tr>
+            <td>BM101</td>
+            <td>820.000 đồng</td>
+            <td>11</td>
+            <td><p>&#10004; </p></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS và các thư viện khác cần thiết -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
