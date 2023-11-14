@@ -45,6 +45,7 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<ResponseModel> authenticateUser(@RequestBody LoginRequest loginRequest) {
         // Xác thực từ username và password.
+        System.out.println("Login request received");
         try{
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -67,7 +68,7 @@ public class LoginController {
             );
         }catch (Exception e){
             System.out.println(e);
-            return ResponseEntity.ok().body(
+            return ResponseEntity.status(403).body(
                     new ResponseModel(
                             "error",
                             "Vui lòng kiểm tra lại email hoặc mật khẩu",
