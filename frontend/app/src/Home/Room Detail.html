@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>Apartment Manager</title>
+    <title>Danh sách Phòng Chung Cư</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -22,11 +22,7 @@
     <link href="./Apartment Manager_files/bootstrap.min.css" rel="stylesheet">
     
     <link href="./Apartment Manager_files/style.css" rel="stylesheet">
-    <style>
-    .navbar-nav {
-      margin-left: auto;
-    }
-  </style>
+
 </head>
 
 <body>
@@ -47,30 +43,64 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="./Apartment Manager.html" class="nav-item nav-link active">Home</a>
+                <a href="./Apartment Manager.html" class="nav-item nav-link">Home</a>
                 <a href="./Fee.html" class="nav-item nav-link">Tạo phí</a>
-                <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
+                <a href="./Room Manager.html" class="nav-item nav-link active">Quản lý dân cư</a>
                 <a href="" class="nav-item nav-link">Quản lý tạm trú</a>
             </div>
             <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Tên người dùng</a>
         </div>
     </nav>
-    
-    <div class="untree_co-section">
-      <div class="container my-5">
-        <div class="mb-5">
-          <div class="owl-single dots-absolute owl-carousel">
-            <img src="images/slider-1.jpg" class="img-fluid">
-            <img src="images/slider-2.jpg" class="img-fluid">
-            <img src="images/slider-4.jpg" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/custom.js"></script>
-  </body>
+<div class="container mt-5">
+  <h2 class="text-primary">Phòng 101</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Thông tin chi tiết</h4>
+      <ul>
+        <li><strong>Số căn cước:</strong> 0122761231</li>
+        <li><strong>Chủ hộ:</strong> Nguyễn Văn A</li>
+        <li><strong>Ngày sinh chủ hộ:</strong> 01/01/1990</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Danh sách người trong nhà</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Số Căn Cước</th>
+        <th>Họ và Tên</th>
+        <th>Ngày Sinh</th>
+        <th>Quan hệ với chủ hộ</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>0122761231</td>
+        <td>Nguyễn Văn A</td>
+        <td>01/01/1990</td>
+        <td>Chủ hộ</td>
+       
+      </tr>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>0362764134</td>
+        <td>Nguyễn Văn B</td>
+        <td>01/01/2015</td>
+        <td>Con trai</td>
+       
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
 </html>
