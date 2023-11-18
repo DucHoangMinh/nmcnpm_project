@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react"
 import '../css/login.css';
 import { useNavigate } from "react-router-dom";
-import showNotice from "../../../../common/showNotice";
 import api from "../../../../service/api";
 export const Login = () => {
     const [email, setEmail] = useState('')
@@ -62,3 +61,6 @@ export const Login = () => {
     </div>
     );
 }
+
+
+export default Login
