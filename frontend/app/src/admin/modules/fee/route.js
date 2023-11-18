@@ -3,7 +3,7 @@ import FeeIndex from './jsx';
 const FeeRoute = () =>{
     return (
         <Routes>
-            <Route path="/fee" element={<FeeIndex/>} />
+            <Route path="fee" element={<FeeIndex/>} />
         </Routes>
     );
 }

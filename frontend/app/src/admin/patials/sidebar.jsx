@@ -1,10 +1,9 @@
 import React, { useState, useEffect, Fragment, useRef } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './sidebar.css'
 const SideBar = () => {
     const [loading, setLoading] = useState(true);
-    const {subpath} = useParams();
-    console.log(subpath)
+    const { '*': subpath } = useParams();
     useState(() => {
       const timeout = setTimeout(() => {
         setLoading(false);
@@ -34,8 +33,8 @@ const SideBar = () => {
   
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto p-4 p-lg-0">
-              <Link to="/admin/home" className={`nav-item nav-link ${'active'}`}>Home</Link>
-              <Link to="/admin/fee" className="nav-item nav-link">Tạo phí</Link>
+              <Link to="/admin/home" className={`nav-item nav-link ${subpath === 'home' ? 'active' : ''}`}>Home</Link>
+              <Link to="/admin/fee" className={`nav-item nav-link ${subpath === 'fee' ? 'active' : ''}`}>Tạo phí</Link>
               <Link to="/" className="nav-item nav-link">Quản lý dân cư</Link>
               <Link to="/" className="nav-item nav-link">Quản lý tạm trú</Link>
             </div>
