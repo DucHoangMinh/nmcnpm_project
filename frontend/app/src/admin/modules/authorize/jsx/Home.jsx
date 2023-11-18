@@ -1,8 +1,9 @@
-const Home = () => {
-    
-    return (
-        <h1>Trang chủ</h1>
-    )
-} 
+import SideBar from '../../../patials/sidebar';
 
-export default Home
+const Home = () => {
+  return (
+    <SideBar/>
+  );
+};
+
+export default Home;

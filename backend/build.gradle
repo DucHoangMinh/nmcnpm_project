@@ -48,6 +48,8 @@ dependencies {
 	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
 	// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
 	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+	implementation 'org.modelmapper:modelmapper:2.1.1'
 
 }
 

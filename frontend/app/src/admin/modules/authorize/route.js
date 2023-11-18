@@ -4,8 +4,8 @@ import Home from './jsx/Home';
 const AdminAuhorizeRoute = () =>{
     return (
         <Routes>
-            <Route path="home" element={<Home />} />
-            <Route path="login" element={<Login />} />   
+            <Route path="login" element={<Login/>} />
+            <Route path="home" element ={<Home/>}/> 
         </Routes>
     );
 }
