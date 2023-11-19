@@ -4,7 +4,7 @@ import '../css/room.css'
 const Room = () => {
     return (
         <Fragment>
-            <SideBar/>
+            <SideBar subpath = 'manage-user'/>
             <div className="container mt-5">
                 <h2 className="text-primary">Phòng 101</h2>
                 <div className="row">
