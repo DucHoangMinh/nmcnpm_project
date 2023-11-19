@@ -3,7 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import './sidebar.css'
 const SideBar = () => {
     const [loading, setLoading] = useState(true);
-    const { '*': subpath } = useParams();
+    const { '*':subpath } = useParams();
+    console.log(subpath)
     useState(() => {
       const timeout = setTimeout(() => {
         setLoading(false);
@@ -35,7 +36,7 @@ const SideBar = () => {
             <div className="navbar-nav ms-auto p-4 p-lg-0">
               <Link to="/admin/home" className={`nav-item nav-link ${subpath === 'home' ? 'active' : ''}`}>Home</Link>
               <Link to="/admin/fee" className={`nav-item nav-link ${subpath === 'fee' ? 'active' : ''}`}>Tạo phí</Link>
-              <Link to="/" className="nav-item nav-link">Quản lý dân cư</Link>
+              <Link to="/admin/manage-user/room" className={`nav-item nav-link ${subpath === 'room' ? 'active' : ''}`}>Quản lý dân cư</Link>
               <Link to="/" className="nav-item nav-link">Quản lý tạm trú</Link>
             </div>
             <Link to="/" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block user-link">Tên người dùng</Link>

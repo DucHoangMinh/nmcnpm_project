@@ -16,7 +16,6 @@ const FeeIndex = () => {
             <SideBar/>
             <div className="container mt-5">
                 <h2 className="mb-4">Trang quản lý thu phí chung cư</h2>
-
                 <>
                     <Button variant="primary" onClick={handleShow}>
                     Nhập thông tin khoản phí
@@ -85,4 +84,4 @@ const FeeIndex = () => {
     )
 }
 
-export default FeeIndex;
+export {FeeIndex};
