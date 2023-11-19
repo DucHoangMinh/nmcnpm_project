@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from './jsx/Login';
 import Home from './jsx/Home';
-const AdminAuhorizeRoute = () =>{
+const AdminAuthorizeRoute = () =>{
     return (
         <Routes>
             <Route path="login" element={<Login/>} />
@@ -10,4 +10,4 @@ const AdminAuhorizeRoute = () =>{
     );
 }
 
-export {AdminAuhorizeRoute};
+export {AdminAuthorizeRoute};

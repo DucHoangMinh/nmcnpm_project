@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import FeeIndex from './jsx';
+import {FeeIndex} from './jsx';
 const FeeRoute = () =>{
     return (
         <Routes>
