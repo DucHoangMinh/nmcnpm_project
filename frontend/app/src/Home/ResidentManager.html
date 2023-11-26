@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Quản lý tạm trú</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./Apartment Manager_files/styleCheckbox.css" rel="stylesheet">
+    <style>
+        .navbar-nav{
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav navbar-expand-lg bg-white navbar-light sticky-top p-0" style="top: -100px;">
+        <a href="./Apartment Manager.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">Apartment Manager</h2>
+        </a>
+        
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>   
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="./Apartment Manager.html" class="nav-item nav-link">Home</a>
+                <a href="./Fee.html" class="nav-item nav-link">Tạo phí</a>
+                <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
+                <a href="" class="nav-item nav-link">Quản lý tạm trú</a>
+            </div>
+            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Tên người dùng</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Thông tin cư trú các thành viên</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Số thứ tự</th>
+                    <th>Họ và tên cư dân</th>
+                    <th>Mã phòng</th>
+                    <th>Đã đăng ký tạm trú</th>
+                    <th>Đăng ký tạm vắng</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>A Văn B</td>
+                    <td>101</td>
+                    <td>
+                        <div class="checkbox-container">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox1.1">
+                                <label for="checkbox1.1"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-container">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox1.2">
+                                <label for="checkbox1.2"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="https://google.com">
+                            <u>Xem chi tiết</u>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>B Văn A</td>
+                    <td>101</td>
+                    <td>
+                        <div class="checkbox-container">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox2.1">
+                                <label for="checkbox2.1"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-container">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox2.2">
+                                <label for="checkbox2.2"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="https://google.com">
+                            <u>Xem chi tiết</u>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>A Văn C</td>
+                    <td>401</td>
+                    <td>
+                        <div class="checkbox-container">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox3.1">
+                                <label for="checkbox3.1"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-container">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox3.2">
+                                <label for="checkbox3.2"></label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="https://google.com">
+                            <u>Xem chi tiết</u>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
