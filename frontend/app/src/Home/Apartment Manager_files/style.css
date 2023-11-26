@@ -252,6 +252,13 @@
     color: var(--light);
 }
 
+.name {
+    text-transform: capitalize;
+}
+
+.name::first-letter {
+    text-transform: uppercase;
+}
 
 /*** Section Title ***/
 .section-title h1 {
