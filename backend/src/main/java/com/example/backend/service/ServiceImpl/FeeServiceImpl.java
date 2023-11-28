@@ -3,9 +3,12 @@ package com.example.backend.service.ServiceImpl;
 import com.example.backend.dto.FeeDTO;
 import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.model.Fee;
+import com.example.backend.model.Payment;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.repository.FeeRepository;
+import com.example.backend.repository.PaymentRepository;
 import com.example.backend.service.FeeService;
+import com.example.backend.service.PaymentService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -18,7 +21,9 @@ import java.util.List;
 @Data
 public class FeeServiceImpl implements FeeService {
     private final FeeRepository feeRepository;
+    private final PaymentRepository paymentRepository;
     private final ModelMapper modelMapper;
+    private final PaymentService paymentService;
     @Override
     public List<FeeDTO> getAllFees() {
         List<Fee> fees =  feeRepository.findAll();
@@ -59,6 +64,7 @@ public class FeeServiceImpl implements FeeService {
     public void deleteFee(Long id) {
         Fee fee = feeRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Cannot find fee with id: " + id));
+        paymentService.deletePaymentsByFeeId(id); // Delete payments of this fee before deleting fee
         feeRepository.delete(fee);
     }
 }

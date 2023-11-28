@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -21,13 +22,16 @@ public class RoomServiceImpl implements RoomService {
     private final ModelMapper modelMapper;
     @Override
     public RoomDTO createRoom(RoomDTO roomDTO) {
-        Room room = modelMapper.map(roomDTO, Room.class);
-        room.setActive(true);
-        Room newRoom = roomRepository.save(room);
-        roomDTO.setId(newRoom.getId());
-        return roomDTO ;
+        if (roomRepository.existsByAddress(roomDTO.getAddress())) {
+            throw new RuntimeException("Phòng này đã tồn tại");
+        } else {
+            Room room = modelMapper.map(roomDTO, Room.class);
+            room.setActive(true);
+            Room newRoom = roomRepository.save(room);
+            roomDTO.setId(newRoom.getId());
+            return roomDTO ;
+        }
     }
-
     @Override
     public List<RoomDTO> getAllRooms() {
         List<RoomDTO> roomDTOList = roomRepository.findAll().stream().map(
@@ -44,11 +48,16 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public RoomDTO getRoomByAddress(String address) {
-        Room room = roomRepository.findByAddress(address);
-        if (room == null) throw new DataNotFoundException("Cannot find room with address: " + address);
-        return modelMapper.map(room, RoomDTO.class);
+    public List<RoomDTO> getRoomsByAddress(String address) {
+        List<Room> rooms = roomRepository.findByAddress(address);
+        if (rooms.isEmpty()) {
+            throw new DataNotFoundException("Cannot find any room with address: " + address);
+        }
+        return rooms.stream()
+                .map(room -> modelMapper.map(room, RoomDTO.class))
+                .collect(Collectors.toList());
     }
+
 
     @Override
     public RoomDTO updateRoom(Long id, RoomDTO roomDTO) {
@@ -66,7 +75,7 @@ public class RoomServiceImpl implements RoomService {
     public void deleteRoomById(Long id) {
         Room room = roomRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + id));
-        roomRepository.delete(room);
+        room.setActive(false);
     }
 
     @Override

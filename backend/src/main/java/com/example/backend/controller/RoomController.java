@@ -52,24 +52,27 @@ public class RoomController {
         }
     }
     @GetMapping("/find")
-    //http://localhost:8080/api/v1/rooms/find?id=2
-    //http://localhost:8080/api/v1/rooms/find?address=B500
-    public ResponseEntity<ResponseModel> getRoom(@RequestParam(value = "id", required = false) Long id, @RequestParam(value = "address",required = false) String address) {
+    //http://localhost:8080/api/v1/room/find?id=2
+    //http://localhost:8080/api/v1/room/find?address=B500
+    public ResponseEntity<ResponseModel> getRoom(@RequestParam(value = "id", required = false) Long roomId, @RequestParam(value = "address",required = false) String address) {
         try {
-            if (address != null) {
-                RoomDTO roomDTO = roomService.getRoomByAddress(address);
+            if (roomId != null) {
+                RoomDTO roomDTO = roomService.getRoomById(roomId);
                 return ResponseEntity.ok(new ResponseModel(
                         "ok",
                         "Xem phòng",
                         roomDTO
                 ));
             }
-            RoomDTO roomDTO = roomService.getRoomById(id);
-            return ResponseEntity.ok(new ResponseModel(
-                    "ok",
-                    "Xem phòng",
-                    roomDTO
-            ));
+            if (address != null) {
+                List<RoomDTO> roomDTOs = roomService.getRoomsByAddress(address);
+                return ResponseEntity.ok(new ResponseModel(
+                        "ok",
+                        "Xem phòng",
+                        roomDTOs
+                ));
+            }
+            return null;
         } catch (Exception message) {
             return ResponseEntity.badRequest().body(new ResponseModel(
                     "failed",
@@ -98,7 +101,7 @@ public class RoomController {
     }
 
     @PatchMapping("/{id}")
-    //http://localhost:8080/api/v1/rooms/3?active=false
+    //http://localhost:8080/api/v1/room/3?active=false
     public ResponseEntity<ResponseModel> setActivate(@PathVariable Long id, @RequestParam("active") boolean active) {
         try{
             RoomDTO newRoom = roomService.activateRoom(id, active);
@@ -115,6 +118,8 @@ public class RoomController {
             ));
         }
     }
+
+    // Xóa mềm: chỉ set inactive chứ không xóa khỏi DB
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseModel> deleteRoom(@PathVariable Long id) {
         try {
