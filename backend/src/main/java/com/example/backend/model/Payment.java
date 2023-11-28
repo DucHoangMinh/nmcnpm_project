@@ -34,5 +34,4 @@ public class Payment {
 
     @Column(name = "total_money")
     private Float totalMoney; // Tổng số tiền thanh toán = giá phí * diện tích * loại phòng
-
 }
