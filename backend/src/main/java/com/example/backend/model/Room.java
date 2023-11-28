@@ -26,6 +26,8 @@ public class Room {
 
     @Column(name = "type_room")
     private String typeRoom;
-
     private Float area; // diện tích căn
+
+    @Column(name = "is_active")
+    private boolean active; // true nếu có người ở
 }
