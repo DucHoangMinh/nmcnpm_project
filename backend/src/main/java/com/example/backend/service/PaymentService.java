@@ -12,4 +12,5 @@ public interface PaymentService{
     PaymentDTO completePayment(Long roomId, Long feeId);
     PaymentResponse getAllPayment(int pageNo, int pageSize, String sortBy, String sortDir);
     List<PaymentDTO> getPaymentsOfRoom(Long roomId);
+    void deletePaymentsByFeeId(Long feeId);
 }

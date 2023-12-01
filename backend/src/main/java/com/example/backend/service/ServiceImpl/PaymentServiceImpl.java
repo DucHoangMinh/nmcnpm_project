@@ -104,5 +104,10 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentDTOS;
     }
 
+    @Override
+    public void deletePaymentsByFeeId(Long feeId) {
+        
+    }
+
 
 }

@@ -45,7 +45,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public RoomDTO getRoomByAddress(String address) {
-        Room room = roomRepository.findByAddress(address);
+        Room room = (Room) roomRepository.findByAddress(address);
         if (room == null) throw new DataNotFoundException("Cannot find room with address: " + address);
         return modelMapper.map(room, RoomDTO.class);
     }
