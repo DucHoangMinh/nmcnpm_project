@@ -4,8 +4,7 @@ import './sidebar.css'
 const SideBar = (props) => {
     const [loading, setLoading] = useState(true);
     let { '*':subpath } = useParams();
-    console.log(props.subpath)
-    if(props.subpath!=undefined) {
+    if(props.subpath!==undefined) {
       subpath = props.subpath
     }
     useState(() => {

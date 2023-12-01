@@ -6,4 +6,4 @@ const showNotice = (icon, content) => {
         title: content
     })
 }
-export default showNotice
+export {showNotice}
