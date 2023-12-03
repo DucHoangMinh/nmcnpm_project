@@ -39,21 +39,26 @@ public class PaymentServiceImpl implements PaymentService {
                 .orElseThrow(() -> new DataNotFoundException("Cannot find fee with id: " + feeId));
         for (int i = 0; i < roomList.size(); i++) {
             Room room = roomList.get(i);
-            Float totalMoney;
-            if (room.getTypeRoom() == "vip") {
-                totalMoney = (float)(fee.getPrice() * room.getArea() * 1.5);
+            if (paymentRepository.findByRoomIdAndFeeId(room.getId(), feeId) != null) {
+                throw new RuntimeException("Fee with id " + feeId + " has already been assigned for room " + room.getId());
             } else {
-                totalMoney = (fee.getPrice() * room.getArea());
+                Float totalMoney;
+                if (room.getTypeRoom() == "vip") {
+                    totalMoney = (float)(fee.getPrice() * room.getArea() * 1.5);
+                } else {
+                    totalMoney = (fee.getPrice() * room.getArea());
+                }
+                Payment payment = Payment.builder()
+                        .fee(fee)
+                        .room(room)
+                        .completed(false)
+                        .totalMoney(totalMoney)
+                        .build();
+                Payment newPayment = paymentRepository.save(payment);
+                PaymentDTO newPaymentDTO = PaymentMapper.toPaymentDTO(newPayment);
+                paymentDTOS.add(newPaymentDTO);
             }
-            Payment payment = Payment.builder()
-                    .fee(fee)
-                    .room(room)
-                    .completed(false)
-                    .totalMoney(totalMoney)
-                    .build();
-            Payment newPayment = paymentRepository.save(payment);
-            PaymentDTO newPaymentDTO = PaymentMapper.toPaymentDTO(newPayment);
-            paymentDTOS.add(newPaymentDTO);
+
         }
         return paymentDTOS;
     }
@@ -106,8 +111,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void deletePaymentsByFeeId(Long feeId) {
-        
+        paymentRepository.findByFeeId(feeId)
+                .stream()
+                .map(Payment::getId)
+                .forEach(paymentRepository::deleteById);
     }
-
-
 }
