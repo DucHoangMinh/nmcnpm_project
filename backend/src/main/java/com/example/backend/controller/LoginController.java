@@ -91,14 +91,24 @@ public class LoginController {
             );
         }
         else {
-            insertUser.setPassword(passwordEncoder.encode(insertUser.getPassword()));
-            return ResponseEntity.ok().body(
-                    new ResponseModel(
-                            "ok",
-                            "Register account successfully",
-                            userRepository.save(insertUser)
-                    )
-            );
+            try {
+                insertUser.setPassword(passwordEncoder.encode(insertUser.getPassword()));
+                return ResponseEntity.ok().body(
+                        new ResponseModel(
+                                "ok",
+                                "Register account successfully",
+                                userRepository.save(insertUser)
+                        )
+                );
+            } catch (Exception e) {
+                return ResponseEntity.status(400).body(
+                        new ResponseModel(
+                                "ok",
+                                "Vui lòng nhập đủ tất cả trường dữ liệu",
+                                ""
+                        )
+                );
+            }
         }
     }
 }
