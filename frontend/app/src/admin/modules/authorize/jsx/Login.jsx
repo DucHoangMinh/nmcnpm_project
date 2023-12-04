@@ -10,19 +10,21 @@ export const Login = () => {
     const handleLogin = async () => {
         try {
             const response = await api.post('login', {
-              email,
-              password
+              email: email.trim(),
+              password: password.trim()
             });
       
             if (response.status === 200) {
+              let data = response.data.data;
               const tokenData = {
-                token: response.data.accessToken, // Assuming accessToken is present in the response
-                tokenType: response.data.tokenType // Assuming tokenType is present in the response
+                token: data.accessToken,
+                tokenType: data.tokenType
               };
-      
+              const userData = data.userDTO;
               localStorage.setItem('tokenData', JSON.stringify(tokenData));
+              localStorage.setItem('userData', JSON.stringify(userData))
               showNotice(1, 'Login success');
-              navigate('/home');
+              navigate('../home');
             }
           } catch (error) {
             showNotice(0, error.response.data.message)

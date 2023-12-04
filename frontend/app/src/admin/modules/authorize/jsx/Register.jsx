@@ -16,7 +16,7 @@ export const Register = () => {
       
             if (response.status === 200) {
               showNotice(1, 'Register success');
-              navigate('/login');
+              navigate('admin/login');
             }
           } catch (error) {
             showNotice(0, error.response.data.message)

@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './sidebar.css'
 const SideBar = (props) => {
+    const user = JSON.parse(localStorage.getItem('userData'))||{}
+
     const [loading, setLoading] = useState(true);
     let { '*':subpath } = useParams();
     if(props.subpath!==undefined) {
@@ -41,7 +43,7 @@ const SideBar = (props) => {
               <Link to="/admin/manage-user" className={`nav-item nav-link ${subpath === 'manage-user' ? 'active' : ''}`}>Quản lý dân cư</Link>
               <Link to="/" className="nav-item nav-link">Quản lý tạm trú</Link>
             </div>
-            <Link to="/" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block user-link">Tên người dùng</Link>
+            <Link to="/" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block user-link">Xin chào {user.fullname}</Link>
           </div>
         </nav>
       </Fragment>
