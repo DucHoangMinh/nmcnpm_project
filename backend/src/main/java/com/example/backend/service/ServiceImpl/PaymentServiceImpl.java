@@ -116,4 +116,8 @@ public class PaymentServiceImpl implements PaymentService {
                 .map(Payment::getId)
                 .forEach(paymentRepository::deleteById);
     }
+
+    }
+
+
 }
