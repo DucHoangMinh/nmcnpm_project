@@ -13,7 +13,8 @@ import java.util.List;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
     @Query("SELECT r FROM Room r WHERE r.address LIKE ?1%")
-    List<Room> findByAddress(String address);
+    List<Room> findByAddresses(String address);
     boolean existsByAddress(String address);
+    Room findByAddress(String address);
 }
 //    Room findByAddress(String address);

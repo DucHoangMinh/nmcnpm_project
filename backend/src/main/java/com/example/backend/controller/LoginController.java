@@ -4,12 +4,16 @@ import com.example.backend.dto.UserDTO;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.CustomUserDetail;
 import com.example.backend.model.ResponseModel;
+import com.example.backend.model.Room;
 import com.example.backend.model.User;
 import com.example.backend.payload.LoginRequest;
 import com.example.backend.payload.LoginResponse;
+import com.example.backend.repository.RoomRepository;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.security.JWTtokenProvider;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +31,8 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class LoginController {
     @Autowired
+    RoomRepository roomRepository;
+    @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
     UserRepository userRepository;
@@ -36,6 +42,8 @@ public class LoginController {
     PasswordEncoder passwordEncoder;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    ModelMapper modelMapper;
 
     @GetMapping("/check")
     public String returnTest(){
@@ -78,7 +86,7 @@ public class LoginController {
         }
     }
     @PostMapping("/register")
-    ResponseEntity<ResponseModel> handleRegisterNewAccount(@RequestBody User insertUser){
+    ResponseEntity<ResponseModel> handleRegisterNewAccount(@RequestBody UserDTO insertUser){
         System.out.println("Get register request!!");
         Optional<User> new_user = Optional.ofNullable(userRepository.findByEmail(insertUser.getEmail()));
         if(new_user.isPresent()){
@@ -92,14 +100,31 @@ public class LoginController {
         }
         else {
             try {
-                insertUser.setPassword(passwordEncoder.encode(insertUser.getPassword()));
-                return ResponseEntity.ok().body(
-                        new ResponseModel(
-                                "ok",
-                                "Register account successfully",
-                                userRepository.save(insertUser)
-                        )
-                );
+                Room room = roomRepository.findByAddress(insertUser.getRoom());
+                if (room != null) {
+                    User newUser = modelMapper.map(insertUser, User.class);
+                    newUser.setPassword(passwordEncoder.encode(insertUser.getPassword()));
+                    newUser.setRoom(room);
+                    userRepository.save(newUser);
+                    insertUser.setId(newUser.getId());
+                    return ResponseEntity.ok().body(
+                            new ResponseModel(
+                                    "ok",
+                                    "Register account successfully",
+                                    insertUser
+                            )
+                    );
+                } else {
+                    return ResponseEntity.badRequest().body(
+                            new ResponseModel(
+                                    "failed",
+                                    "Phòng này chưa được đăng ký",
+                                    ""
+                            )
+
+                    );
+                }
+
             } catch (Exception e) {
                 return ResponseEntity.status(400).body(
                         new ResponseModel(
