@@ -1,32 +1,34 @@
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 import '../css/login.css';
 import { useNavigate } from "react-router-dom";
-import showNotice from "../../../../common/showNotice";
 import api from "../../../../service/api";
+import { showNotice } from "../../../../common/showNotice";
 export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     let navigate = useNavigate();
     const handleLogin = async () => {
-        let data = await api.post('login', {
-            email,
-            password
-        }).then(response => {
-            console.log('Response:', response.data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-          });
-               
-        // if(response.status===200) {
-        //     const tokenData = {
-        //         token: data.accessToken,
-        //         tokenType: data.tokenType
-        //       };
-        //     localStorage.setItem('tokenData', JSON.stringify(tokenData))
-        //     showNotice(1, "Login success")
-        //     navigate('')
-        // }
+        try {
+            const response = await api.post('login', {
+              email: email.trim(),
+              password: password.trim()
+            });
+      
+            if (response.status === 200) {
+              let data = response.data.data;
+              const tokenData = {
+                token: data.accessToken,
+                tokenType: data.tokenType
+              };
+              const userData = data.userDTO;
+              localStorage.setItem('tokenData', JSON.stringify(tokenData));
+              localStorage.setItem('userData', JSON.stringify(userData))
+              showNotice(1, 'Login success');
+              navigate('../home');
+            }
+          } catch (error) {
+            showNotice(0, error.response.data.message)
+          }
     }
 
     return  (
@@ -53,7 +55,10 @@ export const Login = () => {
                             </div>
                             <i className="fs-6"><a className="nav-link" href="#">Bạn quên mật khẩu ?</a></i>
                         </div>
-                        <button type="submit" className="mt-3 btn btn-primary px-4 shadow" name="login">Đăng nhập</button>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <button type="submit" className="mt-3 btn btn-primary px-4 shadow" name="login">Đăng nhập</button>
+                            <a href="register" type="submit" className="mt-3 px-4" name="login">Đăng ký tài khoản</a>
+                        </div>
                     </div>
                 </form> 
             </div>
@@ -62,3 +67,6 @@ export const Login = () => {
     </div>
     );
 }
+
+
+export default Login
