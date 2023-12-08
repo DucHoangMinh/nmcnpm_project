@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 @Table(name = "Payment")
@@ -14,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Payment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "fee_id")
@@ -24,7 +27,11 @@ public class Payment {
     private Room room;
 
     @Column(name = "is_completed")
-    private Boolean isCompleted; // check đã nộp
+    private boolean completed; // check đã nộp
 
+    @Column(name = "submitted_date")
+    private LocalDate submittedDate; // Ngày nộp
 
+    @Column(name = "total_money")
+    private Float totalMoney; // Tổng số tiền thanh toán = giá phí * diện tích * loại phòng
 }
