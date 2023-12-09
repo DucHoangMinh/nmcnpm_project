@@ -10,6 +10,7 @@
       margin-left: auto;
     }
   </style>
+  <script type="text/javascript" src="./js/custom.js" ></script>
 </head>
 <body>
 <!-- <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -31,7 +32,8 @@
           <a href="./Apartment Manager.html" class="nav-item nav-link">Home</a>
           <a href="./Fee.html" class="nav-item nav-link">Tạo phí</a>
           <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
-          <a href="" class="nav-item nav-link">Quản lý tạm trú</a>
+          <a href="ResidentManager.html" class="nav-item nav-link">Quản lý tạm trú</a>
+        
       </div>
       <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Tên người dùng</a>
   </div>
@@ -40,7 +42,7 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card">
-          <img src="/images/hero_1.jpg" class="card-img-top" alt="Avatar">
+          <img src="./images/when-you-beat-your-meat-for-2-hours-and-get-57273054.jpg" class="card-img-top" alt="Avatar" height="230px">
         </div>
 
         <ul class="list-group mt-3 text-left">
@@ -55,7 +57,67 @@
             <h5 class="card-title text-left">Username</h5>
             <p class="card-text text-left">Số phòng: 123</p>
             <p class="card-text text-left">Quan hệ với chủ hộ: Chủ hộ</p>
-            <a href="#" class="btn btn-primary text-left">Chỉnh sửa thông tin</a>
+            <!-- <a href="#" class="btn btn-primary text-left">Chỉnh sửa thông tin</a> -->
+            <button type="button" class="btn btn-primary text-left" data-toggle="modal" data-target="#myModal">Chỉnh sửa thông tin</button>
+            <!-- modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Chỉnh sửa thông tin cá nhân</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal" action="https://youtube.com">
+                            <div class="form-group">
+                              <label class="control-label col-sm-3" for="email">Họ và tên:</label>
+                              <div class="col-sm-12">
+                                <input class="form-control" placeholder="Nguyễn Văn A">
+                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-sm-5" for="pwd">Số căn cước:</label>
+                              <div class="col-sm-12">
+                                <input class="form-control" placeholder="000000000000">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-sm-12" for="pwd">Ngày, tháng, năm sinh:</label>
+                              <div class="col-sm-12">
+                                <!-- <input class="form-control" type="datetime-local" id="Test_DatetimeLocal"> -->
+                                <input class="form-control" type="date">
+                              </div>
+                              
+                            </div>
+
+
+                            <!-- <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-12">
+                                <div class="checkbox">
+                                  <label><input type="checkbox"> Remember me</label>
+                                </div>
+                              </div>
+                            </div> -->
+                            <!-- <div class="container">
+                              <button type="submit" class="btn btn-primary btn-block">Button 1</button>
+                            </div> -->
+                            <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </h2>
       </div>
     </div>
