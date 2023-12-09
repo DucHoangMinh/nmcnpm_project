@@ -1,0 +1,22 @@
+package com.example.backend.payload;
+
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.sql.Date;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UserResponse {
+    private String fullname;
+    private String email;
+    private String role;
+    private Date dob;
+    private Long phone;
+    private Boolean sex;
+}
