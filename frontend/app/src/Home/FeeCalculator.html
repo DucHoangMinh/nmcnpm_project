@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./images/favicon.png" rel="icon">
+    <title>Quản lý thu phí</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./Apartment Manager_files/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Apartment Manager_files/themify-icons.css">
+    <style>
+        .navbar-nav {
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="spinner"
+        class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" style="top: -100px;">
+        <a href="./Apartment Manager.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">BLUE MOON</h2>
+        </a>
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="./Apartment Manager.html" class="nav-item nav-link">Trang chủ</a>
+                <a href="./Fee.html" class="active nav-item nav-link">Quản lý khoản thu</a>
+                <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
+                <a href="./ResidentManager.html" class="nav-item nav-link">Quản lý cư trú</a>
+            </div>
+            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt
+                Anh!</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-group mt-3 text-left">
+                    <li class="active list-group-item"><a href="FeeList.html">Danh sách khoản thu</a></li>
+                    <li class="active list-group-item"><a href="PaidList.html">Tình trạng đóng phí, quỹ</a></li>
+                    <li class="list-group-item"><a href="FeeCalculator.html">Tính toán phí, quỹ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col">
+                <h2 class="text-left mb-4">Tính các khoản phí, quỹ với từng hộ gia đình</h2>
+                <!-- Form nhập thông tin -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Tạo biểu mẫu tính phí tới các hộ gia đình đã chọn
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Hóa đơn thu phí</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-10 col-form-label">Mô tả</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" placeholder="Các khoản phí của tháng 11">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-10 col-form-label">Các quỹ tự
+                                            nguyện</label>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                                value="something" checked>
+                                            <label class="form-check-label" for="check1">TN01</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                                value="something">
+                                            <label class="form-check-label" for="check2">TN02</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="check3" name="option3">
+                                            <label class="form-check-label">TN03</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                                value="something" checked>
+                                            <label class="form-check-label" for="check1">TN04</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                                value="something">
+                                            <label class="form-check-label" for="check2">TN05</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-12" for="pwd">Ngày tạo hóa đơn:</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" type="date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-12" for="pwd">Ngày hết hạn:</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" type="date">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary">Gửi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mt-3 mb-3">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button"><i
+                                class="search-icon ti-search"></i></button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Chọn</th>
+                                <th rowspan="2">#</th>
+                                <th rowspan="2">Mã hộ gia đình</th>
+                                <th rowspan="2">BB01</th>
+                                <th rowspan="2">BB02</th>
+                                <th colspan="2">BB03</th>
+                                <th colspan="2">BB04</th>
+                                <th colspan="3">BB05</th>
+                                <th colspan="2">BB06</th>
+                                <th rowspan="2">Tổng phí (đơn vị: VNĐ)</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Số xe máy</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Số xe ô tô</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Số đầu</th>
+                                <th scope="col">Số cuối</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Số khối</th>
+                                <th scope="col">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>1</td>
+                                <td>3001</td>
+                                <td>300000</td>
+                                <td>299000</td>
+                                <td>2</td>
+                                <td>140000</td>
+                                <td>1</td>
+                                <td>1200000</td>
+                                <td>312</td>
+                                <td>380</td>
+                                <td>204000</td>
+                                <td>23</td>
+                                <td>180000</td>
+                                <td>9999999</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><a href="#">Lên đầu trang</a></p>
+
+                <p><a href="Fee.html">Quay lại quản lý khoản thu</a></p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Bootstrap JS và các thư viện khác cần thiết -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

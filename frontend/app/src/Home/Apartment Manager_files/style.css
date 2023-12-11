@@ -628,3 +628,42 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+/* checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    height: 100%;
+}
+
+.checkbox {
+    position: relative;
+}
+
+.checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: grab;
+}
+
+.checkbox label {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.checkbox input[type="checkbox"]:checked + label:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #382ce4;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}

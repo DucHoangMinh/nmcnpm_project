@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./images/favicon.png" rel="icon">
+    <title>Quản lý thu phí</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./Apartment Manager_files/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Apartment Manager_files/themify-icons.css">
+    <style>
+        .navbar-nav {
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="spinner"
+        class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" style="top: -100px;">
+        <a href="./Apartment Manager.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">BLUE MOON</h2>
+        </a>
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="./Apartment Manager.html" class="nav-item nav-link">Trang chủ</a>
+                <a href="./Fee.html" class="active nav-item nav-link">Quản lý khoản thu</a>
+                <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
+                <a href="./ResidentManager.html" class="nav-item nav-link">Quản lý cư trú</a>
+            </div>
+            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt
+                Anh!</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-group mt-3 text-left">
+                    <li class="list-group-item"><a href="FeeList.html">Danh sách khoản thu</a></li>
+                    <li class="active list-group-item"><a href="PaidList.html">Tình trạng đóng phí, quỹ</a></li>
+                    <li class="active list-group-item"><a href="FeeCalculator.html">Tính toán phí, quỹ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col">
+                <h2 class="text-left mb-4">Danh sách các khoản thu</h2>
+                <!-- Form nhập thông tin -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Tạo khoản thu mới
+                </button>
+                <button type="button" class="btn btn-primary">
+                    Xóa các khoản thu đã chọn
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tạo khoản thu mới</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-10" for="email">Mã khoản thu:</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" placeholder="TN99">
+                                            <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-10" for="pwd">Tên khoản thu:</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" placeholder="Quỹ vì người hèn">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios"
+                                                    id="gridRadios1" value="option1" checked>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    Phí bắt buộc
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios"
+                                                    id="gridRadios2" value="option2">
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Quỹ tự nguyện
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-10 col-form-label">Đơn giá</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" placeholder="Đối với loại phí bắt buộc">
+                                            <p>(Đơn vị: VNĐ)</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-10 col-form-label">Mô tả</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control"
+                                                placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-12" for="pwd">Ngày cập nhật:</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" type="date">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary">Cập nhật</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mt-3 mb-3">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button"><i
+                                class="search-icon ti-search"></i></button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Chọn</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Mã khoản thu</th>
+                                <th scope="col">Tên khoản thu</th>
+                                <th scope="col">Đơn giá (đối với khoản phí)</th>
+                                <th scope="col">Đơn vị</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">1</th>
+                                <td>BB01</td>
+                                <td>Phí quản lý</td>
+                                <td>7000</td>
+                                <td>VNĐ/m2/tháng</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">2</th>
+                                <td>BB02</td>
+                                <td>Phí dịch vụ</td>
+                                <td>16500</td>
+                                <td>VNĐ/m2/tháng</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">3</th>
+                                <td>BB03</td>
+                                <td>Phí gửi xe máy</td>
+                                <td>70000</td>
+                                <td>VNĐ/xe</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">4</th>
+                                <td>BB04</td>
+                                <td>Phí gửi ô tô</td>
+                                <td>1200000</td>
+                                <td>VNĐ/xe</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">5</th>
+                                <td>BB05</td>
+                                <td>Phí điện</td>
+                                <td>3000</td>
+                                <td>VNĐ/số</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">6</th>
+                                <td>BB06</td>
+                                <td>Phí nước</td>
+                                <td>Phụ thuộc vào số khối nước đã dùng</td>
+                                <td>VNĐ/dm3</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">7</th>
+                                <td>TN01</td>
+                                <td>Quỹ khuyến học</td>
+                                <td>Tự nguyện</td>
+                                <td>VNĐ/hộ</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">8</th>
+                                <td>TN02</td>
+                                <td>Quỹ tình nghĩa</td>
+                                <td>Tự nguyện</td>
+                                <td>VNĐ/hộ</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">9</th>
+                                <td>TN03</td>
+                                <td>Quỹ người cao tuổi</td>
+                                <td>Tự nguyện</td>
+                                <td>VNĐ/hộ</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">10</th>
+                                <td>TN04</td>
+                                <td>Quỹ vì trẻ thơ</td>
+                                <td>Tự nguyện</td>
+                                <td>VNĐ/hộ</td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <th scope="row">11</th>
+                                <td>TN05</td>
+                                <td>Quỹ vì người hèn</td>
+                                <td>Tự nguyện</td>
+                                <td>VNĐ/hộ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><a href="#">Lên đầu trang</a></p>
+
+                <p><a href="Fee.html">Quay lại quản lý khoản thu</a></p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Bootstrap JS và các thư viện khác cần thiết -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
