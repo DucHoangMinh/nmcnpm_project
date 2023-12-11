@@ -11,7 +11,7 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="./Apartment Manager_files/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="./Apartment Manager_files/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <style>
         .navbar-nav {
             margin-left: auto;
@@ -53,8 +53,9 @@
             <div class="col-md-3">
                 <ul class="list-group mt-3 text-left">
                     <li class="list-group-item"><a href="FeeList.html">Danh sách khoản thu</a></li>
-                    <li class="active list-group-item"><a href="PaidList.html">Tình trạng đóng phí, quỹ</a></li>
-                    <li class="active list-group-item"><a href="FeeCalculator.html">Tính toán phí, quỹ</a></li>
+                    <li class="list-group-item"><a href="FeeCalculator.html">Tính toán các khoản phí</a></li>
+                    <li class="list-group-item"><a href="PaidList.html">Tình trạng đóng phí, quỹ</a></li>
+                    <li class="list-group-item"><a href="CharityFund.html">Thống kê các quỹ tự nguyện</a></li>
                 </ul>
             </div>
         </div>
@@ -149,8 +150,7 @@
                 <div class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="Tìm kiếm">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button"><i
-                                class="search-icon ti-search"></i></button>
+                        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -161,6 +161,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Mã khoản thu</th>
                                 <th scope="col">Tên khoản thu</th>
+                                <th scope="col">Loại phí</th>
                                 <th scope="col">Đơn giá (đối với khoản phí)</th>
                                 <th scope="col">Đơn vị</th>
                             </tr>
@@ -173,6 +174,7 @@
                                 <th scope="row">1</th>
                                 <td>BB01</td>
                                 <td>Phí quản lý</td>
+                                <td>Bắt buộc</td>
                                 <td>7000</td>
                                 <td>VNĐ/m2/tháng</td>
                             </tr>
@@ -183,6 +185,7 @@
                                 <th scope="row">2</th>
                                 <td>BB02</td>
                                 <td>Phí dịch vụ</td>
+                                <td>Bắt buộc</td>
                                 <td>16500</td>
                                 <td>VNĐ/m2/tháng</td>
                             </tr>
@@ -193,6 +196,7 @@
                                 <th scope="row">3</th>
                                 <td>BB03</td>
                                 <td>Phí gửi xe máy</td>
+                                <td>Bắt buộc</td>
                                 <td>70000</td>
                                 <td>VNĐ/xe</td>
                             </tr>
@@ -203,6 +207,7 @@
                                 <th scope="row">4</th>
                                 <td>BB04</td>
                                 <td>Phí gửi ô tô</td>
+                                <td>Bắt buộc</td>
                                 <td>1200000</td>
                                 <td>VNĐ/xe</td>
                             </tr>
@@ -213,6 +218,7 @@
                                 <th scope="row">5</th>
                                 <td>BB05</td>
                                 <td>Phí điện</td>
+                                <td>Bắt buộc</td>
                                 <td>3000</td>
                                 <td>VNĐ/số</td>
                             </tr>
@@ -223,6 +229,7 @@
                                 <th scope="row">6</th>
                                 <td>BB06</td>
                                 <td>Phí nước</td>
+                                <td>Bắt buộc</td>
                                 <td>Phụ thuộc vào số khối nước đã dùng</td>
                                 <td>VNĐ/dm3</td>
                             </tr>
@@ -234,6 +241,7 @@
                                 <td>TN01</td>
                                 <td>Quỹ khuyến học</td>
                                 <td>Tự nguyện</td>
+                                <td>0</td>
                                 <td>VNĐ/hộ</td>
                             </tr>
                             <tr>
@@ -244,6 +252,7 @@
                                 <td>TN02</td>
                                 <td>Quỹ tình nghĩa</td>
                                 <td>Tự nguyện</td>
+                                <td>0</td>
                                 <td>VNĐ/hộ</td>
                             </tr>
                             <tr>
@@ -254,6 +263,7 @@
                                 <td>TN03</td>
                                 <td>Quỹ người cao tuổi</td>
                                 <td>Tự nguyện</td>
+                                <td>0</td>
                                 <td>VNĐ/hộ</td>
                             </tr>
                             <tr>
@@ -264,6 +274,7 @@
                                 <td>TN04</td>
                                 <td>Quỹ vì trẻ thơ</td>
                                 <td>Tự nguyện</td>
+                                <td>0</td>
                                 <td>VNĐ/hộ</td>
                             </tr>
                             <tr>
@@ -274,6 +285,7 @@
                                 <td>TN05</td>
                                 <td>Quỹ vì người hèn</td>
                                 <td>Tự nguyện</td>
+                                <td>0</td>
                                 <td>VNĐ/hộ</td>
                             </tr>
                         </tbody>

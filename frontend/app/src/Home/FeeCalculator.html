@@ -11,7 +11,7 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="./Apartment Manager_files/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="./Apartment Manager_files/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <style>
         .navbar-nav {
             margin-left: auto;
@@ -43,8 +43,7 @@
                 <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
                 <a href="./ResidentManager.html" class="nav-item nav-link">Quản lý cư trú</a>
             </div>
-            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt
-                Anh!</a>
+            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt Anh!</a>
         </div>
     </nav>
 
@@ -52,9 +51,10 @@
         <div class="row">
             <div class="col-md-3">
                 <ul class="list-group mt-3 text-left">
-                    <li class="active list-group-item"><a href="FeeList.html">Danh sách khoản thu</a></li>
-                    <li class="active list-group-item"><a href="PaidList.html">Tình trạng đóng phí, quỹ</a></li>
-                    <li class="list-group-item"><a href="FeeCalculator.html">Tính toán phí, quỹ</a></li>
+                    <li class="list-group-item"><a href="FeeList.html">Danh sách khoản thu</a></li>
+                    <li class="list-group-item"><a href="FeeCalculator.html">Tính toán các khoản phí</a></li>
+                    <li class="list-group-item"><a href="PaidList.html">Tình trạng đóng phí, quỹ</a></li>
+                    <li class="list-group-item"><a href="CharityFund.html">Thống kê các quỹ tự nguyện</a></li>
                 </ul>
             </div>
         </div>
@@ -64,7 +64,7 @@
         <div class="row">
 
             <div class="col">
-                <h2 class="text-left mb-4">Tính các khoản phí, quỹ với từng hộ gia đình</h2>
+                <h2 class="text-left mb-4">Tính các khoản phí với từng hộ gia đình</h2>
                 <!-- Form nhập thông tin -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Tạo biểu mẫu tính phí tới các hộ gia đình đã chọn
@@ -142,7 +142,7 @@
                     <input type="text" class="form-control" placeholder="Tìm kiếm">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button"><i
-                                class="search-icon ti-search"></i></button>
+                                class="bi bi-search"></i></button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -176,7 +176,7 @@
                             <tr>
                                 <td></td>
                                 <td>1</td>
-                                <td>3001</td>
+                                <td><a href="Room Detail.html">3301</a></td>
                                 <td>300000</td>
                                 <td>299000</td>
                                 <td>2</td>

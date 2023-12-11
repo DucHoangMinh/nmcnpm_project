@@ -43,8 +43,7 @@
                 <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
                 <a href="./ResidentManager.html" class="nav-item nav-link">Quản lý cư trú</a>
             </div>
-            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt
-                Anh!</a>
+            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt Anh!</a>
         </div>
     </nav>
 
@@ -65,9 +64,8 @@
         <div class="row">
 
             <div class="col">
-                <h2 class="text-left mb-4">Tình trạng đóng phí, quỹ</h2>
-
-                <div class="input-group mb-3">
+                <h2 class="text-left mb-4">Danh sách các hộ góp quỹ tự nguyện</h2>
+                <div class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="Tìm kiếm">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button"><i
@@ -78,48 +76,40 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Mã hộ gia đình</th>
-                                <th scope="col">Phí phải đóng</th>
-                                <th scope="col">Phí đã đóng</th>
-                                <th scope="col">Quỹ đã đóng</th>
-                                <th scope="col">Thời gian đóng</th>
-                                <th scope="col">Phí còn thiếu</th>
-                                <th scope="col">Trạng thái</th>
+                                <th>#</th>
+                                <th>Mã hộ gia đình</th>
+                                <th>TN01</th>
+                                <th>TN02</th>
+                                <th>TN03</th>
+                                <th>TN04</th>
+                                <th>TN05</th>
+                                <th>Tổng đóng góp của hộ (đơn vị: VNĐ)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td><a href="Room Detail.html">501</a></td>
-                                <td>1200000</td>
-                                <td>800000</td>
-                                <td>0</td>
-                                <td>12:00:00 11/12/2023</td>
-                                <td>400000</td>
-                                <td>Còn thiếu</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td><a href="Room Detail.html">502</a></td>
-                                <td>1200000</td>
-                                <td>1200000</td>
+                                <td>1</td>
+                                <td><a href="Room Detail.html">810</a></td>
+                                <td>20000</td>
+                                <td>30000</td>
+                                <td>20000</td>
+                                <td>15000</td>
                                 <td>50000</td>
-                                <td>23:59:00 11/12/2023</td>
-                                <td>0</td>
-                                <td>Hoàn thành</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td><a href="Room Detail.html">2908</a></td>
-                                <td>2500000</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>Chưa đóng</td>
-                                <td>2500000</td>
-                                <td>Hết hạn</td>
+                                <td>135000</td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Tổng quỹ (đơn vị: VNĐ)</th>
+                                <th>20000</th>
+                                <th>30000</th>
+                                <th>20000</th>
+                                <th>15000</th>
+                                <th>50000</th>
+                                <th>135000</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
 
@@ -128,7 +118,9 @@
                 <p><a href="Fee.html">Quay lại quản lý khoản thu</a></p>
             </div>
         </div>
+
     </div>
+
 
     <!-- Bootstrap JS và các thư viện khác cần thiết -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
