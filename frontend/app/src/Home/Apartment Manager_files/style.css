@@ -689,7 +689,8 @@
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
-.modal-dialog .modal-fullscreen {
+
+.modal-fullscreen {
     max-width: 100%;
     margin: 0;
     top: 0;
@@ -698,6 +699,4 @@
     right: 0;
     height: 100vh;
     display: flex;
-    position: fixed;
-    z-index: 100000;
 }
