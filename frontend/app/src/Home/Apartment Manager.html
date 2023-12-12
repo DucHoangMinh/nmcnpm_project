@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <title>Quản lý chung cư</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-    
-    <link href="./images/favicon.png" rel="icon">
+<html lang="en">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./Apartment Manager_files/style.css" rel="stylesheet">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <!-- <link href="./Apartment Manager_files/animate.min.css" rel="stylesheet"> -->
-    <link href="./Apartment Manager_files/owl.carousel.min.css" rel="stylesheet">
-    <!-- <link href="./Apartment Manager_files/lightbox.min.css" rel="stylesheet"> -->
-    <!-- <link href="./Apartment Manager_files/bootstrap.min.css" rel="stylesheet"> -->
-        
-    <style>
+  <title>Quản lý chung cư</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <link href="./images/favicon.png" rel="icon">
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./Apartment Manager_files/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+  <!-- <link href="./Apartment Manager_files/animate.min.css" rel="stylesheet"> -->
+  <link href="./Apartment Manager_files/owl.carousel.min.css" rel="stylesheet">
+  <!-- <link href="./Apartment Manager_files/lightbox.min.css" rel="stylesheet"> -->
+  <!-- <link href="./Apartment Manager_files/bootstrap.min.css" rel="stylesheet"> -->
+
+  <style>
     .navbar-nav {
       margin-left: auto;
     }
@@ -24,58 +28,114 @@
 </head>
 
 <body>
-    
-    <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
 
-    <nav class="nav navbar-expand-lg bg-white navbar-light sticky-top p-0" style="top: -100px;">
-      <a href="./Apartment Manager.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-          <h2 class="m-0 text-primary">BLUE MOON</h2>
-      </a>
-      
-      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-          <span class="navbar-toggler-icon"></span>   
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-          <div class="navbar-nav ms-auto p-4 p-lg-0">
-              <a href="./Apartment Manager.html" class="active nav-item nav-link">Trang chủ</a>
-              <a href="./Fee.html" class="nav-item nav-link">Quản lý khoản thu</a>
-              <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
-              <a href="./ResidentManager.html" class="nav-item nav-link">Quản lý cư trú</a>
-          </div>
-          <div>
-            <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt Anh!</a>
-          </div>
-          
+  <div id="spinner"
+    class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <nav class="nav navbar-expand-lg bg-white navbar-light sticky-top p-0" style="top: -100px;">
+    <a href="./Apartment Manager.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <h2 class="m-0 text-primary">BLUE MOON</h2>
+    </a>
+
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto p-4 p-lg-0">
+        <a href="./Apartment Manager.html" class="active nav-item nav-link">Trang chủ</a>
+        <a href="./Fee.html" class="nav-item nav-link">Quản lý khoản thu</a>
+        <a href="./Room Manager.html" class="nav-item nav-link">Quản lý dân cư</a>
+        <a href="./ResidentManager.html" class="nav-item nav-link">Quản lý cư trú</a>
       </div>
-    </nav>
-    
-    <div class="container fluid mt-5">
+      <div>
+        <a href="./Account.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Xin chào Lê Minh Việt Anh!</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- <div class="container fluid mt-5">
       <div class="row">
-        <div class="col-md-4 md-15">
-          <h2 class="text-center mb-4">Thông tin chung cư</h2>
-
-          <ul class="list-group">
-            <li class="list-group-item">
-              Tên chung cư: Blue Moon
-            </li>
-            <li class="list-group-item">
-              <a href="Room Detail.html">Phòng 102</a>
-            </li>
-            <li class="list-group-item">
-              <a href="Room Detail.html">Phòng 103</a>
-            </li>
-          </ul>
+        <div class="col">
+          <h2 class="text-left mb-4">Thống kê chung</h2>
+          <div class="col-md-4 md-15 table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tên chung cư</td>
+                  <td>BlueMoon</td>
+                  <td>Số phòng trống</td>
+                  <td>BlueMoon</td>
+                  <td>Tên chung cư</td>
+                  <td>BlueMoon</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div> -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-left mb-4">Thống kê chung</h2>
+        <div class="table-responsive">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th colspan="2">
+                  <h2 class="text-left mb-4">BlueMoon</h2>
+                </th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tổng số phòng:</th>
+                <td>501</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>501</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>501</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>501</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/aos.js"></script>
     <script src="js/custom.js"></script> -->
-  </body>
+</body>
+<footer id="footer" class="footer">
+  <div class="copyright">
+    &copy; Copyright <strong><span>BlueMoon</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    Designed by <a href="https://google.com/">Group 10 - Introduce to Software Engineering - 2023.1</a>
+  </div>
+</footer>
+
 </html>
