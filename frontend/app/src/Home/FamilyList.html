@@ -78,11 +78,10 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Mã hộ gia đình</th>
                                 <th scope="col">Họ và tên chủ hộ</th>
-                                <th scope="col">Mã cư dân</th>
                                 <th scope="col">Số điện thoại của chủ hộ</th>
                                 <th scope="col">Số thành viên hiện tại</th>
-                                <th>Tạm vắng</th>
                                 <th scope="col">Bắt đầu thuê từ ngày</th>
+                                <th scope="col">Xem chi tiết</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,11 +89,102 @@
                                 <th scope="row">1</th>
                                 <td><a href="Room Detail.html">501</a></td>
                                 <td class="name">a văn B</td>
-                                <td>501P1</td>
                                 <td>0123456789</td>
                                 <td>10</td>
-                                <td>0</td>
                                 <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="bi bi-three-dots"></i>
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Tạo khoản thu mới</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu</legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="gridRadios"
+                                                                        id="gridRadios1" value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="gridRadios"
+                                                                        id="gridRadios2" value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày hết hạn:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd"><b>Lưu ý: </b></label>
+                                                            <div class="col-sm-12">
+                                                                Nếu nộp thiếu, phí tháng sau sẽ được cộng thêm với phí còn thiếu.
+                                                                <br>
+                                                                Nếu nộp dư, phí tháng sau sẽ được trừ đi phí còn dư.
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
