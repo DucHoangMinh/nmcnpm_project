@@ -29,28 +29,84 @@
     </div>
   </div>
 
-  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" style="top: -100px;">
-    <a href="./Apartment Manager.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-      <h2 class="m-0 text-primary"><i class="bi bi-buildings-fill"></i> BLUE MOON <i class="bi bi-moon-stars-fill"></i>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <a href="./HomePage.html" class="navbar-brand d-flex align-items-center">
+      <h2 class="m-0 text-primary"><i class="bi bi-buildings-fill"></i> BLUEMOON <i class="bi bi-moon-stars-fill"></i>
       </h2>
     </a>
-
-    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav ms-auto p-4 p-lg-0">
-        <a href="./Apartment Manager.html" class="nav-item nav-link"><i class="bi bi-house-fill"></i> Trang chủ</a>
-        <a href="./Fee.html" class="nav-item nav-link"><i class="bi bi-clipboard2-fill"></i> Quản lý khoản thu</a>
-        <a href="./Room Manager.html" class="active nav-item nav-link"><i class="bi bi-people-fill"></i> Quản lý dân
-          cư</a>
-        <a href="./ResidentManager.html" class="nav-item nav-link"><i class="bi bi-person-fill-exclamation"></i> Quản lý
-          cư trú</a>
-      </div>
-      <a href="./Account.html" class="btn btn-primary py-4 px-lg-2 d-none d-lg-block"><i class="bi bi-person-vcard"></i>
-        Ban quản lý</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="./HomePage.html"><i class="bi bi-house-fill"></i> Trang chủ <span
+              class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown" href="Payment_FeeList.html">
+            <i class="bi bi-clipboard2-fill"></i> Quản lý khoản thu <i class="bi bi-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Payment_FeeList.html"><i class="bi bi-caret-right-fill"></i> Danh sách khoản
+              thu</a>
+            <a class="dropdown-item" href="Payment_FeeCalculator.html"><i class="bi bi-caret-right-fill"></i> Tính toán
+              phí</a>
+            <!-- <div class="dropdown-divider"></div> -->
+            <a class="dropdown-item" href="Payment_FeePaidList.html"><i class="bi bi-caret-right-fill"></i> Tình trạng
+              đóng phí</a>
+            <a class="dropdown-item" href="Payment_FundSatistics.html" class="dropdown-item"><i
+                class="bi bi-caret-right-fill"></i> Thống kê quỹ</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="active nav-link dropdown" href="Household_FamilyList.html">
+            <i class="bi bi-people-fill"></i> Quản lý hộ khẩu <i class="bi bi-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Household_FamilyList.html"><i class="bi bi-caret-right-fill"></i> Danh sách
+              các hộ gia đình</a>
+            <a class="dropdown-item" href="Household_Processing.html"><i class="bi bi-caret-right-fill"></i> Xử lý yêu cầu thuê phòng</a>
+            <a href="Household_RoomList.html" class="dropdown-item"><i class="bi bi-caret-right-fill"></i> Danh sách căn
+              hộ</a>
+            <!-- <div class="dropdown-divider"></div> -->
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown" href="Resident_ResidentList.html">
+            <i class="bi bi-person-fill-exclamation"></i> Quản lý nhân khẩu <i class="bi bi-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Resident_ResidentList.html"><i class="bi bi-caret-right-fill"></i> Danh sách
+              cư dân</a>
+            <a class="dropdown-item" href="Resident_Processing.html"><i class="bi bi-caret-right-fill"></i> Xử lý yêu cầu thay đổi cư trú</a>
+            <!-- <div class="dropdown-divider"></div> -->
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown" href="Setting_ManagerInfo.html">
+            <i class="bi bi-gear"></i> <span>Cài đặt</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Setting_ManagerInfo.html"><i class="bi bi-caret-right-fill"></i> Thông tin
+              ban quản lý</a>
+            <a class="dropdown-item" href="Setting_Password.html"><i class="bi bi-caret-right-fill"></i> Thay đổi mật
+              khẩu</a>
+            <a class="dropdown-item" href="Login.html"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+            <!-- <div class="dropdown-divider"></div> -->
+          </div>
+
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+      </form>
     </div>
   </nav>
+  <br><br><br>
 
 
 
@@ -174,9 +230,8 @@
     </table>
     <p><a href="#">Lên đầu trang</a></p>
 
-    <p><a href="FamilyList.html">Quay lại danh sách các hộ gia đình</a></p>
   </div>
-  
+
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
