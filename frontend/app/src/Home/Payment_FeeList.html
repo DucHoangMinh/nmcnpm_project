@@ -66,11 +66,12 @@
                     <a class="nav-link dropdown" href="Household_FamilyList.html">
                         <i class="bi bi-people-fill"></i> Quản lý hộ khẩu <i class="bi bi-chevron-down"></i>
                     </a>
-                    
+
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="Household_FamilyList.html"><i class="bi bi-caret-right-fill"></i>
                             Danh sách các hộ gia đình</a>
-                        <a class="dropdown-item" href="Household_Processing.html"><i class="bi bi-caret-right-fill"></i> Xử lý yêu cầu thuê
+                        <a class="dropdown-item" href="Household_Processing.html"><i class="bi bi-caret-right-fill"></i>
+                            Xử lý yêu cầu thuê
                             phòng</a>
                         <a href="Household_RoomList.html" class="dropdown-item"><i class="bi bi-caret-right-fill"></i>
                             Danh sách căn hộ</a>
@@ -85,7 +86,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="Resident_ResidentList.html"><i
                                 class="bi bi-caret-right-fill"></i> Danh sách cư dân</a>
-                        <a class="dropdown-item" href="Resident_Processing.html"><i class="bi bi-caret-right-fill"></i> Xử lý yêu cầu thay đổi
+                        <a class="dropdown-item" href="Resident_Processing.html"><i class="bi bi-caret-right-fill"></i>
+                            Xử lý yêu cầu thay đổi
                             cư trú</a>
                         <!-- <div class="dropdown-divider"></div> -->
                     </div>
@@ -120,10 +122,7 @@
                 <h2 class="text-left mb-4">Danh sách các khoản thu</h2>
                 <!-- Form nhập thông tin -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateFeeModal">
-                    Tạo khoản thu mới
-                </button>
-                <button type="button" class="btn btn-primary">
-                    Xóa các khoản thu đã chọn
+                    <i class="bi bi-plus-square-fill"></i> Tạo khoản thu mới
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="CreateFeeModal" tabindex="-1" role="dialog"
@@ -194,12 +193,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
+                                <button type="button" class="btn btn-primary">Tạo</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="Tìm kiếm">
                     <div class="input-group-append">
@@ -217,6 +216,7 @@
                                 <th scope="col">Loại phí</th>
                                 <th scope="col">Đơn giá (đối với khoản phí)</th>
                                 <th scope="col">Đơn vị</th>
+                                <th scope="col">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -230,6 +230,99 @@
                                 <td>Bắt buộc</td>
                                 <td>7000</td>
                                 <td>VNĐ/m2/tháng</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -241,6 +334,98 @@
                                 <td>Bắt buộc</td>
                                 <td>16500</td>
                                 <td>VNĐ/m2/tháng</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -252,6 +437,99 @@
                                 <td>Bắt buộc</td>
                                 <td>70000</td>
                                 <td>VNĐ/xe</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -263,6 +541,99 @@
                                 <td>Bắt buộc</td>
                                 <td>1200000</td>
                                 <td>VNĐ/xe</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -274,6 +645,99 @@
                                 <td>Bắt buộc</td>
                                 <td>3000</td>
                                 <td>VNĐ/số</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -285,6 +749,99 @@
                                 <td>Bắt buộc</td>
                                 <td>Phụ thuộc vào số khối nước đã dùng</td>
                                 <td>VNĐ/dm3</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -296,6 +853,99 @@
                                 <td>Tự nguyện</td>
                                 <td>0</td>
                                 <td>VNĐ/hộ</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -307,6 +957,99 @@
                                 <td>Tự nguyện</td>
                                 <td>0</td>
                                 <td>VNĐ/hộ</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -318,6 +1061,99 @@
                                 <td>Tự nguyện</td>
                                 <td>0</td>
                                 <td>VNĐ/hộ</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -329,6 +1165,99 @@
                                 <td>Tự nguyện</td>
                                 <td>0</td>
                                 <td>VNĐ/hộ</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -340,6 +1269,99 @@
                                 <td>Tự nguyện</td>
                                 <td>0</td>
                                 <td>VNĐ/hộ</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#EditFeeModal"><i class="bi bi-pencil-fill"></i></button>
+                                    <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                    <div class="modal fade" id="EditFeeModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="EditModalLabel" aria-hidden="true">
+                                        <div class="text-left modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EditFeeModal">Chỉnh sửa thông tin khoản
+                                                        thu
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="email">Mã khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" placeholder="TN99">
+                                                                <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-10" for="pwd">Tên khoản
+                                                                thu:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Quỹ vì người hèn">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios1"
+                                                                        value="option1" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                        Phí bắt buộc
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="gridRadios" id="gridRadios2"
+                                                                        value="option2">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Quỹ tự nguyện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Đơn giá</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Đối với loại phí bắt buộc">
+                                                                <p>(Đơn vị: VNĐ)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3"
+                                                                class="col-sm-10 col-form-label">Mô tả</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control"
+                                                                    placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-12" for="pwd">Ngày cập
+                                                                nhật:</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="date">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -356,16 +1378,17 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
 
 </body>
 <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>BlueMoon</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>BlueMoon</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
         Designed by <a href="https://google.com/">Group 10 - Introduction to Software Engineering - 2023.1</a>
 
     </div>
-  </footer>
+</footer>
+
 </html>

@@ -70,7 +70,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="Household_FamilyList.html"><i class="bi bi-caret-right-fill"></i>
                             Danh sách các hộ gia đình</a>
-                        <a class="dropdown-item" href="Household_Processing.html"><i class="bi bi-caret-right-fill"></i> Xử lý yêu cầu thuê
+                        <a class="dropdown-item" href="Household_Processing.html"><i class="bi bi-caret-right-fill"></i>
+                            Xử lý yêu cầu thuê
                             phòng</a>
                         <a href="Household_RoomList.html" class="dropdown-item"><i class="bi bi-caret-right-fill"></i>
                             Danh sách căn hộ</a>
@@ -85,7 +86,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="Resident_ResidentList.html"><i
                                 class="bi bi-caret-right-fill"></i> Danh sách cư dân</a>
-                        <a class="dropdown-item" href="Resident_Processing.html"><i class="bi bi-caret-right-fill"></i> Xử lý yêu cầu thay đổi
+                        <a class="dropdown-item" href="Resident_Processing.html"><i class="bi bi-caret-right-fill"></i>
+                            Xử lý yêu cầu thay đổi
                             cư trú</a>
                         <!-- <div class="dropdown-divider"></div> -->
                     </div>
@@ -117,78 +119,119 @@
         <div class="row">
             <div class="col">
                 <h2 class="text-left mb-4">Danh sách các hộ gia đình</h2>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Tạo khoản thu mới
-                </button>
-                <button type="button" class="btn btn-primary">
-                    Xóa các khoản thu đã chọn
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddnewHousehold">
+                    <i class="bi bi-plus-square-fill"></i> Tạo hộ khẩu mới
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal fade" id="AddnewHousehold" tabindex="-1" role="dialog"
+                    aria-labelledby="AddnewHouseholdLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tạo khoản thu mới</h5>
+                                <h2 class="modal-title text-primary" id="exampleModalLabel">
+                                    Thông tin hộ khẩu mới
+                                </h2>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-10" for="email">Mã khoản thu:</label>
-                                        <div class="col-sm-12">
-                                            <input class="form-control" placeholder="TN99">
-                                            <!-- chỗ placeholder thay bằng tên người dùng hiện tại -->
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-10" for="pwd">Tên khoản thu:</label>
-                                        <div class="col-sm-12">
-                                            <input class="form-control" placeholder="Quỹ vì người hèn">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <legend class="col-form-label col-sm-12 pt-0">Loại khoản thu</legend>
-                                        <div class="col-sm-10">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios"
-                                                    id="gridRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="gridRadios1">
-                                                    Phí bắt buộc
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios"
-                                                    id="gridRadios2" value="option2">
-                                                <label class="form-check-label" for="gridRadios2">
-                                                    Quỹ tự nguyện
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-10 col-form-label">Đơn giá</label>
-                                        <div class="col-sm-12">
-                                            <input class="form-control" placeholder="Đối với loại phí bắt buộc">
-                                            <p>(Đơn vị: VNĐ)</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-10 col-form-label">Mô tả</label>
-                                        <div class="col-sm-12">
-                                            <input class="form-control"
-                                                placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-12" for="pwd">Ngày cập nhật:</label>
-                                        <div class="col-sm-12">
-                                            <input class="form-control" type="date">
-                                        </div>
-                                    </div>
-                                </form>
+
+                                <table class="text-left table table-borderless table-responsive">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Mã căn hộ</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ngày bắt đầu thuê</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tổng số thành viên</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Số xe máy gửi</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Số xe ô tô gửi</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-primary">Tự động tạo N form điền bên dưới, tương ứng với số thành viên đã điền ở trên</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h4 class="text-left">Danh sách thành viên trong hộ gia đình
+                                </h4>
+                                <table class="text-left table table-borderless table-responsive">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Mã cư dân</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="2506Pi (với i = 0, 1, 2, ...)">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Họ và tên thành viên</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Giới tính</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ngày sinh</th>
+                                            <td class="form-group">
+                                                <input class="form-control" type="date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Số căn cước</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ngày cấp</th>
+                                            <td class="form-group">
+                                                <input class="form-control" type="date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Nơi thường trú</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Nghề nghiệp, nơi làm việc</th>
+                                            <td class="form-group">
+                                                <input class="form-control" placeholder="">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -207,19 +250,17 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th class="text-center">Chọn</th>
                                 <th class="text-center" scope="col">#</th>
                                 <th class="text-center" scope="col">Mã hộ gia đình</th>
                                 <th class="text-center" scope="col">Họ và tên chủ hộ</th>
                                 <th class="text-center" scope="col">Số điện thoại của chủ hộ</th>
                                 <th class="text-center" scope="col">Số thành viên hiện tại</th>
                                 <th class="text-center" scope="col">Bắt đầu thuê từ ngày</th>
-                                <th class="text-center" scope="col">Xem chi tiết</th>
+                                <th class="text-center" scope="col">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="text-center"><input type="checkbox"></th>
                                 <th scope="row" class="text-center">1</th>
                                 <td class="text-center">502</td>
                                 <td class="name">a văn B</td>
@@ -232,6 +273,8 @@
                                             data-target="#RoomDetailModal">
                                             <i class="bi bi-three-dots"></i>
                                         </button>
+                                        <button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+
                                         <!-- Modal -->
                                         <div class="modal fade" id="RoomDetailModal" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -290,6 +333,22 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Tổng số tiền đã quyên góp</th>
+                                                                    <td>1 tỏi</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Số xe máy gửi</th>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Số xe ô tô gửi</th>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Phí nộp dư</th>
+                                                                    <td>0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Phí nộp thiếu</th>
                                                                     <td>1 tỏi</td>
                                                                 </tr>
                                                             </tbody>
@@ -387,7 +446,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
 </body>
 <footer id="footer" class="footer">
