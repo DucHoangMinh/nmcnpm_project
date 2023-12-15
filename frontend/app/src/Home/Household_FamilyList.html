@@ -174,7 +174,7 @@
                                     </tbody>
                                 </table>
 
-                                <div class="text-primary">Tài khoản mặc định</div>
+                                <!-- <div class="text-primary">Tài khoản mặc định</div>
                                 <table class="text-left table table-borderless table-responsive">
                                     <thead></thead>
                                     <tbody>
@@ -187,7 +187,7 @@
                                             <td>"Mã hộ gia đình"</td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> -->
                                 <div class="text-primary">Tự động tạo N form điền bên dưới, tương ứng với số thành viên
                                     đã điền ở trên</div>
                                 <h4 class="text-left">Danh sách thành viên trong hộ gia đình
@@ -249,7 +249,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-primary">Tạo và gửi thông tin tài khoản mặc định cho hộ gia đình mới</button>
+                                <button type="button" class="btn btn-primary">Tạo và gửi thông tin tài khoản mặc định
+                                    cho chủ hộ</button>
                             </div>
                         </div>
                     </div>
@@ -319,7 +320,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Số điện thoại liên hệ</th>
-                                                                    <td>1800100 có</td>
+                                                                    <td><input type="text" class="form-control"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Ngày bắt đầu thuê</th>
@@ -347,15 +348,15 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Tổng số tiền đã quyên góp</th>
-                                                                    <td>1 tỏi</td>
+                                                                    <td>5000</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Số xe máy gửi</th>
-                                                                    <td>2</td>
+                                                                    <td><input type="text" class="form-control"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Số xe ô tô gửi</th>
-                                                                    <td>1</td>
+                                                                    <td><input type="text" class="form-control"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Phí nộp dư</th>
@@ -363,7 +364,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Phí nộp thiếu</th>
-                                                                    <td>1 tỏi</td>
+                                                                    <td>100000</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -439,6 +440,8 @@
                                                         </table>
                                                     </div>
                                                     <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-dismiss="modal">Cập nhật</button>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Đóng</button>
                                                     </div>
