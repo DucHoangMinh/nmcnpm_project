@@ -122,6 +122,9 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddnewHousehold">
                     <i class="bi bi-plus-square-fill"></i> Tạo hộ khẩu mới
                 </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#message">
+                    <i class="bi bi-envelope-fill"></i> Gửi thông báo
+                </button>
                 <!-- Modal -->
                 <div class="modal fade" id="AddnewHousehold" tabindex="-1" role="dialog"
                     aria-labelledby="AddnewHouseholdLabel" aria-hidden="true">
@@ -148,15 +151,31 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>Ngày bắt đầu thuê</th>
-                                            <td class="form-group">
-                                                <input class="form-control" placeholder="">
-                                            </td>
+                                            <th>Số căn cước của chủ hộ</th>
+                                            <td><input class="form-control" type="text" name="" id=""></td>
                                         </tr>
                                         <tr>
-                                            <th>Tổng số thành viên</th>
+                                            <th>Họ và tên chủ hộ</th>
+                                            <td>
+                                                <input type="text" name="" id="" class="form-control">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Các thành viên khác trong hộ</th>
                                             <td class="form-group">
-                                                <input class="form-control" placeholder="">
+                                                <select class="form-select form-control" multiple
+                                                    aria-label="multiple select example">
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                    <option value="4">One</option>
+                                                    <option value="5">Two</option>
+                                                    <option value="6">Three</option>
+                                                    <option value="7">One</option>
+                                                    <option value="8">Two</option>
+                                                    <option value="9">Three</option>
+                                                </select>
                                             </td>
                                         </tr>
                                         <tr>
@@ -188,73 +207,82 @@
                                         </tr>
                                     </tbody>
                                 </table> -->
-                                <div class="text-primary">Tự động tạo N form điền bên dưới, tương ứng với số thành viên
-                                    đã điền ở trên</div>
-                                <h4 class="text-left">Danh sách thành viên trong hộ gia đình
-                                </h4>
-                                <table class="text-left table table-borderless table-responsive">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>Mã cư dân</th>
-                                            <td class="form-group">
-                                                <input class="form-control" placeholder="2506Pi (với i = 0, 1, 2, ...)">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Họ và tên thành viên</th>
-                                            <td class="form-group">
-                                                <input class="form-control" placeholder="">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Giới tính</th>
-                                            <td class="form-group">
-                                                <input class="form-control" placeholder="">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Ngày sinh</th>
-                                            <td class="form-group">
-                                                <input class="form-control" type="date">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Số căn cước</th>
-                                            <td class="form-group">
-                                                <input class="form-control" placeholder="">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Ngày cấp</th>
-                                            <td class="form-group">
-                                                <input class="form-control" type="date">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nơi thường trú</th>
-                                            <td class="form-group">
-                                                <input class="form-control" placeholder="">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nghề nghiệp, nơi làm việc</th>
-                                            <td class="form-group">
-                                                <input class="form-control" placeholder="">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-primary">Tạo và gửi thông tin tài khoản mặc định
-                                    cho chủ hộ</button>
+                                <button type="button" class="btn btn-primary">Tạo</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="message"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="message">
+                                    Lời nhắn
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="sel1">Chọn hộ gia đình</label>
+                                        <select class="form-control" id="sel1" name="sellist1">
+                                            <option>Chọn tất cả</option>
+                                            <option>601</option>
+                                            <option>602</option>
+                                            <option>603</option>
+                                            <option>604</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword" class="col-sm-15 col-form-label">Nội dung</label>
+                                        <div class="col-sm-15">
+                                            <textarea class="form-control" style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNumber" class="col-sm-15 col-form-label">Tải tệp lên</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Chọn tệp</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Gửi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" mt-3 mb-3">
+                    Bắt đầu thuê trong giai đoạn
+                    <table>
+                        <thead></thead>
+                        <tbody>
+                            <tr>
+                                <td>từ ngày</td>
+                                <td><input type="date" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>đến ngày</td>
+                                <td><input type="date" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Số tháng đã thuê</td>
+                                <td><input class="form-control"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="Tìm kiếm">
                     <div class="input-group-append">
@@ -332,7 +360,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Số thành viên đăng ký thường trú</th>
-                                                                    <td>4</td>
+                                                                    <td>0</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Số thành viên đăng ký tạm trú</th>
@@ -375,66 +403,78 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>#</th>
-                                                                    <th>Mã cư dân</th>
+                                                                    <th>Mã hộ gia đình</th>
                                                                     <th>Họ và tên thành viên</th>
                                                                     <th>Số căn cước</th>
                                                                     <th>Ngày Sinh</th>
                                                                     <th>Quan hệ với chủ hộ</th>
                                                                     <th>Số điện thoại</th>
+                                                                    <th>Ngày bắt đầu ở</th>
                                                                     <th>Trạng thái</th>
+                                                                    <th>Hành động</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
                                                                     <!-- <td><input type="checkbox"></td> -->
                                                                     <th>1</th>
-                                                                    <td>2506P1</td>
+                                                                    <td>2506</td>
                                                                     <td class="text-left name">lê Văn A</td>
                                                                     <td>01227612310</td>
                                                                     <td>01/8/1998</td>
                                                                     <td>Chủ hộ</td>
                                                                     <td>1800100 có</td>
-                                                                    <td>Thường trú</td>
+                                                                    <td>12/12/1222</td>
+                                                                    <td>Tạm trú</td>
+                                                                    <td><button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>2</th>
-                                                                    <td>2506P2</td>
+                                                                    <td>2506</td>
                                                                     <td class="text-left name">phùng thị b</td>
                                                                     <td>01227612310</td>
                                                                     <td>09/11/1999</td>
                                                                     <td>Vợ</td>
                                                                     <td>1800100 có</td>
-                                                                    <td>Thường trú</td>
+                                                                    <td>12/12/1222</td>
+                                                                    <td>Tạm trú</td>
+                                                                    <td><button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>3</th>
-                                                                    <td>2506P3</td>
+                                                                    <td>2506</td>
                                                                     <td class="text-left name">lê thị c</td>
                                                                     <td>01227612310</td>
                                                                     <td>09/11/1999</td>
                                                                     <td>Con gái</td>
                                                                     <td>1800100 có</td>
-                                                                    <td>Thường trú</td>
+                                                                    <td>12/12/1222</td>
+                                                                    <td>Tạm trú</td>
+                                                                    <td><button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>4</th>
-                                                                    <td>2506P4</td>
+                                                                    <td>2506</td>
                                                                     <td class="text-left name">lê văn d</td>
                                                                     <td>01227612310</td>
                                                                     <td>09/11/1999</td>
-                                                                    <td>Chủ hộ</td>
+                                                                    <td>Con trai</td>
                                                                     <td>1800100 có</td>
+                                                                    <td>12/12/1222</td>
                                                                     <td>Tạm vắng</td>
+                                                                    <td><button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>5</th>
-                                                                    <td>2506P5</td>
+                                                                    <td>2506</td>
                                                                     <td class="text-left name">triệu thị e</td>
                                                                     <td>01227612310</td>
                                                                     <td>09/11/1999</td>
                                                                     <td>Người yêu</td>
                                                                     <td>1800100 có</td>
+                                                                    <td>12/12/1222</td>
                                                                     <td>Tạm trú</td>
+                                                                    <td><button class="btn btn-secondary"><i class="bi bi-x-square-fill"></i></button></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -463,8 +503,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
 
 </body>
 <footer id="footer" class="footer">
