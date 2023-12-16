@@ -104,16 +104,16 @@
 
     <div class="container mt-5">
         <h2>Thông tin cư trú các thành viên</h2>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newResident">
+        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#newResident">
             <i class="bi bi-plus-square-fill"></i> Thêm thành viên
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tamtrungoai">
+        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#tamtrungoai">
             <i class="bi bi-plus-square-fill"></i> Đăng ký tạm trú
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tamvangngoai">
+        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#tamvangngoai">
             <i class="bi bi-plus-square-fill"></i> Đăng ký tạm vắng
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#thuongtru">
+        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#thuongtru">
             <i class="bi bi-plus-square-fill"></i> Đăng ký thường trú
         </button>
         <!-- Modal -->
@@ -181,6 +181,16 @@
                                 <tr>
                                     <td>Đến chung cư từ ngày</td>
                                     <td><input type="date" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>Vai trò</td>
+                                    <td>
+                                        <select class="form-select form-control">
+                                            <option value="1">Cư dân</option>
+                                            <option value="2">Chủ hộ</option>
+                                            <option value="3">Ban quản lý</option>
+                                          </select>
+                                    </td>
                                 </tr>
                                 <div class="form-group">
                                     <label class="control-label col-sm-10" for="pwd">Ảnh chụp căn cước (2 mặt)</label>
@@ -608,19 +618,31 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Đến chung cư từ ngày</td>
-                                                    <td><input type="date" class="form-control"></td>
+                                                    <td><input type="date" class="form-control" disabled></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Mã hộ gia đình</td>
-                                                    <td><input type="text" class="form-control"></td>
+                                                    <td><input type="text" class="form-control" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vai trò</td>
+                                                    <td class="form-group">
+                                                        <select name="" id="" class="form-control">
+                                                            <option value="1">Cư dân</option>
+                                                            <option value="2">Ban quản lý</option>
+                                                            <option value="3">Thường trú</option>
+                                                            <option value="4">Tạm vắng</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Trạng thái</td>
                                                     <td class="form-group">
                                                         <select name="" id="" class="form-control">
-                                                            <option>Chưa đăng ký</option>
-                                                            <option>Tạm trú</option>
-                                                            <option>Thường trú</option>
+                                                            <option value="1">Chưa đăng ký</option>
+                                                            <option value="2">Tạm trú</option>
+                                                            <option value="3">Thường trú</option>
+                                                            <option value="4">Tạm vắng</option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -731,6 +753,7 @@
                                                                         <input class="form-control" type="date">
                                                                     </div>
                                                                 </div>
+
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">

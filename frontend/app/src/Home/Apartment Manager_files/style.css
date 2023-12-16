@@ -870,3 +870,10 @@
         border-radius: 0
     }
 }
+#change_password {
+    left: 40%;
+    top: 30%;
+    margin-left: 0;
+    position: absolute;
+    margin-top: 0;
+}
