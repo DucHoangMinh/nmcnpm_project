@@ -9,10 +9,9 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-  <link href="./images/favicon.png" rel="icon">
-  <link href="./Home Fee/style.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link href="./Home Fee/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
   <style>
     .navbar-nav {
@@ -51,7 +50,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="./Pay Fee.html"><i class="bi bi-caret-right-fill"></i> Đóng phí </a>
-            <a class="active dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> Thống kê phí </a>
+            <a class="active dropdown-item" href="./Statistics.html"><i class="bi bi-caret-right-fill"></i> Thống kê phí </a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -60,9 +59,6 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> Thông tin nhân khẩu </a>
-            <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> </a>
-            <a href="" class="dropdown-item"><i class="bi bi-caret-right-fill"></i> </a>
-            
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -70,7 +66,6 @@
             <i class="bi bi-person-fill-exclamation"></i> Đăng kí tạm vắng <i class="bi bi-chevron-down"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> </a>
             <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> </a>
           </div>
         </li>
@@ -81,11 +76,45 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="./Account.html"><i class="bi bi-caret-right-fill"></i> Thông tin
               cá nhân</a>
-            <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> Thay đổi mật
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePasswordModal"><i class="bi bi-caret-right-fill"></i> Thay đổi mật
               khẩu</a>
             <a class="dropdown-item" href=""><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
             
           </div>
+          <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Modal content -->
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thay đổi mật khẩu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="currentPassword">Mật khẩu hiện tại</label>
+                                <input type="password" class="form-control" id="currentPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Mật khẩu mới</label>
+                                <input type="password" class="form-control" id="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Xác nhận mật khẩu mới</label>
+                                <input type="password" class="form-control" id="confirmPassword">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
         </li>
       </ul>
@@ -108,27 +137,74 @@
         
         <div class="text-center table-responsive">
           <table class="table table-bordered table-hover">
-              <thead>
+              <thead class="datatable-header">
                   <tr>
-                    <th>Năm</th>
-                    <th>Tháng</th>
+                    <th>
+                      <label for="filterMonth">Tháng:</label>
+                      <select class="" id="monthSelect">
+                        <option value="all">Tất cả</option>
+                        <option value="1">Tháng 1</option>
+                        <option value="2">Tháng 2</option>
+                        <option value="3">Tháng 3</option>
+                        <option value="4">Tháng 4</option>
+                        <option value="5">Tháng 5</option>
+                        <option value="6">Tháng 6</option>
+                        <option value="7">Tháng 7</option>
+                        <option value="8">Tháng 8</option>
+                        <option value="9">Tháng 9</option>
+                        <option value="10">Tháng 10</option>
+                        <option value="11">Tháng 11</option>
+                        <option value="12">Tháng 12</option>
+                      </select>
+                    </th>
+                    <th><label for="filterYear">Năm:</label>
+                      <select class="" id="yearSelect">
+                        <option value="all">Tất cả</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                      </select></th>
+                    <th><label for="filterType">Loại phí</label>
+                      <select class="" id="typeSelect">
+                        <option value="total">Tổng</option>
+                        <option value="manager">Phí quản lý</option>
+                        <option value="service">Phí dịch vụ</option>
+                        <option value="vehicle">Phí gửi xe</option>
+                        <option value="motor">Phí gửi xe máy</option>
+                        <option value="car">Phí gửi ô tô</option>
+                        <option value="electric">Phí điện</option>
+                        <option value="water">Phí nước</option>
+                        <option value="voluntary">Phí tự nguyện</option>
+                        <option value="study">Quỹ khuyến học</option>
+                        <option value="gratitude">Quỹ tình nghĩa</option>
+                        <option value="old">Quỹ người cao tuổi</option>
+                        <option value="child">Quỹ vì trẻ thơ</option>
+                        
+                      </select></th>
                     <th>Phí (VNĐ)</th>
                     <th>Tình trạng</th>
+                    <th>Hành động</th>
                   </tr>
               </thead>
               <tbody>
                 <tr>
-                    <td>2023</td>
                     <td>12</td>
+                    <td>2023</td>
+                    <td>Tổng</td>
                     <td>12.100</td>
+                    <td>Chưa đóng</td>
                     <td><a href="./Pay Fee.html" class="btn btn-primary btn-sm" role="button">Đóng ngay</a>
                     </td>
                 </tr>
                 <tr>
-                    <td>2023</td>
                     <td>11</td>
+                    <td>2023</td>
+                    <td>Tổng</td>
                     <td>11.800</td>
-                    <td><a href="./Fee Payed.html" class="btn btn-primary btn-sm" role="button">Đã đóng</a>
+                    <td>Đã đóng</td>
+                    <td><a href="./Fee Payed.html" class="btn btn-primary btn-sm" role="button">Xem chi tiết</a>
                     </td>
                 </tr>
               </tbody>
