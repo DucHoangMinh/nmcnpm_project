@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link href="./images/favicon.png" rel="icon">
-  <title>Thống kê</title>
+  <title>Chung cư BlueMoon</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -45,28 +45,28 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="active nav-link dropdown" href="./Pay Fee.html">
-            <i class="bi bi-clipboard2-fill"></i> Phí chung cư <i class="bi bi-chevron-down"></i>
-          </a>
+          <a class="nav-link dropdown" href="./Pay Fee.html">
+            <i class="bi bi-clipboard2-fill"></i> Phí chung cư <i class="bi bi-chevron-down"></i></a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="./Pay Fee.html"><i class="bi bi-caret-right-fill"></i> Đóng phí </a>
-            <a class="active dropdown-item" href="./Statistics.html"><i class="bi bi-caret-right-fill"></i> Thống kê phí </a>
+            <a class="dropdown-item" href="./Statistics.html"><i class="bi bi-caret-right-fill"></i> Thống kê phí </a>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown" href="./Temp_absent.html">
-            <i class="bi bi-person-fill-exclamation"></i> Đăng kí tạm vắng <i class="bi bi-chevron-down"></i>
+          <a class="nav-link dropdown" href="./Members.html">
+            <i class="bi bi-people-fill"></i> Quản lý nhân khẩu <i class="bi bi-chevron-down"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="./Temp_absent.html"><i class="bi bi-caret-right-fill"></i> Đăng kí tạm vắng </a>
+            <a class="dropdown-item" href="./Members.html"><i class="bi bi-caret-right-fill"></i> Thông tin nhân khẩu </a>
+            
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown" href="">
+          <a class="active nav-link dropdown" href="./Temp_absent.html">
             <i class="bi bi-person-fill-exclamation"></i> Đăng kí tạm vắng <i class="bi bi-chevron-down"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> </a>
+            <a class="active dropdown-item" href="./Temp_absent.html"><i class="bi bi-caret-right-fill"></i> Đăng kí tạm vắng </a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -79,19 +79,19 @@
             <a class="dropdown-item" data-toggle="modal" data-target="#changePasswordModal"><i class="bi bi-caret-right-fill"></i> Thay đổi mật
               khẩu</a>
             <a class="dropdown-item" href=""><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
-            
           </div>
-          <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
             <!-- Modal content -->
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thay đổi mật khẩu</h5>
+                        <h5 class="modal-title" id="changePasswordLabel">Thay đổi mật khẩu</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <!-- Form để nhập thông tin thay đổi mật khẩu -->
                         <form>
                             <div class="form-group">
                                 <label for="currentPassword">Mật khẩu hiện tại</label>
@@ -125,92 +125,42 @@
     </div>
   </nav>
   <div class="container mt">
-    
-    <div class="form-group">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Tìm kiếm">
-          <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
-          </div>
+    <h2>Thông tin tạm vắng</h2>
+    <hr>
+
+    <!-- Form nhập thông tin -->
+    <div class="row">
+        <div class="col-sm-4">
+            <form>
+                <div class="form-group">
+                    <label for="idNumber">Mã Căn cước</label>
+                    <input type="text" class="form-control" id="idNumber">
+                </div>
+                <div class="form-group">
+                    <label for="fromDate">Từ ngày</label>
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+                <div class="form-group">
+                    <label for="toDate">Đến ngày</label>
+                    <input type="date" class="form-control" id="toDate">
+                </div>
+            </form>
+            <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+        </div>
+        <div class="col-sm-4">
+            <form>
+                <div class="form-group">
+                    <label for="temporaryResidence">Nơi tạm trú</label>
+                    <input type="text" class="form-control" id="temporaryResidence">
+                </div>
+                <div class="form-group">
+                    <label for="temporaryResidenceCode">Mã giấy tạm trú</label>
+                    <input type="text" class="form-control" id="temporaryResidenceCode">
+                </div>
+            </form>
         </div>
         
-        <div class="text-center table-responsive">
-          <table class="table table-bordered table-hover">
-              <thead class="datatable-header">
-                  <tr>
-                    <th>
-                      <label for="filterMonth">Tháng:</label>
-                      <select class="" id="monthSelect">
-                        <option value="all">Tất cả</option>
-                        <option value="1">Tháng 1</option>
-                        <option value="2">Tháng 2</option>
-                        <option value="3">Tháng 3</option>
-                        <option value="4">Tháng 4</option>
-                        <option value="5">Tháng 5</option>
-                        <option value="6">Tháng 6</option>
-                        <option value="7">Tháng 7</option>
-                        <option value="8">Tháng 8</option>
-                        <option value="9">Tháng 9</option>
-                        <option value="10">Tháng 10</option>
-                        <option value="11">Tháng 11</option>
-                        <option value="12">Tháng 12</option>
-                      </select>
-                    </th>
-                    <th><label for="filterYear">Năm:</label>
-                      <select class="" id="yearSelect">
-                        <option value="all">Tất cả</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                      </select></th>
-                    <th><label for="filterType">Loại phí</label>
-                      <select class="" id="typeSelect">
-                        <option value="total">Tổng</option>
-                        <option value="manager">Phí quản lý</option>
-                        <option value="service">Phí dịch vụ</option>
-                        <option value="vehicle">Phí gửi xe</option>
-                        <option value="motor">Phí gửi xe máy</option>
-                        <option value="car">Phí gửi ô tô</option>
-                        <option value="electric">Phí điện</option>
-                        <option value="water">Phí nước</option>
-                        <option value="voluntary">Phí tự nguyện</option>
-                        <option value="study">Quỹ khuyến học</option>
-                        <option value="gratitude">Quỹ tình nghĩa</option>
-                        <option value="old">Quỹ người cao tuổi</option>
-                        <option value="child">Quỹ vì trẻ thơ</option>
-                        
-                      </select></th>
-                    <th>Phí (VNĐ)</th>
-                    <th>Tình trạng</th>
-                    <th>Hành động</th>
-                  </tr>
-              </thead>
-              <tbody>
-                <tr>
-                    <td>12</td>
-                    <td>2023</td>
-                    <td>Tổng</td>
-                    <td>12.100</td>
-                    <td>Chưa đóng</td>
-                    <td><a href="./Pay Fee.html" class="btn btn-primary btn-sm" role="button">Đóng ngay</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>2023</td>
-                    <td>Tổng</td>
-                    <td>11.800</td>
-                    <td>Đã đóng</td>
-                    <td><a href="./Fee Payed.html" class="btn btn-primary btn-sm" role="button">Xem chi tiết</a>
-                    </td>
-                </tr>
-              </tbody>
-          </table>
-        </div>
     </div>
-
     <a href="#">Lên đầu trang</a>
   </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

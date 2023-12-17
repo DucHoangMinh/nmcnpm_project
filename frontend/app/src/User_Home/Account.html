@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link href="./images/favicon.png" rel="icon">
-  <title>Chung cư BlueMoon</title>
+  <title>Tài khoản</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -60,20 +60,20 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown" href="">
+          <a class="nav-link dropdown" href="./Members.html">
             <i class="bi bi-people-fill"></i> Quản lý nhân khẩu <i class="bi bi-chevron-down"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> Thông tin nhân khẩu </a>
+            <a class="dropdown-item" href="./Members.html"><i class="bi bi-caret-right-fill"></i> Thông tin nhân khẩu </a>
             
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown" href="">
+          <a class="nav-link dropdown" href="./Temp_absent.html">
             <i class="bi bi-person-fill-exclamation"></i> Đăng kí tạm vắng <i class="bi bi-chevron-down"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href=""><i class="bi bi-caret-right-fill"></i> </a>
+            <a class="dropdown-item" href="./Temp_absent.html"><i class="bi bi-caret-right-fill"></i> Đăng kí tạm vắng </a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -83,17 +83,17 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="active dropdown-item" href="./Account.html"><i class="bi bi-caret-right-fill"></i> Thông tin
               cá nhân</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePasswordModal"><i class="bi bi-caret-right-fill"></i> Thay đổi mật
+            <a class="dropdown-item" data-toggle="modal" data-target="#changePasswordModal"><i class="bi bi-caret-right-fill"></i> Thay đổi mật
               khẩu</a>
             <a class="dropdown-item" href=""><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
             
           </div>
-          <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true" style="z-index: 1060;">
             <!-- Modal content -->
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thay đổi mật khẩu</h5>
+                        <h5 class="modal-title" id="changePasswordLabel">Thay đổi mật khẩu</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -149,13 +149,119 @@
         </div>
         <div class="col-md-6">
           <h2 class="text-left">Thông tin cá nhân
-              <h5 class="card-title text-left">Username</h5>
+              <hr>
+              <h5 class="card-title text-left">Username: huudung1703</h5>
               <p class="card-text text-left">Số phòng: 123</p>
               <p class="card-text text-left">Quan hệ với chủ hộ: Chủ hộ</p>
-              <a href="#" class="btn btn-primary text-left">Chỉnh sửa thông tin</a>
+              <br>
+              <a class="btn btn-primary text-left" data-toggle="modal" data-target="#editAccountModal">Chỉnh sửa thông tin</a>
           </h2>
         </div>
       </div>
+
+      <div class="modal fade" id="editAccountModal" tabindex="-1" role="dialog" aria-labelledby="editAccountModalLabel" aria-hidden="true" style="z-index: 1050;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAccountModalLabel">Chỉnh sửa thông tin tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="username">
+                                <strong>Username:</strong>
+                                <p>huudung1703</p>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUsername">
+                                <i class="fas fa-edit"></i> Sửa
+                            </button>
+                            <div class="modal fade" id="editUsername" tabindex="-1" role="dialog" aria-labelledby="changeUsernameLabel" aria-hidden="true" style="z-index: 1060;">                              
+                              <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="changeUsernameLabel">Nhập Username mới</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <div class="modal-body">                                        
+                                          <form>
+                                              <div class="form-group">                                                                                                    
+                                                  <input type="text" class="form-control" id="username">
+                                              </div>                                            
+                                          </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                          <button type="button" class="btn btn-primary">Lưu</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="form-group">                            
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="email-info">
+                                  <strong>Email:</strong>
+                                  <p>johndoe@example.com</p>
+                              </div>
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editEmailModal">
+                                  <i class="fas fa-edit"></i> Sửa
+                              </button>
+
+                              <div class="modal fade" id="editEmailModal" tabindex="-1" role="dialog" aria-labelledby="editEmailModalLabel" aria-hidden="true" style="z-index: 1060;">                              
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editEmailModalLabel">Nhập email mới</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">                                        
+                                            <form>
+                                                <div class="form-group">                                                                                                    
+                                                    <input type="email" class="form-control" id="email">
+                                                </div>                                            
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <button type="button" class="btn btn-primary">Lưu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <div class="d-flex align-items-center justify-content-between">
+                          <div class="password">
+                            <strong>Mật khẩu</strong>
+                          </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePasswordModal">
+                              <i class="fas fa-edit"></i> Sửa
+                          </button>
+                          </div>                            
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <a href="#">Lên đầu trang</a>
   </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
