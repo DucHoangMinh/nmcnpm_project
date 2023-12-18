@@ -1,7 +1,24 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import SideBar from "../../../patials/sidebar";
 import '../css/room.css'
+import api from "../../../../service/api";
+import { useParams } from 'react-router-dom';
 const Room = () => {
+    const { id } = useParams()
+    const [peopleList, setPeopleList] = useState([])
+
+    const getPeople = async () => {
+        const { data } = await api.get(`v1/room/${id}/users`)
+        setPeopleList(data.data)
+    }
+    const init = async () => {
+        await getPeople()
+    }
+    
+    useEffect(() => {
+        init()
+    },[])
+
     return (
         <Fragment>
             <SideBar subpath = 'manage-user'/>

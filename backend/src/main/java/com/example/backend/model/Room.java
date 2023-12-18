@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Data
@@ -30,4 +31,8 @@ public class Room {
 
     @Column(name = "is_active")
     private boolean active; // true nếu có người ở
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private Set<User> users;
+
 }

@@ -47,13 +47,8 @@ public class RoomServiceImpl implements RoomService {
         return modelMapper.map(room, RoomDTO.class);
     }
 
-    public RoomDTO getRoomByAddress(String address) {
-        Room room = (Room) roomRepository.findByAddress(address);
-        if (room == null) throw new DataNotFoundException("Cannot find room with address: " + address);
-        return modelMapper.map(room, RoomDTO.class);
-    }
     public List<RoomDTO> getRoomsByAddress(String address) {
-        List<Room> rooms = roomRepository.findByAddress(address);
+        List<Room> rooms = roomRepository.findByAddresses(address);
         if (rooms.isEmpty()) {
             throw new DataNotFoundException("Cannot find any room with address: " + address);
         }

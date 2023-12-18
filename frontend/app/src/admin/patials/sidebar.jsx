@@ -41,7 +41,7 @@ const SideBar = (props) => {
               <Link to="/admin/home" className={`nav-item nav-link ${subpath === 'home' ? 'active' : ''}`}>Home</Link>
               <Link to="/admin/fee" className={`nav-item nav-link ${subpath === 'fee' ? 'active' : ''}`}>Tạo phí</Link>
               <Link to="/admin/manage-user" className={`nav-item nav-link ${subpath === 'manage-user' ? 'active' : ''}`}>Quản lý dân cư</Link>
-              <Link to="/" className="nav-item nav-link">Quản lý tạm trú</Link>
+              <Link to="/admin/manage-temporary-shelter" className="nav-item nav-link">Quản lý tạm trú</Link>
             </div>
             <Link to="/" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block user-link">Xin chào {user.fullname}</Link>
           </div>

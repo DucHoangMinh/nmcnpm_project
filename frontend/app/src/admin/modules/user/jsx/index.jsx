@@ -1,8 +1,22 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
 import SideBar from "../../../patials/sidebar";
 import '../css/index.css'
+import api from "../../../../service/api"
 const ManageIndex = () =>{
+    const [roomList, setRoomList] = useState([])
+
+
+    const getAllRoom = async () => {
+      const { data }= await api.get('v1/room')
+      setRoomList(data.data)
+    }
+    const init = async () => {
+      await getAllRoom()
+    }
+    useEffect(() => {
+      init()
+    }, [])
     return (
         <Fragment>
         <SideBar subpath = 'manage-user'/>
@@ -18,15 +32,11 @@ const ManageIndex = () =>{
               </div>
             </div>
             <ul className="list-group">
-              <li className="list-group-item">
-                <Link to='room/1'>Phòng 101</Link>
-              </li>
-              <li className="list-group-item">
-                <Link to='room/2'>Phòng 102</Link>
-              </li>
-              <li className="list-group-item">
-                <Link to='room/3'>Phòng 103</Link>
-              </li>
+              {roomList.map((room, index) => (
+                <li key={index}>
+                  <Link to={`room/${room.id}`}>{room.address}</Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

@@ -1,14 +1,12 @@
 package com.example.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.swing.text.html.Option;
 import java.sql.Date;
 
 
@@ -35,6 +33,10 @@ public class User {
     private Long phone;
     @NotNull
     private Boolean sex;
+
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
     public User() {
 
     }
