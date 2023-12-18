@@ -1,13 +1,16 @@
 package com.example.backend.service.ServiceImpl;
 
 import com.example.backend.dto.PaymentDTO;
+import com.example.backend.dto.PaymentImageDTO;
 import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.mapper.PaymentMapper;
 import com.example.backend.model.Fee;
 import com.example.backend.model.Payment;
+import com.example.backend.model.PaymentImage;
 import com.example.backend.model.Room;
 import com.example.backend.payload.PaymentResponse;
 import com.example.backend.repository.FeeRepository;
+import com.example.backend.repository.PaymentImageRepository;
 import com.example.backend.repository.PaymentRepository;
 import com.example.backend.repository.RoomRepository;
 import com.example.backend.service.PaymentService;
@@ -17,6 +20,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final FeeRepository feeRepository;
     private final RoomRepository roomRepository;
     private final PaymentRepository paymentRepository;
+    private final PaymentImageRepository paymentImageRepository;
     private final ModelMapper modelMapper;
     @Override
     //Tạo tình trạng thanh toán cho tất cả các căn hộ
@@ -115,5 +120,20 @@ public class PaymentServiceImpl implements PaymentService {
                 .stream()
                 .map(Payment::getId)
                 .forEach(paymentRepository::deleteById);
+    }
+
+    @Override
+    public PaymentImage createPaymentImage(Long paymentId, PaymentImageDTO paymentImageDTO) {
+        Payment payment = paymentRepository.findById(paymentId)
+                .orElseThrow(() -> new DataNotFoundException("Cannot found payment with id: " + paymentId));
+        PaymentImage newPaymentImage = PaymentImage.builder()
+                .payment(payment)
+                .imageUrl(paymentImageDTO.getImageUrl())
+                .build(); 
+        int size = paymentImageRepository.findByPaymentId(paymentId).size();
+        if (size > 5) {
+            throw new RuntimeException("Cannot upload more than 5 images");
+        }
+        return paymentImageRepository.save(newPaymentImage);
     }
 }
