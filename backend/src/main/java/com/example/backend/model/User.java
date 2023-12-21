@@ -35,6 +35,8 @@ public class User {
     private Boolean sex;
     @NotNull
     private String relationship;
+    @NotNull
+    private String identity;
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;

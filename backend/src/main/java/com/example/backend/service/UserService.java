@@ -53,6 +53,7 @@ public class UserService implements UserDetailsService {
                         .sex(user.getSex())
                         .role(user.getRole())
                         .relationship(user.getRelationship())
+                        .identity(user.getIdentity())
                         .build())
                 .collect(Collectors.toSet());
         return userResponses;

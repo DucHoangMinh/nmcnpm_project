@@ -20,4 +20,5 @@ public class UserResponse {
     private String phone;
     private Boolean sex;
     private String relationship;
+    private String identity;
 }
