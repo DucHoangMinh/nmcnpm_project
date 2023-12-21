@@ -26,10 +26,12 @@ public class UserDTO{
     @NotNull
     private Date dob;
     @NotNull
-    private Long phone;
+    private String phone;
     @NotNull
     private Boolean sex;
     @NotNull
     private String room;
+    @NotNull
+    private String relationship;
 }
 

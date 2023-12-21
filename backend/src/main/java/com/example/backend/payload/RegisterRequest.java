@@ -13,5 +13,6 @@ public class RegisterRequest {
     private String fullname;
     private Date dob;
     private boolean sex;
-    private Long phone;
+    private String phone;
+    private String relationship;
 }
