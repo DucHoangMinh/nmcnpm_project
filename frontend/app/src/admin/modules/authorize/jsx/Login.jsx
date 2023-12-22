@@ -13,7 +13,6 @@ export const Login = () => {
               email: email.trim(),
               password: password.trim()
             });
-      
             if (response.status === 200) {
               let data = response.data.data;
               const tokenData = {
