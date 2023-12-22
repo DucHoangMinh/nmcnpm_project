@@ -18,9 +18,6 @@ const FeeIndex = () => {
     const handleCloseModal = () => setShowModal(false);
 
     const handleUpdate = () => {
-        // Implement your logic here
-        // ...
-        // Close the modal after handling the update logic
         handleCloseModal();
       };
     return (

@@ -48,10 +48,10 @@ const SideBar = (props) => {
               <i className="bi bi-clipboard2-fill"></i> Quản lý khoản thu
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="fee/list"><i className="bi bi-caret-right-fill"></i> Danh sách khoản thu</a>
-              <a className="dropdown-item" href="fee/manage"><i className="bi bi-caret-right-fill"></i> Tính toán phí</a>
-              <a className="dropdown-item" href="fee/status"><i className="bi bi-caret-right-fill"></i> Tình trạng đóng phí</a>
-              <a className="dropdown-item" href="fee/fund"><i class="bi bi-caret-right-fill"></i> Thống kê quỹ</a>
+              <a className="dropdown-item" href="/admin/fee/list"><i className="bi bi-caret-right-fill"></i> Danh sách khoản thu</a>
+              <a className="dropdown-item" href="/admin/fee/calculate"><i className="bi bi-caret-right-fill"></i> Tính toán phí</a>
+              <a className="dropdown-item" href="/admin/fee/paid"><i className="bi bi-caret-right-fill"></i> Tình trạng đóng phí</a>
+              <a className="dropdown-item" href="/admin/fee/fund"><i class="bi bi-caret-right-fill"></i> Thống kê quỹ</a>
           </div>
       </li>
       <li className="nav-item dropdown">
@@ -59,9 +59,9 @@ const SideBar = (props) => {
               <i className="bi bi-people-fill"></i> Quản lý hộ khẩu
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="family/list"><i className="bi bi-caret-right-fill"></i> Danh sách các hộ gia đình</a>
-              <a className="dropdown-item" href="family/room-request"><i className="bi bi-caret-right-fill"></i> Xử lý yêu cầu thuê phòng</a>
-              <a className="dropdown-item" href="family/room/list" ><i className="bi bi-caret-right-fill"></i> Danh sách căn hộ</a>
+              <a className="dropdown-item" href="/admin/family/list"><i className="bi bi-caret-right-fill"></i> Danh sách các hộ gia đình</a>
+              <a className="dropdown-item" href="/admin/family/room-request"><i className="bi bi-caret-right-fill"></i> Xử lý yêu cầu thuê phòng</a>
+              <a className="dropdown-item" href="/admin/family/room-list" ><i className="bi bi-caret-right-fill"></i> Danh sách căn hộ</a>
           </div>
       </li>
 

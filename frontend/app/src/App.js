@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { FeeRoute } from "./admin/modules/fee/route";
 import {AdminAuthorizeRoute} from "./admin/modules/authorize/route";
 import { UserRoute } from './admin/modules/user/route';
+import { FamilyRoute } from './admin/modules/family/route';
 function App() {
   return (
     <Routes>
@@ -10,6 +11,7 @@ function App() {
       <>
         <AdminAuthorizeRoute />
         <FeeRoute />
+        <FamilyRoute/>
         <UserRoute />
       </>
     } />
