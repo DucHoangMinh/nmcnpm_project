@@ -1,11 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import SideBar from "../../../patials/sidebar";
 import '../css/index.css';
 import { Modal, Button, Form, Table, InputGroup, FormControl } from 'react-bootstrap';
-
+import api from '../../../../service/api'
 const FeeIndex = () => {
     const [show, setShow] = useState(false);
-
+    const [feeList, setFeeList] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -13,7 +13,19 @@ const FeeIndex = () => {
 
     // Function to open modal
     const handleShowModal = () => setShowModal(true);
-
+    const getFeeList = async() => {
+        try{
+            const { data } = await api.get('v1/fee')
+            setFeeList(data.data)
+        } catch(err){
+            console.error(err)
+        }
+    }
+    useEffect(() => {
+        getFeeList()
+        console.log(feeList)
+    }, [])
+    
     // Function to close modal
     const handleCloseModal = () => setShowModal(false);
 
@@ -108,19 +120,21 @@ const FeeIndex = () => {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    {feeList.map(item => (
+                                        <tr key={item.id}>
                                         <td />
-                                        <td>1</td>
-                                        <td>BB01</td>
-                                        <td className="text-left">Phí quản lý</td>
-                                        <td>Bắt buộc</td>
-                                        <td>7000</td>
-                                        <td>VNĐ/m2/tháng</td>
+                                        <td>{item.id}</td>
+                                        <td>{item.code}</td>
+                                        <td className="text-left">{item.description}</td>
+                                        <td>{item.mandatory ? 'Bắc buộc' : 'Không bắt buộc'}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.unit ? item.unit : 'VND'}</td>
                                         <td>
-                                        <Button variant="primary" onClick={handleShowModal}><i className="bi bi-pencil-fill"></i></Button>
-                                        <Button variant="secondary"><i className="bi bi-x-square-fill"></i></Button>
+                                            <Button variant="primary" onClick={handleShowModal}><i className="bi bi-pencil-fill"></i></Button>
+                                            <Button variant="secondary"><i className="bi bi-x-square-fill"></i></Button>
                                         </td>
-                                    </tr>
+                                        </tr>
+                                    ))}
                                     {/* Add more rows as needed */}
                                     </tbody>
                                 </Table>
