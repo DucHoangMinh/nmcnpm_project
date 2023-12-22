@@ -36,7 +36,7 @@ const SideBar = (props) => {
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <div className="" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
           <a className="active nav-link" href="home"><i className="bi bi-house-fill"></i> Trang chủ <span
@@ -87,7 +87,7 @@ const SideBar = (props) => {
       </li>
 
       </ul>
-      <form className="form-inline my-2 my-lg-0">
+      <form className="form-inline my-2 my-lg-0 justify-content-end">
         <input className="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search"/>
         <button className="btn btn-primary my-2 my-sm-0" type="submit"><i className="bi bi-search"></i></button>
       </form>
