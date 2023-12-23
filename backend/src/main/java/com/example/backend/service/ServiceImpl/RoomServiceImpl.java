@@ -3,7 +3,10 @@ package com.example.backend.service.ServiceImpl;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.model.Room;
+import com.example.backend.model.User;
+import com.example.backend.payload.RoomResponse;
 import com.example.backend.repository.RoomRepository;
+import com.example.backend.repository.UserRepository;
 import com.example.backend.service.RoomService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -20,6 +24,7 @@ import java.util.stream.Collectors;
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
     @Override
     public RoomDTO createRoom(RoomDTO roomDTO) {
         if (roomRepository.existsByAddress(roomDTO.getAddress())) {
@@ -33,11 +38,18 @@ public class RoomServiceImpl implements RoomService {
         }
     }
     @Override
-    public List<RoomDTO> getAllRooms() {
-        List<RoomDTO> roomDTOList = roomRepository.findAll().stream().map(
-                room ->  modelMapper.map(room, RoomDTO.class))
+    public List<RoomResponse> getAllRooms() {
+        List<RoomResponse> roomResponses = roomRepository.findAll().stream().map(
+                room -> RoomResponse.builder()
+                        .id(room.getId())
+                        .typeRoom(room.getTypeRoom())
+                        .area(room.getArea())
+                        .active(room.isActive())
+                        .address(room.getAddress())
+                        .number_of_peoples(userRepository.findByRoomId(room.getId()).size())
+                        .build())
                 .toList();
-        return roomDTOList;
+        return roomResponses;
     }
 
     @Override

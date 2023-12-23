@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.dto.RoomDTO;
+import com.example.backend.payload.RoomResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 @Service
 public interface RoomService {
     RoomDTO createRoom(RoomDTO roomDTO);
-    List<RoomDTO> getAllRooms();
+    List<RoomResponse> getAllRooms();
     RoomDTO getRoomById(Long id);
     List<RoomDTO> getRoomsByAddress(String address);
     RoomDTO updateRoom(Long id, RoomDTO roomDTO);

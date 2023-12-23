@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.model.User;
+import com.example.backend.payload.RoomResponse;
 import com.example.backend.payload.UserResponse;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.service.ServiceImpl.RoomServiceImpl;
@@ -45,11 +46,11 @@ public class RoomController {
     @GetMapping()
     public ResponseEntity<ResponseModel> getAllRooms() {
         try {
-            List<RoomDTO> roomDTOList = roomService.getAllRooms();
+            List<RoomResponse> roomResponses = roomService.getAllRooms();
             return ResponseEntity.ok(new ResponseModel(
                     "ok",
                     "Xem tất cả phòng",
-                    roomDTOList
+                    roomResponses
             ));
         } catch (Exception message) {
             return ResponseEntity.badRequest().body(new ResponseModel(
@@ -145,6 +146,7 @@ public class RoomController {
             ));
         }
     }
+    // Xem tất cả thành viên trong căn hộ
     @GetMapping("/{id}/users")
     public ResponseEntity<ResponseModel> getALlUsers(@PathVariable Long id) {
         try {
