@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from "react";
-import SideBar from "../../../patials/sidebar";
 import '../css/index.css';
 import { Modal, Button, Form, Table, InputGroup, FormControl } from 'react-bootstrap';
 import api from '../../../../service/api'
@@ -34,7 +33,6 @@ const FeeIndex = () => {
       };
     return (
         <Fragment>
-            <SideBar/>
             <div class="container mt-5">
                 <div class="row">
                     <div class="col">

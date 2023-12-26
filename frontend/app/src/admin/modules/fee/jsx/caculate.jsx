@@ -1,9 +1,7 @@
-import SideBar from "../../../patials/sidebar"
 
 const FeeCaculate = () => {
     return (
         <>
-            <SideBar/>
             <div className="container mt-5">
             <div className="row">
 

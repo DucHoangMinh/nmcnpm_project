@@ -1,9 +1,6 @@
-import SideBar from "../../../patials/sidebar"
-
 const FamilyList = () => {
     return (
         <>
-            <SideBar/>
             <div className="container mt-5">
                 <div className="row">
                     <div className="col">
