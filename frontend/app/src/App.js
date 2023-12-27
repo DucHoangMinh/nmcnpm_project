@@ -6,6 +6,8 @@ import { FamilyRoute } from './admin/modules/family/route';
 import { AdminSettingRoute } from './admin/modules/setting/route';
 import SideBar from './admin/patials/sidebar';
 import { PopulationRoute } from './admin/modules/population/route';
+import UserSideBar  from '../src/user/userSideBar'
+import { UserRoutes } from './user/route';
 function App() {
   return (
     <Routes>
@@ -20,6 +22,12 @@ function App() {
         <PopulationRoute/>
       </>
     } />
+    <Route path='user/*' element={
+      <>
+        <UserSideBar/>
+        <UserRoutes/>
+      </>
+    }/>
   </Routes>
   );
 }
