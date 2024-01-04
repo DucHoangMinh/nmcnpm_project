@@ -1,6 +1,9 @@
+import UserSideBar from "../userSideBar"
+
 const UserFeeStatistic = () => {
     return (
         <>
+        <UserSideBar/>
             <div class="container mt">
     
     <div class="form-group">

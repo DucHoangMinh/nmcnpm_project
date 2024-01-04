@@ -13,7 +13,6 @@ function App() {
     <Routes>
     <Route path="admin/*" element={
       <>
-        <SideBar/>
         <AdminAuthorizeRoute />
         <FeeRoute />
         <FamilyRoute/>
@@ -24,7 +23,6 @@ function App() {
     } />
     <Route path='user/*' element={
       <>
-        <UserSideBar/>
         <UserRoutes/>
       </>
     }/>

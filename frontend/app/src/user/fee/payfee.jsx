@@ -1,6 +1,9 @@
+import UserSideBar from "../userSideBar"
+
 const UserPayFee = () => {
     return (
         <>
+        <UserSideBar/>
             <div class="container mt">
         <div class="row">
           <div class="col-8 offset-2"> 
