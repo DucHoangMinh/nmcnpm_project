@@ -70,8 +70,8 @@ const SideBar = (props) => {
               <i className="bi bi-person-fill-exclamation"></i> Quản lý nhân khẩu
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="population/list"><i className="bi bi-caret-right-fill"></i> Danh sách cư dân</a>
-              <a className="dropdown-item" href="population/request"><i className="bi bi-caret-right-fill"></i> Xử lý yêu cầu thay đổi cư trú</a>
+              <a className="dropdown-item" href="/admin/population/list"><i className="bi bi-caret-right-fill"></i> Danh sách cư dân</a>
+              <a className="dropdown-item" href="/admin/population/request"><i className="bi bi-caret-right-fill"></i> Xử lý yêu cầu thay đổi cư trú</a>
           </div>
       </li>
 
@@ -80,9 +80,9 @@ const SideBar = (props) => {
           <i className="bi bi-gear"></i> <span>Cài đặt</span>
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="setting/manager-infor"><i className="bi bi-caret-right-fill"></i> Thông tin ban quản lý</a>
-          <a className="dropdown-item" href="setting/change-password"><i className="bi bi-caret-right-fill"></i> Thay đổi mật khẩu</a>
-          <a className="dropdown-item" href="logout"><i className="bi bi-box-arrow-right"></i> Đăng xuất</a>
+          <a className="dropdown-item" href="/admin/setting/manager-infor"><i className="bi bi-caret-right-fill"></i> Thông tin ban quản lý</a>
+          <a className="dropdown-item" href="/admin/setting/change-password"><i className="bi bi-caret-right-fill"></i> Thay đổi mật khẩu</a>
+          <a className="dropdown-item" href="/admin/logout"><i className="bi bi-box-arrow-right"></i> Đăng xuất</a>
         </div>
       </li>
 

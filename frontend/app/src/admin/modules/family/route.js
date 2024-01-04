@@ -9,7 +9,7 @@ const FamilyRoute = () =>{
             <Route path="/family/list" element={<FamilyList/>} />
             <Route path="/family/room-request" element={<RoomProssess/>} />
             <Route path="/family/room-list" element={<RoomList/>} />
-            <Route path='family/population/list' element= {<PopulationList/>} />
+            <Route path='/family/population/list' element= {<PopulationList/>} />
         </Routes>
     );
 }
