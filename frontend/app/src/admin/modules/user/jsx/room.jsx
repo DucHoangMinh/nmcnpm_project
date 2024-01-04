@@ -48,21 +48,15 @@ const Room = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>0122761231</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>01/01/1990</td>
-                        <td>Chủ hộ</td>
-                    
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>0362764134</td>
-                        <td>Nguyễn Văn B</td>
-                        <td>01/01/2015</td>
-                        <td>Con trai</td>
-                    </tr>
+                    {peopleList.map(item => (
+                        <tr key={item.id}>
+                            <td><input type="checkbox" /></td>
+                            <td>{item.identity}</td>
+                            <td>{item.fullname}</td>
+                            <td>{item.dob}</td>
+                            <td>{item.relationship}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>

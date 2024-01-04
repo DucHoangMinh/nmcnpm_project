@@ -7,10 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Payment")
+@Table(name = "payments")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

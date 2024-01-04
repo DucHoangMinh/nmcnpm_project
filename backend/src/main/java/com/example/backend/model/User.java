@@ -30,10 +30,13 @@ public class User {
     @NotNull
     private Date dob;
     @NotNull
-    private Long phone;
+    private String phone;
     @NotNull
     private Boolean sex;
-
+    @NotNull
+    private String relationship;
+    @NotNull
+    private String identity;
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;

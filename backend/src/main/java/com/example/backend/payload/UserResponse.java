@@ -17,6 +17,8 @@ public class UserResponse {
     private String email;
     private String role;
     private Date dob;
-    private Long phone;
+    private String phone;
     private Boolean sex;
+    private String relationship;
+    private String identity;
 }

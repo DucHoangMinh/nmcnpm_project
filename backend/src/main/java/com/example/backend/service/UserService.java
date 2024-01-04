@@ -1,9 +1,12 @@
 package com.example.backend.service;
 
+import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.exception.UserException;
 import com.example.backend.model.CustomUserDetail;
+import com.example.backend.model.Room;
 import com.example.backend.model.User;
 import com.example.backend.payload.UserResponse;
+import com.example.backend.repository.RoomRepository;
 import com.example.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +22,8 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoomRepository roomRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
@@ -36,6 +41,8 @@ public class UserService implements UserDetailsService {
         return new CustomUserDetail(user);
     }
     public Set<UserResponse> getUserOfRoom(Long roomId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + roomId));
         Set<User> users = userRepository.findByRoomId(roomId);
         Set<UserResponse> userResponses = users.stream()
                 .map(user -> UserResponse.builder()
@@ -45,6 +52,8 @@ public class UserService implements UserDetailsService {
                         .dob(user.getDob())
                         .sex(user.getSex())
                         .role(user.getRole())
+                        .relationship(user.getRelationship())
+                        .identity(user.getIdentity())
                         .build())
                 .collect(Collectors.toSet());
         return userResponses;

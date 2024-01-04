@@ -1,22 +1,37 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.PaymentDTO;
+import com.example.backend.dto.PaymentImageDTO;
+import com.example.backend.exception.DataNotFoundException;
+import com.example.backend.model.Payment;
+import com.example.backend.model.PaymentImage;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.payload.PaymentResponse;
+import com.example.backend.repository.PaymentRepository;
 import com.example.backend.service.PaymentService;
 import com.example.backend.utils.AppConstants;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/payment")
 @RequiredArgsConstructor
 public class PaymentController {
     private final PaymentService paymentService;
-
     @PostMapping("")
     //http://localhost:8080/api/v1/payment?fee=3
     //Gắn phí cho tất cả các phòng
