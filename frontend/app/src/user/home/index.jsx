@@ -2,11 +2,10 @@ import UserSideBar from "../userSideBar"
 
 const UserHome = () => {
     return (
-        <>
-        
+        <>  
+        <UserSideBar/>
   <div class="container mt-5">
       <div class="row">
-      <UserSideBar/>
           <div class="col-lg-6 offset-lg-3">
             <h2 class="text-center mb-4">Phí Chung Cư Tháng 12/2023</h2>
             <form>

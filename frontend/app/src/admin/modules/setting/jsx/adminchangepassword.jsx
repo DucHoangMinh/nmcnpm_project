@@ -1,11 +1,13 @@
 import React from 'react';
+import SideBar from '../../../patials/sidebar';
 
 const AdminChangePassword = () => {
   return (
     <>
+    <SideBar/>
       <br /><br /><br />
 
-      <div className="container mt-5" style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <div className="container" style={{ alignItems: 'center', justifyContent: 'center', 'margin-top': "-70px" }}>
         <div className="row">
           <div className="col">
             <h2 className="text-left mb-4">Thay đổi mật khẩu</h2>

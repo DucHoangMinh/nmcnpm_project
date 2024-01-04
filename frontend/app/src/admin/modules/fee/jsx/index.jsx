@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import '../css/index.css';
 import { Modal, Button, Form, Table, InputGroup, FormControl } from 'react-bootstrap';
 import api from '../../../../service/api'
+import SideBar from "../../../patials/sidebar";
 const FeeIndex = () => {
     const [show, setShow] = useState(false);
     const [feeList, setFeeList] = useState([]);
@@ -56,7 +57,8 @@ const FeeIndex = () => {
       };
     return (
         <Fragment>
-            <div class="container mt-5">
+            <SideBar/>
+            <div class="container" style={{'margin-top': "-70px"}}>
                 <div class="row">
                     <div class="col">
                         <h2 class="text-left mb-4">Danh sách các khoản thu</h2>

@@ -22,7 +22,7 @@ const Room = () => {
     return (
         <Fragment>
             <SideBar subpath = 'manage-user'/>
-            <div className="container mt-5">
+            <div className="container" style={{'margin-top': "-70px"}}>
                 <h2 className="text-primary">Phòng 101</h2>
                 <div className="row">
                     <div className="col-md-6">

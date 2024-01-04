@@ -19,7 +19,8 @@ const ManageIndex = () =>{
     }, [])
     return (
         <Fragment>
-        <div className="container mt-5">
+          <SideBar/>
+        <div className="container" style={{'margin-top': "-70px"}}>
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <h2 className="text-center mb-4">Danh sách Phòng Chung Cư</h2>

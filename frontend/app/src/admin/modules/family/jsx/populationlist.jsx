@@ -1,3 +1,5 @@
+import SideBar from "../../../patials/sidebar";
+
 const PopulationList = () => {
     return (
         <>
@@ -22,7 +24,8 @@ const PopulationList = () => {
   <br />
   <br />
   <br />
-  <div className="container mt-5">
+  <SideBar/>
+  <div className="container" style={{'margin-top': "-70px"}}>
     <h2>Thông tin cư trú các thành viên</h2>
     <button
       type="button"

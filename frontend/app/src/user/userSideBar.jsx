@@ -1,7 +1,7 @@
 const UserSideBar = () => {
     return (
         <>
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <a href="./HomeUser.html" class="navbar-brand d-flex align-items-center">
       <h2 class="m-0 text-primary"><i class="bi bi-buildings-fill"></i> BLUEMOON <i class="bi bi-moon-stars-fill"></i>
       </h2>

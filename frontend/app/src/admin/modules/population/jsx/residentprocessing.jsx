@@ -1,3 +1,5 @@
+import SideBar from "../../../patials/sidebar"
+
 const ResidentProcessing = () => {
     return (
         <>
@@ -36,7 +38,8 @@ const ResidentProcessing = () => {
   <br />
   <br />
   <br />
-  <div className="container mt-5">
+  <SideBar/>
+  <div className="container">
     <div className="row">
       <div className="col">
         <h2 className="text-left mb-4">

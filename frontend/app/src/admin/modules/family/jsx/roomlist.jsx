@@ -1,7 +1,10 @@
+import SideBar from "../../../patials/sidebar"
+
 const RoomList = () => {
     return (
         <>
-            <div className="container mt-5">
+        <SideBar/>
+            <div className="container" style={{'margin-top': "-70px"}}>
                 <div className="row">
                 <div className="col">
                     <h2 className="text-left mb-4">Danh sách các căn hộ</h2>

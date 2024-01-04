@@ -3,7 +3,8 @@ import SideBar from '../../../patials/sidebar';
 const Home = () => {
   return (
     <>
-      <div class="container mt-5">
+    <SideBar/>
+      <div class="container" style={{'margin-top': "-70px"}}>
     <div class="row">
       <div class="col">
         <h2 class="text-left mb-4">Thống kê hộ khẩu</h2>
