@@ -20,7 +20,6 @@ const UserLogin = () => {
     } catch(error){
       console.log(error)
     }
-    
   };
 
   return (
