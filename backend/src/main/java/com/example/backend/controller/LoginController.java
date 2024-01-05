@@ -105,7 +105,9 @@ public class LoginController {
                     User newUser = modelMapper.map(insertUser, User.class);
                     newUser.setPassword(passwordEncoder.encode(insertUser.getPassword()));
                     newUser.setRoom(room);
+                    System.out.println(newUser);
                     userRepository.save(newUser);
+                    System.out.println("hahah");
                     insertUser.setId(newUser.getId());
                     return ResponseEntity.ok().body(
                             new ResponseModel(
@@ -126,6 +128,7 @@ public class LoginController {
                 }
 
             } catch (Exception e) {
+                System.out.println(e);
                 return ResponseEntity.status(400).body(
                         new ResponseModel(
                                 "ok",
