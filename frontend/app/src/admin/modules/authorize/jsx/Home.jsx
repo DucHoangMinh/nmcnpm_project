@@ -78,14 +78,6 @@ const Home = () => {
       </div>
       </div>
     </div>
-    <footer id="footer" class="footer">
-      <div class="copyright">
-        &copy; Copyright <strong><span>BlueMoon</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="https://google.com/">Group 10 - Introduction to Software Engineering - 2023.1</a>
-      </div>
-    </footer>
     </>
   );
 };

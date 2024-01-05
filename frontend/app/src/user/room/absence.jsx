@@ -1,7 +1,10 @@
+import UserSideBar from "../userSideBar"
+
 const UserAbsence = () => {
     return (
         <>
-            <div class="container mt">
+        <UserSideBar/>
+            <div class="container" style={{marginTop:"-50px"}}>
     <h2>Thông tin tạm vắng</h2>
 
     <div class="row">

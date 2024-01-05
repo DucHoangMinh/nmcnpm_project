@@ -4,7 +4,7 @@ const UserHome = () => {
     return (
         <>  
         <UserSideBar/>
-  <div class="container mt-5">
+  <div class="container" style={{marginTop:"-50px"}}>
       <div class="row">
           <div class="col-lg-6 offset-lg-3">
             <h2 class="text-center mb-4">Phí Chung Cư Tháng 12/2023</h2>

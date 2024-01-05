@@ -4,7 +4,7 @@ const UserFeePaid = () => {
     return (
         <>
         <UserSideBar/>
-            <div class="container mt">
+            <div class="container mt" style={{marginTop:"-50px"}}>
       <div class="row">
         <div class="col-lg-8 offset-lg-2"> 
           <h2 class="text-center mb-4">Đóng Phí Nhà</h2>

@@ -1,7 +1,7 @@
 const UserSideBar = () => {
     return (
         <>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" style={{marginTop: "100px"}}>
     <a href="./HomeUser.html" class="navbar-brand d-flex align-items-center">
       <h2 class="m-0 text-primary"><i class="bi bi-buildings-fill"></i> BLUEMOON <i class="bi bi-moon-stars-fill"></i>
       </h2>
@@ -89,10 +89,6 @@ const UserSideBar = () => {
 
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search"/>
-        <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
-    </form>
     </div>
   </nav>
         </>
