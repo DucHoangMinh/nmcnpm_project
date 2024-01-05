@@ -13,7 +13,7 @@ const UserSideBar = () => {
     <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="active nav-link" href="./HomeUser.html"><i class="bi bi-house-fill"></i> Trang chủ <span
+          <a class="active nav-link" href="/user/home"><i class="bi bi-house-fill"></i> Trang chủ <span
               class="sr-only">(current)</span></a>
         </li>
 
