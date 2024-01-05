@@ -1,7 +1,10 @@
+import UserSideBar from "../userSideBar"
+
 const UserMember = () => {
     return (
         <>
-            <div class="container mt">
+        <UserSideBar/>
+            <div class="container" style={{marginTop:"-50px"}}>
     <h2>Quản lý thông tin nhân khẩu</h2>
     <table class="table table-bordered table-hover">
         <thead>
