@@ -4,11 +4,23 @@ import { Container, Row, Col, Card, Form, Button, Alert, Image } from 'react-boo
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './UserLogin.css'; // Import your custom CSS for additional styling
 import { Link } from 'react-router-dom';
+import api from '../../service/api';
 const UserLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = () => {
     // Implement your login logic here
+    const sendData = {
+      "email": username,
+      password
+    }
+    try{
+      const { data } = api.post('login', sendData)
+      window.location.href = "http://localhost:3000/user/home"
+    } catch(error){
+      console.log(error)
+    }
+    
   };
 
   return (
