@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.FeeDTO;
 import com.example.backend.dto.RoomDTO;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,6 @@ public interface RoomService {
     RoomDTO updateRoom(Long id, RoomDTO roomDTO);
     void deleteRoomById(Long id);
     RoomDTO activateRoom(Long id, boolean active);
-    List<RoomDTO> findIncompleteFeeRooms(Long feeId);
+    List<RoomDTO> findListOfIncompleteRooms(Long feeId);
+    List<FeeDTO> findIncompletedFee(Long roomId);
 }

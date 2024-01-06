@@ -1,5 +1,6 @@
 package com.example.backend.repository;
 
+import com.example.backend.model.Fee;
 import com.example.backend.model.Payment;
 import com.example.backend.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +18,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     @Query("SELECT p FROM Payment p WHERE p.fee =(SELECT f FROM Fee f WHERE f.id = ?1)")
     List<Payment> findByFeeId(Long feeId);
     @Query("SELECT p.room FROM Payment p WHERE p.fee.id = ?1 AND p.completed = FALSE")
-    List<Room>  findInCompletedRoom(Long feeId);
+    List<Room>  findListOfIncompleteRooms(Long feeId);
+
+    @Query("SELECT p.fee FROM Payment p WHERE p.room.id = ?1 AND p.completed = FALSE")
+    List<Fee> findIncompletedFee(Long roomId);
 }

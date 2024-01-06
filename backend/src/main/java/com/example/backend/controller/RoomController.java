@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.FeeDTO;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.model.User;
@@ -165,12 +166,12 @@ public class RoomController {
 
     // Tìm phòng chưa hoàn thành phí bằng feeId
     @GetMapping("/incomplete")
-    public ResponseEntity<ResponseModel> getIncompleteFeeRooms(@RequestParam("fee") Long feeId) {
+    public ResponseEntity<ResponseModel> findListOfIncompleteRooms(@RequestParam("fee") Long feeId) {
         try {
-            List<RoomDTO> roomDTOS = roomService.findIncompleteFeeRooms(feeId) ;
+            List<RoomDTO> roomDTOS = roomService.findListOfIncompleteRooms(feeId) ;
             return ResponseEntity.ok(new ResponseModel(
                     "ok",
-                    "Tìm phòng chưa hoàn thành phí",
+                    "Tìm các phòng chưa hoàn thành phí",
                     roomDTOS
             ));
         } catch (Exception message) {
@@ -182,4 +183,22 @@ public class RoomController {
         }
     }
 
+    // Tìm các khoản phí chưa đóng của một phòng
+    @GetMapping("/{id}/incomplete")
+    public ResponseEntity<ResponseModel> getIncompleteFees(@PathVariable("id") Long roomId) {
+        try {
+            List<FeeDTO> feeDTOS = roomService.findIncompletedFee(roomId);
+            return ResponseEntity.ok(new ResponseModel(
+                    "ok",
+                    "Tìm các khoản phí chưa đóng của phòng " + roomId,
+                    feeDTOS
+            ));
+        }  catch (Exception message) {
+            return ResponseEntity.badRequest().body(new ResponseModel(
+                    "failed",
+                    message.getMessage(),
+                    ""
+            ));
+        }
+    }
 }

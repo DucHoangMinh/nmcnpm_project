@@ -1,7 +1,9 @@
 package com.example.backend.service.ServiceImpl;
 
+import com.example.backend.dto.FeeDTO;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.exception.DataNotFoundException;
+import com.example.backend.model.Fee;
 import com.example.backend.model.Room;
 import com.example.backend.repository.PaymentRepository;
 import com.example.backend.repository.RoomRepository;
@@ -90,9 +92,16 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomDTO> findIncompleteFeeRooms(Long feeId) {
-        List<Room> rooms = paymentRepository.findInCompletedRoom(feeId);
+    public List<RoomDTO> findListOfIncompleteRooms(Long feeId) {
+        List<Room> rooms = paymentRepository.findListOfIncompleteRooms(feeId);
         List<RoomDTO> roomDTOS = rooms.stream().map(room ->  modelMapper.map(room, RoomDTO.class)).collect(Collectors.toList());
         return roomDTOS;
+    }
+
+    @Override
+    public List<FeeDTO> findIncompletedFee(Long roomId) {
+        List<Fee> fees = paymentRepository.findIncompletedFee(roomId);
+        List<FeeDTO> feeDTOS = fees.stream().map(fee -> modelMapper.map(fee, FeeDTO.class)).collect(Collectors.toList());
+        return feeDTOS;
     }
 }
