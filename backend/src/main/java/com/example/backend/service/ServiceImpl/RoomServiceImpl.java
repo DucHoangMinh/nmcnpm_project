@@ -3,6 +3,7 @@ package com.example.backend.service.ServiceImpl;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.model.Room;
+import com.example.backend.repository.PaymentRepository;
 import com.example.backend.repository.RoomRepository;
 import com.example.backend.service.RoomService;
 import lombok.Data;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @Data
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
+    private final PaymentRepository paymentRepository;
     private final ModelMapper modelMapper;
     @Override
     public RoomDTO createRoom(RoomDTO roomDTO) {
@@ -85,5 +87,12 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.save(room);
         RoomDTO roomDTO = modelMapper.map(room, RoomDTO.class);
         return roomDTO;
+    }
+
+    @Override
+    public List<RoomDTO> findIncompleteFeeRooms(Long feeId) {
+        List<Room> rooms = paymentRepository.findInCompletedRoom(feeId);
+        List<RoomDTO> roomDTOS = rooms.stream().map(room ->  modelMapper.map(room, RoomDTO.class)).collect(Collectors.toList());
+        return roomDTOS;
     }
 }

@@ -162,4 +162,24 @@ public class RoomController {
             ));
         }
     }
+
+    // Tìm phòng chưa hoàn thành phí bằng feeId
+    @GetMapping("/incomplete")
+    public ResponseEntity<ResponseModel> getIncompleteFeeRooms(@RequestParam("fee") Long feeId) {
+        try {
+            List<RoomDTO> roomDTOS = roomService.findIncompleteFeeRooms(feeId) ;
+            return ResponseEntity.ok(new ResponseModel(
+                    "ok",
+                    "Tìm phòng chưa hoàn thành phí",
+                    roomDTOS
+            ));
+        } catch (Exception message) {
+            return ResponseEntity.badRequest().body(new ResponseModel(
+                    "failed",
+                    message.getMessage(),
+                    ""
+            ));
+        }
+    }
+
 }

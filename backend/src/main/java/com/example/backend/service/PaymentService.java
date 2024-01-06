@@ -17,4 +17,5 @@ public interface PaymentService{
     List<PaymentDTO> getPaymentsOfRoom(Long roomId);
     void deletePaymentsByFeeId(Long feeId);
     PaymentImage createPaymentImage(Long paymentId, PaymentImageDTO paymentImageDTO);
+
 }

@@ -14,4 +14,5 @@ public interface RoomService {
     RoomDTO updateRoom(Long id, RoomDTO roomDTO);
     void deleteRoomById(Long id);
     RoomDTO activateRoom(Long id, boolean active);
+    List<RoomDTO> findIncompleteFeeRooms(Long feeId);
 }
