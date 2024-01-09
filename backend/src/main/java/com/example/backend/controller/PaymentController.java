@@ -86,7 +86,7 @@ public class PaymentController {
     // Lấy thông tin các khoản thanh toán của một hộ
     public ResponseEntity<ResponseModel> getPaymentsOfRoom(@RequestParam("room") Long roomId) {
         try {
-            List<PaymentDTO> paymentDTOS = paymentService.getPaymentsOfRoom(roomId);
+            List<Payment> paymentDTOS = paymentService.getPaymentsOfRoom(roomId);
             return ResponseEntity.ok(new ResponseModel(
                     "ok",
                     "Lấy thông tin các khoản thanh toán của hộ " + roomId,
