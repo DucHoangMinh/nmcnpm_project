@@ -1,6 +1,53 @@
 import UserSideBar from "../userSideBar"
+import api from "../../service/api";
+import storage from "../../service/storage";
+import {useEffect, useState} from "react";
 
 const UserPayFee = () => {
+    const roomId = JSON.parse(storage.getValue("user")).room
+    const [roomInfor, setRoomInfor] = useState({})
+    const [feeList, setFeeList] = useState([])
+    const [totalFee, setTotalFee] = useState(0)
+
+    const getRoomInfor = async () => {
+        try {
+            const { data } = await api.get(`v1/room/find?id=${roomId}`)
+            setRoomInfor(data.data)
+        }catch (e) {
+            console.log(e)
+        }
+    }
+
+    const getFeeList = async () => {
+        try{
+            const { data } = await api.get(`v1/room/${roomId}/incomplete`)
+            await setFeeList(data.data)
+        }catch (e) {
+            console.log(e.toString())
+        }
+    }
+
+    const findTotalFee = async () => {
+        let curr = 0
+        feeList.forEach((item, index) => {
+            curr += item.price * roomInfor.area
+        })
+        await setTotalFee(curr)
+    }
+
+    const initData = async () => {
+        await getFeeList()
+        await findTotalFee()
+        await getRoomInfor()
+    }
+
+    useEffect(() => {
+        initData()
+    }, []);
+    useEffect(() => {
+        findTotalFee();
+    }, [feeList, roomInfor]);
+
     return (
         <>
         <UserSideBar/>
@@ -41,253 +88,43 @@ const UserPayFee = () => {
                   </div>
                 </div>
                 <div class="text-center table-responsive">
-                  <table class="table table-bordered table-hover">
-                      <thead>
-                          <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Mã khoản thu</th>
-                              <th scope="col">Tên khoản thu</th>
-                              <th scope="col">Loại phí</th>
-                              <th scope="col">Đơn giá</th>
-                              <th scope="col">Đơn vị</th>
-                              <th scope="col">Thành tiền</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>BB01</td>
-                              <td class="text-left">Phí quản lý</td>
-                              <td>Bắt buộc</td>
-                              <td>7.000</td>
-                              <td>VNĐ/m2/tháng</td>
-                              <td>7.000.000</td>
-                              
-                          </tr>
-                          <tr>
-
-                              <th scope="row">2</th>
-                              <td>BB02</td>
-                              <td class="text-left">Phí dịch vụ</td>
-                              <td>Bắt buộc</td>
-                              <td>16.500</td>
-                              <td>VNĐ/m2/tháng</td>
-                              <td>1.650.000</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>BB03</td>
-                              <td class="text-left">Phí gửi xe máy</td>
-                              <td>Bắt buộc</td>
-                              <td>70.000</td>
-                              <td>VNĐ/xe</td>
-                              <td>0</td>
-
-                          </tr>
-                          <tr>
-                              <th scope="row">4</th>
-                              <td>BB04</td>
-                              <td class="text-left">Phí gửi ô tô</td>
-                              <td>Bắt buộc</td>
-                              <td>1.200.000</td>
-                              <td>VNĐ/xe</td>
-                              <td>1.200.000</td>
-                              
-                          </tr>
-                          <tr>
-                              <th scope="row">5</th>
-                              <td>BB05</td>
-                              <td class="text-left">Phí điện</td>
-                              <td>Bắt buộc</td>
-                              <td>Theo hóa đơn</td>
-                              <td>Theo hóa đơn</td>
-                              <td>1.200.000</td>
-                              
-                          </tr>
-                          <tr>
-
-                              <th scope="row">6</th>
-                              <td>BB06</td>
-                              <td class="text-left">Phí nước</td>
-                              <td>Bắt buộc</td>
-                              <td>Theo hóa đơn</td>
-                              <td>Theo hóa đơn</td>
-                              <td>500.000</td>
-
-                          </tr>
-                          <tr>
-
-                              <th scope="row">7</th>
-                              <td>TN01</td>
-                              <td class="text-left">Quỹ khuyến học</td>
-                              <td>Tự nguyện</td>
-                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#KhuyenHoc"><i class="bi bi-pencil-fill"></i>
-                              </button>
-                              
-                              <div class="modal fade" id="KhuyenHoc" tabindex="-1" role="dialog" aria-labelledby="KhuyenHoc" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="KhuyenHoc">Nhập phí</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form>
-                                        <div class="form-row">
-                                          <div class="form-group col-md-6">
-                                            <strong for="inputService">Quỹ khuyến học</strong>
-                                            <input type="text" class="form-control" id="inputService" placeholder="Nhập số tiền (VNĐ)"/>
-                                          </div>
-                                        </div>
-                                        
-                                      </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                      <button type="button" class="btn btn-primary">Lưu</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div></td>
-                              <td>VNĐ/hộ</td>
-                              <td>0</td>
-
-                          </tr>
-                          <tr>
-                              <th scope="row">8</th>
-                              <td>TN02</td>
-                              <td class="text-left">Quỹ tình nghĩa</td>
-                              <td>Tự nguyện</td>
-                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TinhNghia"><i class="bi bi-pencil-fill"></i>
-                              </button>
-                              
-                              <div class="modal fade" id="TinhNghia" tabindex="-1" role="dialog" aria-labelledby="TinhNghia" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="TinhNghia">Nhập phí</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form>
-                                        <div class="form-row">
-                                          <div class="form-group col-md-6">
-                                            <strong for="inputService">Quỹ tình nghĩa</strong>
-                                            <input type="text" class="form-control" id="inputService" placeholder="Nhập số tiền (VNĐ)"/>
-                                          </div>
-                                        </div>
-                                        
-                                      </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                      <button type="button" class="btn btn-primary">Lưu</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div></td>
-                              <td>VNĐ/hộ</td>
-                              <td>0</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">9</th>
-                              <td>TN03</td>
-                              <td class="text-left">Quỹ người cao tuổi</td>
-                              <td>Tự nguyện</td>
-                              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CaoTuoi"><i class="bi bi-pencil-fill"></i>
-                              </button>
-                              
-                              <div class="modal fade" id="CaoTuoi" tabindex="-1" role="dialog" aria-labelledby="CaoTuoi" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="CaoTuoi">Nhập phí</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form>
-                                        <div class="form-row">
-                                          <div class="form-group col-md-6">
-                                            <strong for="inputService">Quỹ người cao tuổi</strong>
-                                            <input type="text" class="form-control" id="inputService" placeholder="Nhập số tiền (VNĐ)"/>
-                                          </div>
-                                        </div>
-                                        
-                                      </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                      <button type="button" class="btn btn-primary">Lưu</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div></td>
-                              <td>VNĐ/hộ</td>
-                              <td>0</td>
-                          </tr>
-                          <tr>
-
-                              <th scope="row">10</th>
-                              <td>TN04</td>
-                              <td class="text-left">Quỹ vì trẻ thơ</td>
-                              <td>Tự nguyện</td>
-                              <td>
-
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TreTho"><i class="bi bi-pencil-fill"></i>
-                                </button>
-                                
-                                <div class="modal fade" id="TreTho" tabindex="-1" role="dialog" aria-labelledby="TreTho" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="TreTho">Nhập phí</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form>
-                                          <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                              <strong for="inputService">Quỹ vì trẻ thơ</strong>
-                                              <input type="text" class="form-control" id="inputService" placeholder="Nhập số tiền (VNĐ)"/>
-                                            </div>
-                                          </div>
-                                          
-                                        </form>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Lưu</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              </td>
-                              <td>VNĐ/hộ</td>
-                              <td>0</td>
-                          </tr>
-
-                      </tbody>
-                      <tfoot>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Mã khoản thu</th>
+                            <th scope="col">Tên khoản thu</th>
+                            <th scope="col">Loại phí</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Đơn vị</th>
+                            <th scope="col">Thành tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {feeList.map(item => (
+                            <tr key={item.id}>
+                                <td></td>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.mandatory ? 'Bắt buộc' : 'Không bắt buộc'}</td>
+                                <td>{item.price}</td>
+                                <td>VND/m2</td>
+                                <td>{item.price * roomInfor.area}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                        <tfoot>
                         <tr>
                             <th colspan="6" class="text-right">Tổng:</th>
-                            <th id="totalAmount"> 12.100.000 </th>
+                            <th id="totalAmount">{totalFee}</th>
                         </tr>
-                    </tfoot>
-                  </table>               
+                        </tfoot>
+                    </table>
+                </div>
               </div>
-              </div>
-              <div class="form-group">
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Tải lên hình ảnh đã đóng phí</label>
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Tải lên hình ảnh đã đóng phí</label>
                     <input class="form-control" type="file" id="formFile"/>
                   </div>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PayFee">

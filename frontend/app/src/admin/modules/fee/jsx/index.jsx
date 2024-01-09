@@ -31,6 +31,19 @@ const FeeIndex = () => {
         console.log(feeList)
     }, [])
     
+    const handleDeleteFee = async (feeID) => {
+        console.log(feeID)
+    }
+
+    const handleNotiFee = async (feeId) => {
+        try{
+            const { data } = api.post(`v1/payment?fee=${feeId}`)
+            console.log(data)
+        }catch (e) {
+            console.log(e)
+        }
+    }
+
     // Function to close modal
     const handleCloseModal = () => setShowModal(false);
 
@@ -152,7 +165,8 @@ const FeeIndex = () => {
                                         <td>{item.unit ? item.unit : 'VND'}</td>
                                         <td>
                                             <Button variant="primary" onClick={handleShowModal}><i className="bi bi-pencil-fill"></i></Button>
-                                            <Button variant="secondary"><i className="bi bi-x-square-fill"></i></Button>
+                                            <Button variant="secondary"><i className="bi bi-x-square-fill" onClick={() => handleDeleteFee(item.id)}></i></Button>
+                                            <Button variant="outline-primary" onClick={() => handleNotiFee(item.id)}>Thông báo tới người dân</Button>
                                         </td>
                                         </tr>
                                     ))}

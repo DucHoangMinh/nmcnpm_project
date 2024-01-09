@@ -5,17 +5,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './UserLogin.css'; // Import your custom CSS for additional styling
 import { Link } from 'react-router-dom';
 import api from '../../service/api';
+import storage from "../../service/storage";
 const UserLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Implement your login logic here
     const sendData = {
       "email": username,
       password
     }
     try{
-      const { data } = api.post('login', sendData)
+      const { data } = await api.post('login', sendData)
+      await storage.setValue("token", data.data?.accessToken)
+      await storage.setValue("user", JSON.stringify({
+        id : data.data?.userDTO.id,
+        room : data.data?.userDTO.room
+      }))
       window.location.href = "http://localhost:3000/user/home"
     } catch(error){
       console.log(error)
