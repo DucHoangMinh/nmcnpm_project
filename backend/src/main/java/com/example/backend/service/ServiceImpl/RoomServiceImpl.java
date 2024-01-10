@@ -3,7 +3,6 @@ package com.example.backend.service.ServiceImpl;
 import com.example.backend.dto.FeeDTO;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.exception.DataNotFoundException;
-import com.example.backend.model.Fee;
 import com.example.backend.model.Room;
 import com.example.backend.repository.PaymentRepository;
 import com.example.backend.repository.RoomRepository;
@@ -14,7 +13,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -99,9 +97,9 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<FeeDTO> findIncompletedFee(Long roomId) {
-        List<Fee> fees = paymentRepository.findIncompletedFee(roomId);
-        List<FeeDTO> feeDTOS = fees.stream().map(fee -> modelMapper.map(fee, FeeDTO.class)).collect(Collectors.toList());
-        return feeDTOS;
+    public List<Object[]> findIncompletedFee(Long roomId) {
+        List<Object[]> fees = paymentRepository.findIncompletedFee(roomId);
+        //List<FeeDTO> feeDTOS = fees.stream().map(fee -> modelMapper.map(fee, FeeDTO.class)).collect(Collectors.toList());
+        return fees;
     }
 }
