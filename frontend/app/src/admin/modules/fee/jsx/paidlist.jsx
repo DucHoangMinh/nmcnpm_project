@@ -2,6 +2,7 @@ import SideBar from "../../../patials/sidebar";
 import {useEffect, useState} from "react";
 import api from "../../../../service/api";
 import {Button} from "react-bootstrap";
+import {showNotice} from "../../../../common/showNotice";
 
 const PaidList = () => {
 
@@ -22,7 +23,7 @@ const PaidList = () => {
     const handleAcceptPyament = async (feeId, roomId) => {
         try{
             const { data } = await api.patch(`v1/payment/complete?room=${roomId}&fee=${feeId}`)
-            window.alert(`Xác nhận đã đóng phí ${feeId} cho phòng ${roomId} thành công`)
+            showNotice(1,`Xác nhận đã đóng phí ${feeId} cho phòng ${roomId} thành công`)
             await init()
         }catch (error){
             window.alert(error.toString())
@@ -79,7 +80,7 @@ const PaidList = () => {
                                             <td>{item.submitted_date || 'N/A'}</td>
                                             <td>N/A</td>
                                             <td>
-                                                <Button onClick={() => handleAcceptPyament(item.fee_id, item.room_id)}
+                                                <Button onClick={() => handleAcceptPyament(item.fee.id, item.room.id)}
                                                         disabled={item.status != "PENDING"}>
                                                     {item.status == "PENDING" ? 'Xác nhận đã đóng' : (item.submitted_date ? 'Hoàn thành' :'Đang chờ đóng')}
                                                 </Button>

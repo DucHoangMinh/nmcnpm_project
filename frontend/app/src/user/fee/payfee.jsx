@@ -3,6 +3,8 @@ import api from "../../service/api";
 import storage from "../../service/storage";
 import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
+import {showNotice} from "../../common/showNotice";
+import {data} from "jquery";
 
 const UserPayFee = () => {
     const roomId = JSON.parse(storage.getValue("user")).room
@@ -45,9 +47,9 @@ const UserPayFee = () => {
     const handleConfirmPayFee = async (feeId) => {
         try{
             const { data } = await api.post(`v1/payment/pending?room=${roomId}&fee=${feeId}`)
-            window.alert("Gửi yêu cầu xác nhận đóng phí thành công")
+            showNotice(1,"Gửi yêu cầu xác nhận đóng phí thành công")
         }catch (error) {
-            console.log(error)
+            showNotice(2, data.data.message)
         }
     }
 

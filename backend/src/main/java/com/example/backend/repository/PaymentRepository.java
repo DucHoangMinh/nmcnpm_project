@@ -1,12 +1,10 @@
 package com.example.backend.repository;
 
-import com.example.backend.model.Fee;
 import com.example.backend.model.Payment;
 import com.example.backend.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     List<Room>  findListOfIncompleteRooms(Long feeId);
 
     @Query("SELECT p.fee, p.status FROM Payment p WHERE p.room.id = ?1 AND p.status = 'NOTDONE' OR p.status = 'PENDING'")
-    List<Fee> findIncompletedFee(Long roomId);
+    List<Object[]> findIncompletedFee(Long roomId);
 
     @Modifying
     @Query("UPDATE Payment p SET p.status = 'PENDING' where p.fee.id = ?1 AND p.room.id = ?2")

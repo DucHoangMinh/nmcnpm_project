@@ -1,16 +1,13 @@
 package com.example.backend.controller;
 
-import com.example.backend.dto.FeeDTO;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.model.ResponseModel;
-import com.example.backend.model.User;
 import com.example.backend.payload.UserResponse;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.service.ServiceImpl.RoomServiceImpl;
 import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -187,11 +184,11 @@ public class RoomController {
     @GetMapping("/{id}/incomplete")
     public ResponseEntity<ResponseModel> getIncompleteFees(@PathVariable("id") Long roomId) {
         try {
-            List<FeeDTO> feeDTOS = roomService.findIncompletedFee(roomId);
+            List<Object[]> fees = roomService.findIncompletedFee(roomId);
             return ResponseEntity.ok(new ResponseModel(
                     "ok",
                     "Tìm các khoản phí chưa đóng của phòng " + roomId,
-                    feeDTOS
+                    fees
             ));
         }  catch (Exception message) {
             return ResponseEntity.badRequest().body(new ResponseModel(
