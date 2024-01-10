@@ -18,7 +18,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     List<Payment> findByRoomId(Long roomId);
     @Query("SELECT p FROM Payment p WHERE p.fee =(SELECT f FROM Fee f WHERE f.id = ?1)")
     List<Payment> findByFeeId(Long feeId);
-    @Query("SELECT p.room FROM Payment p WHERE p.fee.id = ?1 AND (p.status = 'NOTDONE' OR p.status = 'PENDING')")
+    @Query("SELECT p.room FROM Payment p WHERE p.fee.id = ?1 AND (p.status = 'NOTDONE')")
     List<Room>  findListOfIncompleteRooms(Long feeId);
 
     @Query("SELECT p.fee, p.status FROM Payment p WHERE p.room.id = ?1 AND p.status = 'NOTDONE' OR p.status = 'PENDING'")

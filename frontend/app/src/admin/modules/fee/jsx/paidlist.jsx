@@ -55,24 +55,26 @@ const PaidList = () => {
                         <div className="text-center table-responsive">
                             <table className="table table-bordered table-hover">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Mã hộ gia đình</th>
-                                        <th scope="col">Mã phí</th>
-                                        <th scope="col">Phí phải đóng</th>
-                                        <th scope="col">Tình trạng đóng</th>
-                                        <th scope="col">Thời gian đóng</th>
-                                        <th scope="col">Ảnh đóng phí</th>
-                                        <th scope="col">Hành động</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Mã hộ gia đình</th>
+                                    <th scope="col">Mã phí</th>
+                                    <th scope="col">Tên khoản phí</th>
+                                    <th scope="col">Phí phải đóng</th>
+                                    <th scope="col">Tình trạng đóng</th>
+                                    <th scope="col">Thời gian đóng</th>
+                                    <th scope="col">Ảnh đóng phí</th>
+                                    <th scope="col">Hành động</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                     {paymentStatus.map(item => (
                                         <tr key={item.id}>
                                             <td>{a ++}</td>
-                                            <td>{item.room_id}</td>
-                                            <td>{item.fee_id}</td>
-                                            <td>{item.total_money}</td>
+                                            <td>{item.room.id}</td>
+                                            <td>{item.fee.id}</td>
+                                            <td>{item.fee.name}</td>
+                                            <td>{item.totalMoney}</td>
                                             <td>{item.status}</td>
                                             <td>{item.submitted_date || 'N/A'}</td>
                                             <td>N/A</td>
