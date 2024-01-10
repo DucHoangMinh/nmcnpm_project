@@ -1,6 +1,29 @@
 import SideBar from "../../../patials/sidebar";
+import {useEffect, useState} from "react";
+import api from "../../../../service/api";
 
 const PaidList = () => {
+
+    const [paymentStatus, setPaymentStatus] = useState([])
+    const getPaymentStatus = async () => {
+        try{
+            const { data } = await api.get('v1/payment?pageSize=50')
+            setPaymentStatus(data.data.content)
+            console.log(data.data.content)
+        }catch (error){
+            console.log(error)
+        }
+
+    }
+
+    const init = async () => {
+        await getPaymentStatus()
+    }
+
+    useEffect(() => {
+        init()
+    }, []);
+
     return (
         <>
         <SideBar/>
@@ -23,15 +46,10 @@ const PaidList = () => {
                                         <th scope="col">#</th>
                                         <th scope="col">Mã hộ gia đình</th>
                                         <th scope="col">Phí phải đóng</th>
-                                        <th scope="col">Phí đã đóng</th>
-                                        <th scope="col">TN01</th>
-                                        <th scope="col">TN02</th>
-                                        <th scope="col">TN03</th>
-                                        <th scope="col">TN04</th>
-                                        <th scope="col">TN05</th>
+                                        <th scope="col">Tình trạng đóng</th>
                                         <th scope="col">Thời gian đóng</th>
                                         <th scope="col">Phí còn thiếu</th>
-                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,103 +60,16 @@ const PaidList = () => {
                                         <td className="form-group"><input className="form-control"
                                             placeholder=""/>
                                         </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
                                         <td className="text-left"><input className="form-control" type="datetime-local" id="Test_DatetimeLocal"/></td>
                                         <td>400000</td>
                                         <td>Còn thiếu</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>502</td>
-                                        <td>1200000</td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="text-left"><input className="form-control" type="datetime-local" id="Test_DatetimeLocal"/></td>
-                                        <td>0</td>
-                                        <td>Hoàn thành</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>2908</td>
-                                        <td>2500000</td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="text-left"><input className="form-control" type="datetime-local" id="Test_DatetimeLocal"/></td>
-                                        <td>2500000</td>
-                                        <td>Hết hạn</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>2908</td>
-                                        <td>2500000</td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="text-left"><input className="form-control" type="datetime-local" id="Test_DatetimeLocal"/></td>
-                                        <td>-30000</td>
-                                        <td>Còn dư</td>
-                                    </tr>
+                                    {paymentStatus.map(item => (
+                                        <tr key={item.id}>
+                                            <td>{item.name}</td>
+                                            <td>{item.age}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

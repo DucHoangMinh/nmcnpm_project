@@ -62,6 +62,7 @@ public class LoginController {
                     )
             );
             UserDTO userDTO = userMapper.toUserDTO(((CustomUserDetail)authentication.getPrincipal()).getUser());
+            userDTO.setRoom(((CustomUserDetail)authentication.getPrincipal()).getUser().getRoom().getId().toString());
             // Nếu không xảy ra exception tức là thông tin hợp lệ
             // Set thông tin authentication vào Security Context
             SecurityContextHolder.getContext().setAuthentication(authentication);

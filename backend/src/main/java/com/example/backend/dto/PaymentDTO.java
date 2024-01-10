@@ -18,8 +18,8 @@ public class PaymentDTO {
     private Long feeID;
     @JsonProperty("room_id")
     private Long roomID;
-    @JsonProperty( "is_completed")
-    private boolean completed; // check đã nộp
+    @JsonProperty( "status")
+    private String status; // check đã nộp
     @JsonProperty("submitted_date")
     private LocalDate submittedDate;
     @JsonProperty("total_money")

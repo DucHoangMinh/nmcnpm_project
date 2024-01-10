@@ -2,6 +2,7 @@ import UserSideBar from "../userSideBar"
 import api from "../../service/api";
 import storage from "../../service/storage";
 import {useEffect, useState} from "react";
+import {Button} from "react-bootstrap";
 
 const UserPayFee = () => {
     const roomId = JSON.parse(storage.getValue("user")).room
@@ -39,6 +40,15 @@ const UserPayFee = () => {
         await getFeeList()
         await findTotalFee()
         await getRoomInfor()
+    }
+
+    const handleConfirmPayFee = async (feeId) => {
+        try{
+            const { data } = await api.post(`v1/payment/pending?room=${roomId}&fee=${feeId}`)
+            window.alert("Gửi yêu cầu xác nhận đóng phí thành công")
+        }catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(() => {
@@ -91,31 +101,39 @@ const UserPayFee = () => {
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Mã khoản thu</th>
                             <th scope="col">Tên khoản thu</th>
                             <th scope="col">Loại phí</th>
                             <th scope="col">Đơn giá</th>
                             <th scope="col">Đơn vị</th>
                             <th scope="col">Thành tiền</th>
+                            <th scope="col">Ảnh thanh toán</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         {feeList.map(item => (
                             <tr key={item.id}>
-                                <td></td>
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>
                                 <td>{item.mandatory ? 'Bắt buộc' : 'Không bắt buộc'}</td>
                                 <td>{item.price}</td>
                                 <td>VND/m2</td>
                                 <td>{item.price * roomInfor.area}</td>
+                                <td>
+                                    <div className="mb-3">
+                                        <input className="form-control" type="file" id="formFile"/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <Button onClick={() => handleConfirmPayFee(item.id)}>Xác nhận đóng phí</Button>
+                                </td>
                             </tr>
-                        ))}
+                            ))}
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th colspan="6" class="text-right">Tổng:</th>
+                            <th colspan="5" class="text-right">Tổng:</th>
                             <th id="totalAmount">{totalFee}</th>
                         </tr>
                         </tfoot>
@@ -123,10 +141,6 @@ const UserPayFee = () => {
                 </div>
               </div>
                 <div class="form-group">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Tải lên hình ảnh đã đóng phí</label>
-                    <input class="form-control" type="file" id="formFile"/>
-                  </div>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PayFee">
                     Nộp Phí
                   </button>

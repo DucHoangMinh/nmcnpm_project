@@ -100,6 +100,30 @@ public class PaymentController {
             ));
         }
     }
+
+    @PostMapping("/pending")
+    public ResponseEntity<ResponseModel> setPendingPayment(@RequestParam("room") Long roomId, @RequestParam("fee") Long feeId){
+        try{
+            Payment payment = paymentService.setPending(feeId, roomId);
+            return ResponseEntity.ok().body(
+                    new ResponseModel(
+                            "ok",
+                            "Set pending successfully!",
+                            payment
+                    )
+            );
+        }catch (Exception e){
+            System.out.println(e.toString());
+                return ResponseEntity.badRequest().body(
+                        new ResponseModel(
+                            "failed",
+                                e.getMessage(),
+                                ""
+                        )
+                );
+        }
+    }
+
     @PatchMapping("/complete")
     //http://localhost:8080/api/v1/payment/complete?room=1&fee=1
     //Đánh dấu hoàn thành phí nào đó cho căn hộ
