@@ -94,8 +94,8 @@ public class PaymentServiceImpl implements PaymentService {
         Page<Payment> payments = paymentRepository.findAll(pageable);
 
         // Get content for page object
-        List<Payment> listOfPayments = payments.getContent();
-        List<PaymentDTO> content = listOfPayments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
+        List<Payment> content = payments.getContent();
+        //List<PaymentDTO> content = listOfPayments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
         PaymentResponse paymentResponse = new PaymentResponse();
         paymentResponse.setContent(content);
         paymentResponse.setPageNo(payments.getNumber());
@@ -107,12 +107,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<PaymentDTO> getPaymentsOfRoom(Long roomId) {
+    public List<Payment> getPaymentsOfRoom(Long roomId) {
         Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + roomId));
         List<Payment> payments = paymentRepository.findByRoomId(roomId);
-        List<PaymentDTO> paymentDTOS = payments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
-        return paymentDTOS;
+//        List<PaymentDTO> paymentDTOS = payments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
+        return payments;
     }
 
     @Override

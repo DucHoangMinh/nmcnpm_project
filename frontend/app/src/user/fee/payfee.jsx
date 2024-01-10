@@ -126,7 +126,7 @@ const UserPayFee = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <Button onClick={() => handleConfirmPayFee(item.id)}>Xác nhận đóng phí</Button>
+                                    <Button disabled={item.status == "PENDING"} onClick={() => handleConfirmPayFee(item.id)}>Xác nhận đóng phí</Button>
                                 </td>
                             </tr>
                             ))}

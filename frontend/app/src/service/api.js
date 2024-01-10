@@ -8,6 +8,9 @@ const api = {
     post : async (url, body) => {
         return await axios.post('http://localhost:8080/api/' + url, body, {headers: headers})
     },
+    patch : async (url, body) => {
+        return await axios.patch('http://localhost:8080/api/' + url, body, {headers: headers})
+    },
     get: async (url) => {
         return await axios.get('http://localhost:8080/api/' + url, {headers: headers})
     }

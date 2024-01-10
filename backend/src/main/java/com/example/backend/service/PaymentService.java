@@ -15,7 +15,7 @@ public interface PaymentService{
     List<PaymentDTO> setPaymentForAllRoom(Long feeId);
     PaymentDTO completePayment(Long roomId, Long feeId);
     PaymentResponse getAllPayment(int pageNo, int pageSize, String sortBy, String sortDir);
-    List<PaymentDTO> getPaymentsOfRoom(Long roomId);
+    List<Payment> getPaymentsOfRoom(Long roomId);
     void deletePaymentsByFeeId(Long feeId);
     PaymentImage createPaymentImage(Long paymentId, PaymentImageDTO paymentImageDTO);
     int setPendingStatus(Long feeId, Long roomId);

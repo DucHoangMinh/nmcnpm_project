@@ -1,8 +1,11 @@
 import SideBar from "../../../patials/sidebar";
 import {useEffect, useState} from "react";
 import api from "../../../../service/api";
+import {Button} from "react-bootstrap";
 
 const PaidList = () => {
+
+    let a = 1;
 
     const [paymentStatus, setPaymentStatus] = useState([])
     const getPaymentStatus = async () => {
@@ -14,6 +17,16 @@ const PaidList = () => {
             console.log(error)
         }
 
+    }
+
+    const handleAcceptPyament = async (feeId, roomId) => {
+        try{
+            const { data } = await api.patch(`v1/payment/complete?room=${roomId}&fee=${feeId}`)
+            window.alert(`Xác nhận đã đóng phí ${feeId} cho phòng ${roomId} thành công`)
+            await init()
+        }catch (error){
+            window.alert(error.toString())
+        }
     }
 
     const init = async () => {
@@ -45,29 +58,30 @@ const PaidList = () => {
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Mã hộ gia đình</th>
+                                        <th scope="col">Mã phí</th>
                                         <th scope="col">Phí phải đóng</th>
                                         <th scope="col">Tình trạng đóng</th>
                                         <th scope="col">Thời gian đóng</th>
-                                        <th scope="col">Phí còn thiếu</th>
+                                        <th scope="col">Ảnh đóng phí</th>
                                         <th scope="col">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>501</td>
-                                        <td>1200000</td>
-                                        <td className="form-group"><input className="form-control"
-                                            placeholder=""/>
-                                        </td>
-                                        <td className="text-left"><input className="form-control" type="datetime-local" id="Test_DatetimeLocal"/></td>
-                                        <td>400000</td>
-                                        <td>Còn thiếu</td>
-                                    </tr>
                                     {paymentStatus.map(item => (
                                         <tr key={item.id}>
-                                            <td>{item.name}</td>
-                                            <td>{item.age}</td>
+                                            <td>{a ++}</td>
+                                            <td>{item.room_id}</td>
+                                            <td>{item.fee_id}</td>
+                                            <td>{item.total_money}</td>
+                                            <td>{item.status}</td>
+                                            <td>{item.submitted_date || 'N/A'}</td>
+                                            <td>N/A</td>
+                                            <td>
+                                                <Button onClick={() => handleAcceptPyament(item.fee_id, item.room_id)}
+                                                        disabled={item.status != "PENDING"}>
+                                                    {item.status == "PENDING" ? 'Xác nhận đã đóng' : (item.submitted_date ? 'Hoàn thành' :'Đang chờ đóng')}
+                                                </Button>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
