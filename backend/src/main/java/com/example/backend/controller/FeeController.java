@@ -94,6 +94,8 @@ public class FeeController {
             ));
         }
     }
+
+    // Lấy tất cả các khoản phí đã hoàn thành
     @GetMapping("/done")
     public ResponseEntity<ResponseModel> getDoneFees() {
         try {

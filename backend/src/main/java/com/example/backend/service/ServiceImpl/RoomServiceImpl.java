@@ -102,4 +102,10 @@ public class RoomServiceImpl implements RoomService {
         //List<FeeDTO> feeDTOS = fees.stream().map(fee -> modelMapper.map(fee, FeeDTO.class)).collect(Collectors.toList());
         return fees;
     }
+
+    @Override
+    public List<Object[]> findCompletedFee(Long roomId) {
+        List<Object[]> fees = paymentRepository.findCompletedFee(roomId);
+        return fees;
+    }
 }

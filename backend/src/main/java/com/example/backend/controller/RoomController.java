@@ -1,9 +1,11 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.FeeDTO;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.payload.UserResponse;
 import com.example.backend.repository.UserRepository;
+import com.example.backend.service.FeeService;
 import com.example.backend.service.ServiceImpl.RoomServiceImpl;
 import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.Set;
 public class RoomController {
     @Autowired
     private final RoomServiceImpl roomService;
+    private final FeeService feeService;
     private final UserRepository userRepository;
     @Autowired
     private UserService userService;
@@ -191,6 +194,26 @@ public class RoomController {
                     fees
             ));
         }  catch (Exception message) {
+            return ResponseEntity.badRequest().body(new ResponseModel(
+                    "failed",
+                    message.getMessage(),
+                    ""
+            ));
+        }
+    }
+
+    // Tìm các khoản phí đã đóng của một phòng
+    //http://localhost:8080/api/v1/room/1/complete
+    @GetMapping("/{id}/complete")
+    public ResponseEntity<ResponseModel> getCompleteFeeByRoomId(@PathVariable("id") Long roomId) {
+        try {
+            List<Object[]> completedFees = roomService.findCompletedFee(roomId);
+            return ResponseEntity.ok(new ResponseModel(
+                    "ok",
+                    "Lấy các phí có trạng thái 'DONE' thành công",
+                    completedFees
+            ));
+        } catch (Exception message) {
             return ResponseEntity.badRequest().body(new ResponseModel(
                     "failed",
                     message.getMessage(),

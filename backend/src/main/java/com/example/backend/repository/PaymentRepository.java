@@ -21,7 +21,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     @Query("SELECT p.fee, p.status FROM Payment p WHERE p.room.id = ?1 AND p.status = 'NOTDONE' OR p.status = 'PENDING'")
     List<Object[]> findIncompletedFee(Long roomId);
-
+    @Query("SELECT p.fee, p.status FROM Payment p WHERE p.room.id = ?1 AND p.status = 'DONE'")
+    List<Object[]> findCompletedFee(Long roomId);
     @Modifying
     @Query("UPDATE Payment p SET p.status = 'PENDING' where p.fee.id = ?1 AND p.room.id = ?2")
     int setPendingStatus(Long feeId, Long roomId);
