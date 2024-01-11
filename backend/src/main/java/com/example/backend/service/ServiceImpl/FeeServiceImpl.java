@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 @Data
@@ -66,5 +68,12 @@ public class FeeServiceImpl implements FeeService {
                 .orElseThrow(() -> new DataNotFoundException("Cannot find fee with id: " + id));
         paymentService.deletePaymentsByFeeId(id); // Delete payments of this fee before deleting fee
         feeRepository.delete(fee);
+    }
+
+    @Override
+    public List<FeeDTO> getDoneFees() {
+        List<Fee> fees = feeRepository.getDoneFees();
+        List<FeeDTO> feeDTOS = fees.stream().map(fee -> modelMapper.map(fee, FeeDTO.class)).collect(Collectors.toList());
+        return feeDTOS;
     }
 }

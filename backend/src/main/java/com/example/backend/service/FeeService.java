@@ -12,4 +12,5 @@ public interface FeeService {
     FeeDTO createFee(FeeDTO feeDTO);
     FeeDTO updateFee(Long id, FeeDTO newFeeDTO);
     void deleteFee(Long id);
+    List<FeeDTO> getDoneFees();
 }
