@@ -35,7 +35,7 @@ const UserPayFee = () => {
     const findTotalFee = async () => {
         let curr = 0
         feeList.forEach((item, index) => {
-            curr += item.price * roomInfor.area
+            curr += item[0].price * roomInfor.area
         })
         await setTotalFee(curr)
     }

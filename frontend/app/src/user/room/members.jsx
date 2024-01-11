@@ -51,6 +51,7 @@ const UserMember = () => {
                 <td>{item.identity}</td>
                 <td>{item.relationship}</td>
                 <td>
+                    <Button>Chỉnh sửa thông tin cá nhân</Button>
                 </td>
             </tr>
         ))}
@@ -58,11 +59,7 @@ const UserMember = () => {
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#memberModal">
-      <span class="d-inline-block mr-2">Thêm thành viên</span><i class="fas fa-plus-circle"></i>
-    </button>
 
-    <a href="#" class="d-block">Lên đầu trang</a>
   </div>
   <div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

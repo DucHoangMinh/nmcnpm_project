@@ -1,6 +1,31 @@
 import UserSideBar from "../userSideBar"
+import {useState} from "react";
+import api from "../../service/api";
+import storage from "../../service/storage";
 
 const UserFeeStatistic = () => {
+    const [feeList, setFeeList] = useState([])
+    const roomId = JSON.parse(storage.getValue("user")).room
+    const [completeList, setCompleteList] = useState([])
+
+    const getFeeList = async () => {
+        try{
+            const { data } = await api.get(`v1/room/${roomId}/incomplete`)
+            console.log(data.data)
+            await setFeeList(data.data)
+        }catch (e) {
+            console.log(e.toString())
+        }
+    }
+
+    const getCompleteList = async () => {
+        try{
+            const { data } = 5
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     return (
         <>
         <UserSideBar/>
