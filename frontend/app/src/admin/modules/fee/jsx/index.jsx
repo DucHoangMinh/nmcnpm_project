@@ -3,6 +3,7 @@ import '../css/index.css';
 import { Modal, Button, Form, Table, InputGroup, FormControl } from 'react-bootstrap';
 import api from '../../../../service/api'
 import SideBar from "../../../patials/sidebar";
+import {showNotice} from "../../../../common/showNotice";
 const FeeIndex = () => {
     const [show, setShow] = useState(false);
     const [feeList, setFeeList] = useState([]);
@@ -32,13 +33,20 @@ const FeeIndex = () => {
     }, [])
     
     const handleDeleteFee = async (feeID) => {
-        console.log(feeID)
+        try{
+            const { data } = await api.delete(`v1/fee/${feeID}`)
+            await getFeeList()
+            showNotice(1, 'Xóa phí thành công')
+        }catch (e){
+            console.log(e)
+        }
     }
 
     const handleNotiFee = async (feeId) => {
         try{
             const { data } = api.post(`v1/payment?fee=${feeId}`)
             console.log(data)
+            showNotice(1,'Thông báo thông tin phí tới cư dân thành công')
         }catch (e) {
             console.log(e)
         }
@@ -132,18 +140,12 @@ const FeeIndex = () => {
                             </Modal>
                             <InputGroup className="mt-3 mb-3">
                                 <FormControl placeholder="Tìm kiếm" />
-                                <InputGroup>
-                                    <Button variant="outline-secondary">
-                                    <i className="bi bi-search"></i>
-                                    </Button>
-                                </InputGroup>
                             </InputGroup>
 
                             <div className="text-center table-responsive">
                                 <Table bordered hover>
                                     <thead>
                                     <tr>
-                                        <th>Chọn</th>
                                         <th>#</th>
                                         <th>Mã khoản thu</th>
                                         <th>Tên khoản thu</th>
@@ -156,7 +158,6 @@ const FeeIndex = () => {
                                     <tbody>
                                     {feeList.map(item => (
                                         <tr key={item.id}>
-                                        <td />
                                         <td>{item.id}</td>
                                         <td>{item.code}</td>
                                         <td className="text-left">{item.description}</td>

@@ -38,8 +38,8 @@ const SideBar = (props) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item active">
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item active mt-3">
                 <a className="nav-link" href="home">
                   <i className="bi bi-house-fill"></i> Trang chủ <span className="sr-only">(current)</span>
                 </a>
