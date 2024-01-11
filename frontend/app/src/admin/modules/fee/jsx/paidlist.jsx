@@ -3,9 +3,10 @@ import {useEffect, useState} from "react";
 import api from "../../../../service/api";
 import {Button} from "react-bootstrap";
 import {showNotice} from "../../../../common/showNotice";
+import storage from "../../../../service/storage";
 
 const PaidList = () => {
-
+    const [searchText, setSearchText] = useState('')
     let a = 1;
 
     const [paymentStatus, setPaymentStatus] = useState([])
@@ -48,7 +49,7 @@ const PaidList = () => {
                         <h2 className="text-left mb-4">Tình trạng đóng phí</h2>
 
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Tìm kiếm"/>
+                            <input type="text" className="form-control" placeholder="Tìm kiếm" value={searchText} onChange={e => setSearchText(e.target.value) }/>
                             <div className="input-group-append">
                                 <button className="btn btn-outline-secondary" type="button"><i className="bi bi-search"></i></button>
                             </div>
@@ -70,7 +71,7 @@ const PaidList = () => {
                                 </thead>
                                 <tbody>
                                     {paymentStatus.map(item => (
-                                        <tr key={item.id}>
+                                        item.fee.name.startsWith(searchText) &&  <tr key={item.id}>
                                             <td>{a ++}</td>
                                             <td>{item.room.id}</td>
                                             <td>{item.fee.id}</td>
@@ -82,7 +83,7 @@ const PaidList = () => {
                                             <td>
                                                 <Button onClick={() => handleAcceptPyament(item.fee.id, item.room.id)}
                                                         disabled={item.status != "PENDING"}>
-                                                    {item.status == "PENDING" ? 'Xác nhận đã đóng' : (item.submitted_date ? 'Hoàn thành' :'Đang chờ đóng')}
+                                                    {item.status == "PENDING" ? 'Xác nhận đã đóng' : (item.status == "DONE" ? 'Hoàn thành' :'Đang chờ đóng')}
                                                 </Button>
                                             </td>
                                         </tr>

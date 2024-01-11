@@ -1,6 +1,30 @@
 import UserSideBar from "../userSideBar"
+import storage from "../../service/storage";
+import api from "../../service/api";
+import {showNotice} from "../../common/showNotice";
+import {useEffect, useState} from "react";
+import {Button} from "react-bootstrap";
 
 const UserMember = () => {
+    const roomId = JSON.parse(storage.getValue('user')).room
+    const [memberList, setMemberList] = useState([])
+    const getAllPeopleInRoom = async () => {
+        try{
+            const { data } = await api.get(`v1/room/${roomId}/users`)
+            console.log(data.data)
+            setMemberList(data.data)
+        } catch (error) {
+            showNotice(0,error.toString())
+        }
+    }
+
+    const initData = async () => {
+        await getAllPeopleInRoom()
+    }
+    useEffect(() => {
+        initData()
+    }, []);
+
     return (
         <>
         <UserSideBar/>
@@ -13,78 +37,24 @@ const UserMember = () => {
                 <th>Họ và tên</th>
                 <th>Giới tính</th>
                 <th>Số căn cước</th>
-                <th>Phòng</th>
                 <th>Quan hệ với chủ hộ</th>
                 <th>Hành động</th>
             </tr>
         </thead>
         <tbody id="memberTable">
-          <tr>
-            <td>10101</td>
-            <td>Hoàng Minh Đức</td>
-            <td>Nam</td>
-            <td></td>
-            <td>101</td>
-            <td>Chủ hộ</td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">
-                <i class="bi bi-trash3-fill"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>10102</td>
-            <td>Hoàng Minh Nhật</td>
-            <td>Nam</td>
-            <td></td>
-            <td>101</td>
-            <td>Em trai</td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">
-                <i class="bi bi-trash3-fill"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>10103</td>
-            <td>Hoàng Thị Như Ý</td>
-            <td>Nữ</td>
-            <td></td>
-            <td>101</td>
-            <td>Em gái</td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">
-                <i class="bi bi-trash3-fill"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>10104</td>
-            <td>Hoàng Minh Phát</td>
-            <td>Nam</td>
-            <td></td>
-            <td>101</td>
-            <td>Bố</td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">
-                <i class="bi bi-trash3-fill"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>10105</td>
-            <td>Lê Thị Hoa</td>
-            <td>Nữ</td>
-            <td></td>
-            <td>101</td>
-            <td>Mẹ</td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">
-                <i class="bi bi-trash3-fill"></i>
-              </button>
-            </td>
-          </tr>
-            
+        {memberList.map(item => (
+            // item?.name.toString().startsWith(searchText) &&
+            <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.fullname}</td>
+                <td>{item.sex ? 'Nam' : 'Nữ'}</td>
+                <td>{item.identity}</td>
+                <td>{item.relationship}</td>
+                <td>
+                </td>
+            </tr>
+        ))}
+
         </tbody>
     </table>
 

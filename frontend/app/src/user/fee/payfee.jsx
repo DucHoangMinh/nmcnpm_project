@@ -11,6 +11,7 @@ const UserPayFee = () => {
     const [roomInfor, setRoomInfor] = useState({})
     const [feeList, setFeeList] = useState([])
     const [totalFee, setTotalFee] = useState(0)
+    const [searchText, setSearchText] = useState('')
 
     const getRoomInfor = async () => {
         try {
@@ -24,6 +25,7 @@ const UserPayFee = () => {
     const getFeeList = async () => {
         try{
             const { data } = await api.get(`v1/room/${roomId}/incomplete`)
+            console.log(data.data)
             await setFeeList(data.data)
         }catch (e) {
             console.log(e.toString())
@@ -48,6 +50,7 @@ const UserPayFee = () => {
         try{
             const { data } = await api.post(`v1/payment/pending?room=${roomId}&fee=${feeId}`)
             showNotice(1,"Gửi yêu cầu xác nhận đóng phí thành công")
+            await initData()
         }catch (error) {
             showNotice(2, data.data.message)
         }
@@ -94,7 +97,7 @@ const UserPayFee = () => {
               <div class="form-group">
                 <label for="feeType">Các Loại Phí:</label>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Tìm kiếm"/>
+                  <input type="text" class="form-control" placeholder="Tìm kiếm" value={searchText} onChange={e => setSearchText(e.target.value)}/>
                   <div class="input-group-append">
                       <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
                   </div>
@@ -115,20 +118,21 @@ const UserPayFee = () => {
                         </thead>
                         <tbody>
                         {feeList.map(item => (
+                            // item?.name.toString().startsWith(searchText) &&
                             <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.name}</td>
-                                <td>{item.mandatory ? 'Bắt buộc' : 'Không bắt buộc'}</td>
-                                <td>{item.price}</td>
+                                <td>{item[0].id}</td>
+                                <td>{item[0].name}</td>
+                                <td>{item[0].mandatory ? 'Bắt buộc' : 'Không bắt buộc'}</td>
+                                <td>{item[0].price}</td>
                                 <td>VND/m2</td>
-                                <td>{item.price * roomInfor.area}</td>
+                                <td>{item[0].price * roomInfor.area}</td>
                                 <td>
                                     <div className="mb-3">
                                         <input className="form-control" type="file" id="formFile"/>
                                     </div>
                                 </td>
                                 <td>
-                                    <Button disabled={item.status == "PENDING"} onClick={() => handleConfirmPayFee(item.id)}>Xác nhận đóng phí</Button>
+                                    <Button disabled={item[1] == "PENDING"} onClick={() => handleConfirmPayFee(item[0].id)}>Xác nhận đóng phí</Button>
                                 </td>
                             </tr>
                             ))}
