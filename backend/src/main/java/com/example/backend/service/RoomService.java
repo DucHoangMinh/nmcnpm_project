@@ -16,4 +16,5 @@ public interface RoomService {
     RoomDTO activateRoom(Long id, boolean active);
     List<RoomDTO> findListOfIncompleteRooms(Long feeId);
     List<Object[]> findIncompletedFee(Long roomId);
+    List<Object[]> findCompletedFee(Long roomId);
 }
