@@ -65,12 +65,6 @@ const UserMember = () => {
                                                 <div class="modal-body">
                                                     <form class="form-horizontal">
                                                         <div class="form-group">
-                                                            <label class="control-label col-sm-10" for="email">Mã cư dân</label>
-                                                            <div class="col-sm-12">
-                                                                <input class="form-control" placeholder="" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
                                                             <label class="control-label col-sm-10" for="pwd">Họ và tên cư dân</label>
                                                             <div class="col-sm-12">
                                                                 <input class="form-control" placeholder="" />
@@ -114,8 +108,8 @@ const UserMember = () => {
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                                    <button type="button" class="btn btn-primary">Tạo</button>
                                                 </div>
                                             </div>
                                         </div>
