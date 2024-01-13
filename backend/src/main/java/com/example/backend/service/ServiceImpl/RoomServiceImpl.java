@@ -4,8 +4,11 @@ import com.example.backend.dto.FeeDTO;
 import com.example.backend.dto.RoomDTO;
 import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.model.Room;
+import com.example.backend.model.User;
+import com.example.backend.payload.UserResponse;
 import com.example.backend.repository.PaymentRepository;
 import com.example.backend.repository.RoomRepository;
+import com.example.backend.repository.UserRepository;
 import com.example.backend.service.RoomService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -21,6 +25,7 @@ import java.util.stream.Collectors;
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
     private final PaymentRepository paymentRepository;
+    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     @Override
     public RoomDTO createRoom(RoomDTO roomDTO) {
@@ -107,5 +112,30 @@ public class RoomServiceImpl implements RoomService {
     public List<Object[]> findCompletedFee(Long roomId) {
         List<Object[]> fees = paymentRepository.findCompletedFee(roomId);
         return fees;
+    }
+    public Set<UserResponse> getUserOfRoom(Long roomId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + roomId));
+        Set<User> users = userRepository.findByRoomId(roomId);
+        Set<UserResponse> userResponses = users.stream()
+                .map(user -> UserResponse.builder()
+                        .fullname(user.getFullname())
+                        .email(user.getEmail())
+                        .phone(user.getPhone())
+                        .dob(user.getDob())
+                        .sex(user.getSex())
+                        .role(user.getRole())
+                        .relationship(user.getRelationship())
+                        .identity(user.getIdentity())
+                        .build())
+                .collect(Collectors.toSet());
+        return userResponses;
+    }
+    @Override
+    public int getNumberOfMembers(Long roomId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new DataNotFoundException("Cannot found room with id: " + roomId));
+        Set<User> members = userRepository.findByRoomId(roomId);
+        return members.size();
     }
 }
