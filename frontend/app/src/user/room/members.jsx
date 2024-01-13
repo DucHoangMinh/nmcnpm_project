@@ -11,7 +11,6 @@ const UserMember = () => {
     const getAllPeopleInRoom = async () => {
         try{
             const { data } = await api.get(`v1/room/${roomId}/users`)
-            console.log(data.data)
             setMemberList(data.data)
         } catch (error) {
             showNotice(0,error.toString())
