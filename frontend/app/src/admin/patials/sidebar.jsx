@@ -40,7 +40,7 @@ const SideBar = (props) => {
           <div className="collapse navbar-collapse" id="navbarContent">
             <ul className="navbar-nav me-auto">
               <li className="nav-item active mt-3">
-                <a className="nav-link" href="home">
+                <a className="nav-link" href="/admin/home">
                   <i className="bi bi-house-fill"></i> Trang chủ <span className="sr-only">(current)</span>
                 </a>
               </li>

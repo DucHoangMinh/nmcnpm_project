@@ -16,6 +16,8 @@ const PopulationList = () => {
     }
   }
 
+  const [searchText, setSearchText] = useState('')
+
   const initData = async () => {
     await getPopulationList()
   }
@@ -341,7 +343,7 @@ const PopulationList = () => {
       </table>
     </div>
     <div className="input-group mt-3 mb-3">
-      <input type="text" className="form-control" placeholder="Tìm kiếm" />
+      <input value={searchText} type="text" className="form-control" placeholder="Tìm kiếm" onChange={e => setSearchText(e.target.value)}/>
       <div className="input-group-append">
         <button className="btn btn-outline-secondary" type="button">
           <i className="bi bi-search" />
@@ -363,7 +365,7 @@ const PopulationList = () => {
       </thead>
       <tbody>
       {populationList.map(item => (
-          <tr key={item.id}>
+          (item.fullname.startsWith(searchText) || searchText == '') && <tr key={item.id}>
             <td>{item.id}</td>
             <td>{item.fullname}</td>
             <td>{item.room}</td>

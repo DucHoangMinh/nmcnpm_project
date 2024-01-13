@@ -44,6 +44,10 @@ public class RoomServiceImpl implements RoomService {
         List<RoomDTO> roomDTOList = roomRepository.findAll().stream().map(
                 room ->  modelMapper.map(room, RoomDTO.class))
                 .toList();
+        for (int i = 0; i < roomDTOList.size(); i++) {
+            int number_of_mem = getNumberOfMembers(roomDTOList.get(i).getId());
+            roomDTOList.get(i).setNumberOfMem(number_of_mem);
+        }
         return roomDTOList;
     }
 
