@@ -96,7 +96,7 @@ const FeeIndex = () => {
 
                                     <Form.Group controlId="formName">
                                         <Form.Label>Tên khoản thu:</Form.Label>
-                                        <Form.Control type="text" placeholder="Quỹ vì người hèn"
+                                        <Form.Control type="text" placeholder=""
                                             value={feeName}
                                             onChange={e => setFeeName(e.target.value)}
                                         />
@@ -120,7 +120,7 @@ const FeeIndex = () => {
 
                                     <Form.Group controlId="formDescription">
                                         <Form.Label>Mô tả</Form.Label>
-                                        <Form.Control value={feeDesciption} onChange={e => setFeeDescription(e.target.value)} type="text" placeholder="Ủng hộ người hèn vượt lên khó khăn trong cuộc sống" />
+                                        <Form.Control value={feeDesciption} onChange={e => setFeeDescription(e.target.value)} type="text" placeholder="" />
                                     </Form.Group>
 
                                     <Form.Group controlId="formUpdateDate">
