@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 
 const UserMember = () => {
-    const roomId = JSON.parse(storage.getValue('user')).room
+    const roomId = JSON.parse(storage.getValue('user'))?.room
     const [memberList, setMemberList] = useState([])
     const getAllPeopleInRoom = async () => {
         try{

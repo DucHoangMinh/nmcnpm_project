@@ -183,8 +183,6 @@ const FamilyList = () => {
                                     <tr>
                                         <th className="text-center" scope="col">#</th>
                                         <th className="text-center" scope="col">Mã hộ gia đình</th>
-                                        <th className="text-center" scope="col">Họ và tên chủ hộ</th>
-                                        <th className="text-center" scope="col">Số điện thoại của chủ hộ</th>
                                         <th className="text-center" scope="col">Số thành viên hiện tại</th>
                                         <th className="text-center" scope="col">Bắt đầu thuê từ ngày</th>
                                         <th className="text-center" scope="col">Hành động</th>
@@ -194,8 +192,6 @@ const FamilyList = () => {
                                     <tr>
                                         <th scope="row" className="text-center">1</th>
                                         <td className="text-center">502</td>
-                                        <td className="name">a văn B</td>
-                                        <td className="text-center">0123456789</td>
                                         <td className="text-center">10</td>
                                         <td className="text-center">20/10/2010</td>
                                         <td>
