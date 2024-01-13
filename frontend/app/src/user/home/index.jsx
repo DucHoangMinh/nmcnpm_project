@@ -5,7 +5,7 @@ import api from "../../service/api";
 
 const UserHome = () => {
     const [feeList, setFeeList] = useState([])
-    const roomId = JSON.parse(storage.getValue("user")).room
+    const roomId = JSON.parse(storage.getValue("user"))?.room
     const [roomInfor, setRoomInfor] = useState({})
     const getRoomInfor = async () => {
         try {

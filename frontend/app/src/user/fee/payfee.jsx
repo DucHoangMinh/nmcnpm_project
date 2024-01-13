@@ -7,7 +7,7 @@ import {showNotice} from "../../common/showNotice";
 import {data} from "jquery";
 
 const UserPayFee = () => {
-    const roomId = JSON.parse(storage.getValue("user")).room
+    const roomId = JSON.parse(storage.getValue("user"))?.room
     const [roomInfor, setRoomInfor] = useState({})
     const [feeList, setFeeList] = useState([])
     const [totalFee, setTotalFee] = useState(0)
