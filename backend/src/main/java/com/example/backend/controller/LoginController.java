@@ -90,53 +90,7 @@ public class LoginController {
             );
         }
     }
-    @PostMapping("/v1/changePassword/{id}")
-    public ResponseEntity<ResponseModel> changePassword(@PathVariable("id") Long id, @RequestBody ChangePasswordRequest passwordRequest) {
-        try {
-            User user = userRepository.findById(id)
-                    .orElseThrow(() -> new DataNotFoundException("Cannot found user with id: " + id));
-            BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
-            boolean isPasswordMatched = bcryptEncoder.matches(passwordRequest.getOldPassword(), user.getPassword());
-            if (isPasswordMatched) {
-                if (passwordRequest.getOldPassword().equals(passwordRequest.getNewPassword())) {
-                    return ResponseEntity.ok().body(
-                            new ResponseModel(
-                                    "error",
-                                    "Mật khẩu mới không được trùng với mật khẩu cũ  !!!",
-                                    ""
-                            )
-                    );
-                } else {
-                    user.setPassword(passwordEncoder.encode(passwordRequest.getNewPassword()));
-                    userRepository.save(user);
-                    return ResponseEntity.ok().body(
-                            new ResponseModel(
-                                    "ok",
-                                    "Thay đổi mật khẩu thành công  !!!",
-                                    ""
-                            )
-                    );
-                }
-            } else {
-                return ResponseEntity.ok().body(
-                        new ResponseModel(
-                                "error",
-                                "Không đúng mật khẩu   !!!",
-                                ""
-                        )
-                );
-            }
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(
-                    new ResponseModel(
-                            "error",
-                            e.getMessage(),
-                            ""
-                    )
-            );
-        }
 
-    }
     @PostMapping("/register")
     ResponseEntity<ResponseModel> handleRegisterNewAccount(@RequestBody UserDTO insertUser){
         System.out.println("Get register request!!");
