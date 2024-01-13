@@ -46,8 +46,8 @@ const AdminSetting = () => {
                     </form>
                   </div>
                   <div className="modal-footer">
+                    <button type="button" className="btn btn-primary">Thêm</button>
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" className="btn btn-primary">Tạo</button>
                   </div>
                 </div>
               </div>
