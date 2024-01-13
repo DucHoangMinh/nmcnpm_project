@@ -1,6 +1,25 @@
 import SideBar from "../../../patials/sidebar"
+import {useEffect, useState} from "react";
+import api from "../../../../service/api";
+import {Button} from "react-bootstrap";
 
 const FamilyList = () => {
+
+    const [roomList, setRoomList] = useState([])
+
+    const getRoomList = async () => {
+        try{
+            const { data } = await api.get('v1/room')
+            setRoomList(data.data)
+        }catch (e){
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        getRoomList()
+    }, []);
+
     return (
         <>
         <SideBar/>
@@ -182,36 +201,42 @@ const FamilyList = () => {
                                 <thead>
                                     <tr>
                                         <th className="text-center" scope="col">#</th>
-                                        <th className="text-center" scope="col">Mã hộ gia đình</th>
+                                        <th className="text-center" scope="col">Địa chỉ phòng</th>
                                         <th className="text-center" scope="col">Số thành viên hiện tại</th>
                                         <th className="text-center" scope="col">Bắt đầu thuê từ ngày</th>
                                         <th className="text-center" scope="col">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row" className="text-center">1</th>
-                                        <td className="text-center">502</td>
-                                        <td className="text-center">10</td>
-                                        <td className="text-center">20/10/2010</td>
+                                {roomList.map(item => (
+                                    // item?.name.toString().startsWith(searchText) &&
+                                    <tr key={item.id}>
+                                        <td>{item.i}</td>
+                                        <td>{item.address}</td>
+                                        <td>{item.numberOfMem}</td>
+                                        <td>20-2-2023</td>
                                         <td>
                                             <div className="col text-center">
                                                 <button type="button" className="btn btn-primary" data-toggle="modal"
-                                                    data-target="#RoomDetailModal">
+                                                        data-target="#RoomDetailModal">
                                                     <i className="bi bi-three-dots"></i>
                                                 </button>
-                                                <button className="btn btn-secondary"><i className="bi bi-x-square-fill"></i></button>
+                                                <button className="btn btn-secondary"><i
+                                                    className="bi bi-x-square-fill"></i></button>
 
-                                                <div className="modal fade" id="RoomDetailModal" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div className="modal fade" id="RoomDetailModal" tabIndex="-1"
+                                                     role="dialog"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div className="modal-dialog modal-fullscreen" role="document">
                                                         <div className="modal-content">
                                                             <div className="modal-header">
-                                                                <h2 className="modal-title text-primary" id="exampleModalLabel">
+                                                                <h2 className="modal-title text-primary"
+                                                                    id="exampleModalLabel">
                                                                     Thông
                                                                     tin chi tiết</h2>
-                                                                <button type="button" className="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" className="close"
+                                                                        data-dismiss="modal"
+                                                                        aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -221,152 +246,178 @@ const FamilyList = () => {
                                                                     <thead>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <th>Mã hộ gia đình</th>
-                                                                            <td>2506</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Họ và tên chủ hộ</th>
-                                                                            <td className="name">lê văn a</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Số điện thoại liên hệ</th>
-                                                                            <td><input type="text" className="form-control"/></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Ngày bắt đầu thuê</th>
-                                                                            <td className="name">20/9/2017</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Tổng số thành viên</th>
-                                                                            <td>5</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Số thành viên đăng ký thường trú</th>
-                                                                            <td>0</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Số thành viên đăng ký tạm trú</th>
-                                                                            <td>1</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Số thành viên đăng ký tạm vắng</th>
-                                                                            <td>1</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Số thành viên hiện tại</th>
-                                                                            <td>4</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Tổng số tiền đã quyên góp</th>
-                                                                            <td>5000</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Số xe máy gửi</th>
-                                                                            <td><input type="text" className="form-control"/></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Số xe ô tô gửi</th>
-                                                                            <td><input type="text" className="form-control"/></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Phí nộp dư</th>
-                                                                            <td>0</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Phí nộp thiếu</th>
-                                                                            <td>100000</td>
-                                                                        </tr>
+                                                                    <tr>
+                                                                        <th>Mã hộ gia đình</th>
+                                                                        <td>2506</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Họ và tên chủ hộ</th>
+                                                                        <td className="name">lê văn a</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Số điện thoại liên hệ</th>
+                                                                        <td><input type="text"
+                                                                                   className="form-control"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Ngày bắt đầu thuê</th>
+                                                                        <td className="name">20/9/2017</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Tổng số thành viên</th>
+                                                                        <td>5</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Số thành viên đăng ký thường trú</th>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Số thành viên đăng ký tạm trú</th>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Số thành viên đăng ký tạm vắng</th>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Số thành viên hiện tại</th>
+                                                                        <td>4</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Tổng số tiền đã quyên góp</th>
+                                                                        <td>5000</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Số xe máy gửi</th>
+                                                                        <td><input type="text"
+                                                                                   className="form-control"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Số xe ô tô gửi</th>
+                                                                        <td><input type="text"
+                                                                                   className="form-control"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Phí nộp dư</th>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Phí nộp thiếu</th>
+                                                                        <td>100000</td>
+                                                                    </tr>
                                                                     </tbody>
                                                                 </table>
-                                                                <h4 className="text-center">Danh sách thành viên trong hộ gia đình
+                                                                <h4 className="text-center">Danh sách thành viên trong
+                                                                    hộ gia đình
                                                                 </h4>
                                                                 <br/>
                                                                 <table className="table table-bordered table-hover">
                                                                     <thead>
-                                                                        <tr>
-                                                                            <th>#</th>
-                                                                            <th>Mã hộ gia đình</th>
-                                                                            <th>Họ và tên thành viên</th>
-                                                                            <th>Số căn cước</th>
-                                                                            <th>Ngày Sinh</th>
-                                                                            <th>Quan hệ với chủ hộ</th>
-                                                                            <th>Số điện thoại</th>
-                                                                            <th>Ngày bắt đầu ở</th>
-                                                                            <th>Trạng thái</th>
-                                                                            <th>Hành động</th>
-                                                                        </tr>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Mã hộ gia đình</th>
+                                                                        <th>Họ và tên thành viên</th>
+                                                                        <th>Số căn cước</th>
+                                                                        <th>Ngày Sinh</th>
+                                                                        <th>Quan hệ với chủ hộ</th>
+                                                                        <th>Số điện thoại</th>
+                                                                        <th>Ngày bắt đầu ở</th>
+                                                                        <th>Trạng thái</th>
+                                                                        <th>Hành động</th>
+                                                                    </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <td><input type="checkbox"/></td>
-                                                                            <th>1</th>
-                                                                            <td>2506</td>
-                                                                            <td className="text-left name">lê Văn A</td>
-                                                                            <td>01227612310</td>
-                                                                            <td>01/8/1998</td>
-                                                                            <td>Chủ hộ</td>
-                                                                            <td>1800100 có</td>
-                                                                            <td>12/12/1222</td>
-                                                                            <td>Tạm trú</td>
-                                                                            <td><button className="btn btn-secondary"><i className="bi bi-x-square-fill"></i></button></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>2</th>
-                                                                            <td>2506</td>
-                                                                            <td className="text-left name">phùng thị b</td>
-                                                                            <td>01227612310</td>
-                                                                            <td>09/11/1999</td>
-                                                                            <td>Vợ</td>
-                                                                            <td>1800100 có</td>
-                                                                            <td>12/12/1222</td>
-                                                                            <td>Tạm trú</td>
-                                                                            <td><button className="btn btn-secondary"><i className="bi bi-x-square-fill"></i></button></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>3</th>
-                                                                            <td>2506</td>
-                                                                            <td className="text-left name">lê thị c</td>
-                                                                            <td>01227612310</td>
-                                                                            <td>09/11/1999</td>
-                                                                            <td>Con gái</td>
-                                                                            <td>1800100 có</td>
-                                                                            <td>12/12/1222</td>
-                                                                            <td>Tạm trú</td>
-                                                                            <td><button className="btn btn-secondary"><i className="bi bi-x-square-fill"></i></button></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>4</th>
-                                                                            <td>2506</td>
-                                                                            <td className="text-left name">lê văn d</td>
-                                                                            <td>01227612310</td>
-                                                                            <td>09/11/1999</td>
-                                                                            <td>Con trai</td>
-                                                                            <td>1800100 có</td>
-                                                                            <td>12/12/1222</td>
-                                                                            <td>Tạm vắng</td>
-                                                                            <td><button className="btn btn-secondary"><i className="bi bi-x-square-fill"></i></button></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>5</th>
-                                                                            <td>2506</td>
-                                                                            <td className="text-left name">triệu thị e</td>
-                                                                            <td>01227612310</td>
-                                                                            <td>09/11/1999</td>
-                                                                            <td>Người yêu</td>
-                                                                            <td>1800100 có</td>
-                                                                            <td>12/12/1222</td>
-                                                                            <td>Tạm trú</td>
-                                                                            <td><button className="btn btn-secondary"><i className="bi bi-x-square-fill"></i></button></td>
-                                                                        </tr>
+                                                                    <tr>
+                                                                        <td><input type="checkbox"/></td>
+                                                                        <th>1</th>
+                                                                        <td>2506</td>
+                                                                        <td className="text-left name">lê Văn A</td>
+                                                                        <td>01227612310</td>
+                                                                        <td>01/8/1998</td>
+                                                                        <td>Chủ hộ</td>
+                                                                        <td>1800100 có</td>
+                                                                        <td>12/12/1222</td>
+                                                                        <td>Tạm trú</td>
+                                                                        <td>
+                                                                            <button className="btn btn-secondary"><i
+                                                                                className="bi bi-x-square-fill"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>2</th>
+                                                                        <td>2506</td>
+                                                                        <td className="text-left name">phùng thị b</td>
+                                                                        <td>01227612310</td>
+                                                                        <td>09/11/1999</td>
+                                                                        <td>Vợ</td>
+                                                                        <td>1800100 có</td>
+                                                                        <td>12/12/1222</td>
+                                                                        <td>Tạm trú</td>
+                                                                        <td>
+                                                                            <button className="btn btn-secondary"><i
+                                                                                className="bi bi-x-square-fill"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>3</th>
+                                                                        <td>2506</td>
+                                                                        <td className="text-left name">lê thị c</td>
+                                                                        <td>01227612310</td>
+                                                                        <td>09/11/1999</td>
+                                                                        <td>Con gái</td>
+                                                                        <td>1800100 có</td>
+                                                                        <td>12/12/1222</td>
+                                                                        <td>Tạm trú</td>
+                                                                        <td>
+                                                                            <button className="btn btn-secondary"><i
+                                                                                className="bi bi-x-square-fill"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>4</th>
+                                                                        <td>2506</td>
+                                                                        <td className="text-left name">lê văn d</td>
+                                                                        <td>01227612310</td>
+                                                                        <td>09/11/1999</td>
+                                                                        <td>Con trai</td>
+                                                                        <td>1800100 có</td>
+                                                                        <td>12/12/1222</td>
+                                                                        <td>Tạm vắng</td>
+                                                                        <td>
+                                                                            <button className="btn btn-secondary"><i
+                                                                                className="bi bi-x-square-fill"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>5</th>
+                                                                        <td>2506</td>
+                                                                        <td className="text-left name">triệu thị e</td>
+                                                                        <td>01227612310</td>
+                                                                        <td>09/11/1999</td>
+                                                                        <td>Người yêu</td>
+                                                                        <td>1800100 có</td>
+                                                                        <td>12/12/1222</td>
+                                                                        <td>Tạm trú</td>
+                                                                        <td>
+                                                                            <button className="btn btn-secondary"><i
+                                                                                className="bi bi-x-square-fill"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                             <div className="modal-footer">
                                                                 <button type="button" className="btn btn-primary"
-                                                                    data-dismiss="modal">Cập nhật</button>
+                                                                        data-dismiss="modal">Cập nhật
+                                                                </button>
                                                                 <button type="button" className="btn btn-secondary"
-                                                                    data-dismiss="modal">Đóng</button>
+                                                                        data-dismiss="modal">Đóng
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -374,6 +425,7 @@ const FamilyList = () => {
                                             </div>
                                         </td>
                                     </tr>
+                                ))}
                                 </tbody>
                             </table>
                         </div>

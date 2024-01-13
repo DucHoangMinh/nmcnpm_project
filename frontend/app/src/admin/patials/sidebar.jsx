@@ -40,7 +40,7 @@ const SideBar = (props) => {
           <div className="collapse navbar-collapse" id="navbarContent">
             <ul className="navbar-nav me-auto">
               <li className="nav-item active mt-3">
-                <a className="nav-link" href="home">
+                <a className="nav-link" href="/admin/home">
                   <i className="bi bi-house-fill"></i> Trang chủ <span className="sr-only">(current)</span>
                 </a>
               </li>
@@ -51,7 +51,6 @@ const SideBar = (props) => {
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown1">
                   <a className="dropdown-item" href="/admin/fee/list"><i className="bi bi-caret-right-fill"></i> Danh sách khoản thu</a>
-                  <a className="dropdown-item" href="/admin/fee/calculate"><i className="bi bi-caret-right-fill"></i> Tính toán phí</a>
                   <a className="dropdown-item" href="/admin/fee/paid"><i className="bi bi-caret-right-fill"></i> Tình trạng đóng phí</a>
                   <a className="dropdown-item" href="/admin/fee/fund"><i className="bi bi-caret-right-fill"></i> Thống kê quỹ</a>
                 </div>
@@ -73,7 +72,7 @@ const SideBar = (props) => {
                   <i className="bi bi-person-fill-exclamation"></i> Quản lý nhân khẩu
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown3">
-                  <a className="dropdown-item" href="/admin/population/list"><i className="bi bi-caret-right-fill"></i> Danh sách cư dân</a>
+                  <a className="dropdown-item" href="/admin/family/population/list"><i className="bi bi-caret-right-fill"></i> Danh sách cư dân</a>
                   <a className="dropdown-item" href="/admin/population/request"><i className="bi bi-caret-right-fill"></i> Xử lý yêu cầu thay đổi cư trú</a>
                 </div>
               </li>

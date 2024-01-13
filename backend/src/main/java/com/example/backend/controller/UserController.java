@@ -1,6 +1,8 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.UserDTO;
 import com.example.backend.exception.DataNotFoundException;
+import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.model.User;
 import com.example.backend.payload.ChangePasswordRequest;
@@ -15,6 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController()
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
@@ -24,6 +29,10 @@ public class UserController {
     private final UserService userService;
     @Autowired
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserMapper userMapper;
+
     @PostMapping("/{id}/changePassword")
     public ResponseEntity<ResponseModel> changePassword(@PathVariable("id") Long id, @RequestBody ChangePasswordRequest passwordRequest) {
         try {
@@ -71,6 +80,34 @@ public class UserController {
         }
 
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<ResponseModel> getAllUser() {
+        try {
+            List<User> users = userRepository.findAll();
+            List<UserDTO> userDTOS = new ArrayList<>();
+            ;
+            for (User user : users) {
+                userDTOS.add(userMapper.toUserDTO(user));
+            }
+            return ResponseEntity.ok().body(
+                    new ResponseModel(
+                            "ok",
+                            "Get all user success",
+                            userDTOS
+                    )
+            );
+        } catch (Exception error) {
+            return ResponseEntity.badRequest().body(
+                    new ResponseModel(
+                            "failed",
+                            error.getMessage(),
+                            ""
+                    )
+            );
+        }
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<ResponseModel> updateInfor(@PathVariable("id") Long userId, @RequestBody UpdateUserRequest updateUserRequest) {
         try {
@@ -86,8 +123,7 @@ public class UserController {
                             "error",
                             e.getMessage(),
                             ""
-                    )
-            );
+                    ));
         }
     }
 }
