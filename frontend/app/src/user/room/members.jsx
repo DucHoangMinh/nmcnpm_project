@@ -11,7 +11,7 @@ const UserMember = () => {
     const getAllPeopleInRoom = async () => {
         try {
             const { data } = await api.get(`v1/room/${roomId}/users`)
-            setMemberList(data.data)
+            setMemberList(data.data[0])
         } catch (error) {
             showNotice(0, error.toString())
         }
@@ -42,7 +42,6 @@ const UserMember = () => {
                     </thead>
                     <tbody id="memberTable">
                         {memberList.map(item => (
-                            // item?.name.toString().startsWith(searchText) &&
                             <tr key={item.id}>
                                 <td>{item.id}</td>
                                 <td>{item.fullname}</td>
