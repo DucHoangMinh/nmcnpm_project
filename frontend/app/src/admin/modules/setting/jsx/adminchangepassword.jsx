@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SideBar from '../../../patials/sidebar';
 
 const AdminChangePassword = () => {
+
+  const [oldPass, setOldPass] = useState('')
+  const [newPass, setNewPass] = useState('')
+  const [renewPass, setRenewPass] = useState('')
+
   return (
     <>
     <SideBar/>
@@ -17,15 +22,15 @@ const AdminChangePassword = () => {
                 <tbody>
                   <tr>
                     <td>Mật khẩu cũ</td>
-                    <td><input name="password" type="password" className="form-control" id="currentPassword" /></td>
+                    <td><input value={oldPass} onChange={e => setOldPass(e.target.value)} name="password" type="password" className="form-control" id="currentPassword" /></td>
                   </tr>
                   <tr>
                     <td>Mật khẩu mới</td>
-                    <td><input name="password" type="password" className="form-control" id="newPassword" /></td>
+                    <td><input value={newPass} onChange={e => setNewPass(e.target.value)} name="password" type="password" className="form-control" id="newPassword" /></td>
                   </tr>
                   <tr>
                     <td>Nhập lại mật khẩu mới</td>
-                    <td><input name="password" type="password" className="form-control" id="confirmPassword" /></td>
+                    <td><input value={renewPass} name="password" type="password" className="form-control" id="confirmPassword" onChange={e => setRenewPass(e.target.value)} /></td>
                   </tr>
                 </tbody>
                 <tfoot>

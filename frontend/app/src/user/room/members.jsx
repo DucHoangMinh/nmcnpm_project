@@ -8,6 +8,14 @@ import { Button } from "react-bootstrap";
 const UserMember = () => {
     const roomId = JSON.parse(storage.getValue('user'))?.room
     const [memberList, setMemberList] = useState([])
+    const [memberInfor, setMemberInfor] = useState({
+        fullname: '',
+        dob: '',
+        identity: '',
+        sex: '',
+        email: '',
+        phone: ''
+    })
     const getAllPeopleInRoom = async () => {
         try {
             const { data } = await api.get(`v1/room/${roomId}/users`)
@@ -66,13 +74,13 @@ const UserMember = () => {
                                                         <div class="form-group">
                                                             <label class="control-label col-sm-10" for="pwd">Họ và tên cư dân</label>
                                                             <div class="col-sm-12">
-                                                                <input class="form-control" placeholder="" />
+                                                                <input class="form-control" placeholder="" onChange={e => setMemberInfor(prevState => {return {...prevState, fullname: e.target.value}})}/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-sm-10" for="pwd">Số căn cước</label>
                                                             <div class="col-sm-12">
-                                                                <input class="form-control" placeholder="" />
+                                                                <input class="form-control" placeholder="" onChange={e => setMemberInfor(prevState => {return {...prevState, identity: e.target.value}})}/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -89,19 +97,19 @@ const UserMember = () => {
                                                         <div class="form-group">
                                                             <label class="control-label col-sm-12" for="pwd">Ngày sinh</label>
                                                             <div class="col-sm-12">
-                                                                <input class="form-control" type="date" />
+                                                                <input class="form-control" type="date" onChange={e => setMemberInfor(prevState => {return {...prevState, dob: e.target.value}})}/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-sm-10" for="pwd">Email</label>
                                                             <div class="col-sm-12">
-                                                                <input class="form-control" placeholder="" />
+                                                                <input class="form-control" placeholder="" onChange={e => setMemberInfor(prevState => {return {...prevState, email: e.target.value}})}/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-sm-10" for="pwd">Số điện thoại</label>
                                                             <div class="col-sm-12">
-                                                                <input class="form-control" placeholder="" />
+                                                                <input class="form-control" placeholder="" onChange={e => setMemberInfor(prevState => {return {...prevState, phone: e.target.value}})}/>
                                                             </div>
                                                         </div>
                                                     </form>

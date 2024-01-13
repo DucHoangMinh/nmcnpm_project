@@ -1,11 +1,13 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.UserDTO;
+import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.CustomUserDetail;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.model.Room;
 import com.example.backend.model.User;
+import com.example.backend.payload.ChangePasswordRequest;
 import com.example.backend.payload.LoginRequest;
 import com.example.backend.payload.LoginResponse;
 import com.example.backend.repository.RoomRepository;
@@ -21,6 +23,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +32,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class LoginController {
     @Autowired
     RoomRepository roomRepository;
@@ -86,6 +90,7 @@ public class LoginController {
             );
         }
     }
+
     @PostMapping("/register")
     ResponseEntity<ResponseModel> handleRegisterNewAccount(@RequestBody UserDTO insertUser){
         System.out.println("Get register request!!");
