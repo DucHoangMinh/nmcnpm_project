@@ -14,6 +14,7 @@ const Home = () => {
               <tr>
                 <th scope="col"></th>
               </tr>
+              <tr></tr>
             </thead>
             <tbody>
               <tr>
