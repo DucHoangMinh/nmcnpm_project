@@ -1,11 +1,13 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.UserDTO;
+import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.CustomUserDetail;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.model.Room;
 import com.example.backend.model.User;
+import com.example.backend.payload.ChangePasswordRequest;
 import com.example.backend.payload.LoginRequest;
 import com.example.backend.payload.LoginResponse;
 import com.example.backend.repository.RoomRepository;
@@ -21,6 +23,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +32,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class LoginController {
     @Autowired
     RoomRepository roomRepository;
@@ -85,6 +89,53 @@ public class LoginController {
                     )
             );
         }
+    }
+    @PostMapping("/v1/changePassword/{id}")
+    public ResponseEntity<ResponseModel> changePassword(@PathVariable("id") Long id, @RequestBody ChangePasswordRequest passwordRequest) {
+        try {
+            User user = userRepository.findById(id)
+                    .orElseThrow(() -> new DataNotFoundException("Cannot found user with id: " + id));
+            BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
+            boolean isPasswordMatched = bcryptEncoder.matches(passwordRequest.getOldPassword(), user.getPassword());
+            if (isPasswordMatched) {
+                if (passwordRequest.getOldPassword().equals(passwordRequest.getNewPassword())) {
+                    return ResponseEntity.ok().body(
+                            new ResponseModel(
+                                    "error",
+                                    "Mật khẩu mới không được trùng với mật khẩu cũ  !!!",
+                                    ""
+                            )
+                    );
+                } else {
+                    user.setPassword(passwordEncoder.encode(passwordRequest.getNewPassword()));
+                    userRepository.save(user);
+                    return ResponseEntity.ok().body(
+                            new ResponseModel(
+                                    "ok",
+                                    "Thay đổi mật khẩu thành công  !!!",
+                                    ""
+                            )
+                    );
+                }
+            } else {
+                return ResponseEntity.ok().body(
+                        new ResponseModel(
+                                "error",
+                                "Không đúng mật khẩu   !!!",
+                                ""
+                        )
+                );
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                    new ResponseModel(
+                            "error",
+                            e.getMessage(),
+                            ""
+                    )
+            );
+        }
+
     }
     @PostMapping("/register")
     ResponseEntity<ResponseModel> handleRegisterNewAccount(@RequestBody UserDTO insertUser){
