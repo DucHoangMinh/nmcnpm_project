@@ -40,22 +40,5 @@ public class UserService implements UserDetailsService {
         User user = userOptional.get();
         return new CustomUserDetail(user);
     }
-    public Set<UserResponse> getUserOfRoom(Long roomId) {
-        Room room = roomRepository.findById(roomId)
-                .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + roomId));
-        Set<User> users = userRepository.findByRoomId(roomId);
-        Set<UserResponse> userResponses = users.stream()
-                .map(user -> UserResponse.builder()
-                        .fullname(user.getFullname())
-                        .email(user.getEmail())
-                        .phone(user.getPhone())
-                        .dob(user.getDob())
-                        .sex(user.getSex())
-                        .role(user.getRole())
-                        .relationship(user.getRelationship())
-                        .identity(user.getIdentity())
-                        .build())
-                .collect(Collectors.toSet());
-        return userResponses;
-    }
+
 }

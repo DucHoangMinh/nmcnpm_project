@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -146,14 +148,20 @@ public class RoomController {
             ));
         }
     }
+
+    //Hiển thị tất cả thành viên trong phòng
     @GetMapping("/{id}/users")
-    public ResponseEntity<ResponseModel> getALlUsers(@PathVariable Long id) {
+    public ResponseEntity<ResponseModel> getALlMembers(@PathVariable("id") Long roomId) {
         try {
-            Set<UserResponse> users = userService.getUserOfRoom(id);
+            Set<UserResponse> users = roomService.getUserOfRoom(roomId);
+            int member_size = roomService.getNumberOfMembers(roomId);
+            Object[] members = new Object[2];
+            members[0] = users;
+            members[1] = member_size;
             return ResponseEntity.ok(new ResponseModel(
                     "ok",
                     "Xem tất cả thành viên trong phòng",
-                    users
+                    members
             ));
         } catch (Exception message) {
             return ResponseEntity.badRequest().body(new ResponseModel(
@@ -221,4 +229,5 @@ public class RoomController {
             ));
         }
     }
+
 }
