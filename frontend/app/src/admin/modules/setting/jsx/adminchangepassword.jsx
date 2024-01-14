@@ -1,12 +1,27 @@
 import React, {useState} from 'react';
 import SideBar from '../../../patials/sidebar';
+import api from '../../../../service/api';
+import { showNotice } from '../../../../common/showNotice';
+import storage from '../../../../service/storage';
 
 const AdminChangePassword = () => {
 
   const [oldPass, setOldPass] = useState('')
   const [newPass, setNewPass] = useState('')
-  const [renewPass, setRenewPass] = useState('')
 
+  const handleChangePassword = async () => {
+    try {
+        const response = await api.post(storage.getValue('user.id')+'/changePassword', {
+          oldPassword: oldPass.trim(),
+          newPassword: newPass.trim(),
+        });
+        if (response.status === 200) {
+          showNotice(1, 'Đổi mật khẩu thành công');
+        }
+      } catch (error) {
+        showNotice(0, 'Đổi mật khẩu thất bại, vui lòng kiểm tra lại')
+      }
+}
   return (
     <>
     <SideBar/>
@@ -16,7 +31,7 @@ const AdminChangePassword = () => {
         <div className="row">
           <div className="col">
             <h2 className="text-left mb-4">Thay đổi mật khẩu</h2>
-            <form action="#">
+            <form onSubmit={e => {e.preventDefault(); handleChangePassword()}}>
               <table className="table table-borderless table-responsive">
                 <thead></thead>
                 <tbody>
@@ -30,13 +45,13 @@ const AdminChangePassword = () => {
                   </tr>
                   <tr>
                     <td>Nhập lại mật khẩu mới</td>
-                    <td><input value={renewPass} name="password" type="password" className="form-control" id="confirmPassword" onChange={e => setRenewPass(e.target.value)} /></td>
+                    <td><input name="password" type="password" className="form-control" id="confirmPassword" /></td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
                     <td colSpan="2" className="text-center">
-                      <button className="btn btn-primary">Thay đổi</button>
+                      <button type='submit' className="btn btn-primary">Thay đổi</button>
                     </td>
                   </tr>
                 </tfoot>

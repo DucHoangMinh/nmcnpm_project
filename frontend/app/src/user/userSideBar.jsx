@@ -78,8 +78,8 @@ const UserSideBar = () => {
               </li>
             </ul>
           </div>
-          <div style={{ zIndex: 9}} class="modal" id="changePasswordModal" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
+          <div class="modal" id="changePasswordModal" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
+                  <div class="modal-dialog" style={{zIndex: 9999}} role="document">
                       <div class="modal-content" style={{ zIndex: 9999}}>
                           <div class="modal-header">
                               <h5 class="modal-title" id="changePasswordLabel">Thay đổi mật khẩu</h5>
