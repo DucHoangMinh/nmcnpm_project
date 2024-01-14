@@ -13,6 +13,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Builder
 public class UserResponse {
+    public Long id;
     private String fullname;
     private String email;
     private String role;

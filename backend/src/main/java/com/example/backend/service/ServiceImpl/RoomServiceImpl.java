@@ -123,6 +123,7 @@ public class RoomServiceImpl implements RoomService {
         Set<User> users = userRepository.findByRoomId(roomId);
         Set<UserResponse> userResponses = users.stream()
                 .map(user -> UserResponse.builder()
+                        .id(user.getId())
                         .fullname(user.getFullname())
                         .email(user.getEmail())
                         .phone(user.getPhone())
