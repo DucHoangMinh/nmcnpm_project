@@ -12,6 +12,7 @@ const UserPayFee = () => {
     const [feeList, setFeeList] = useState([])
     const [totalFee, setTotalFee] = useState(0)
     const [searchText, setSearchText] = useState('')
+    const [file, setFile] = useState(null);
 
     const getRoomInfor = async () => {
         try {
@@ -40,6 +41,8 @@ const UserPayFee = () => {
         await setTotalFee(curr)
     }
 
+
+
     const initData = async () => {
         await getFeeList()
         await findTotalFee()
@@ -48,6 +51,15 @@ const UserPayFee = () => {
 
     const handleConfirmPayFee = async (feeId) => {
         try{
+            console.log(file)
+            const formData = new FormData()
+            await formData.append('file', file)
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+            await api.post(`v1/upload/payment/${feeId}`,formData, config)
             const { data } = await api.post(`v1/payment/pending?room=${roomId}&fee=${feeId}`)
             showNotice(1,"Gửi yêu cầu xác nhận đóng phí thành công")
             await initData()
@@ -128,7 +140,7 @@ const UserPayFee = () => {
                                 <td>{item[0].price * roomInfor.area}</td>
                                 <td>
                                     <div className="mb-3">
-                                        <input className="form-control" type="file" id="formFile"/>
+                                        <input className="form-control" type="file" id="formFile" onChange={e => setFile(e.target.files[0])}/>
                                     </div>
                                 </td>
                                 <td>
