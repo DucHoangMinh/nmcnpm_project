@@ -42,7 +42,7 @@ public class UserController {
             boolean isPasswordMatched = bcryptEncoder.matches(passwordRequest.getOldPassword(), user.getPassword());
             if (isPasswordMatched) {
                 if (passwordRequest.getOldPassword().equals(passwordRequest.getNewPassword())) {
-                    return ResponseEntity.ok().body(
+                    return ResponseEntity.badRequest().body(
                             new ResponseModel(
                                     "error",
                                     "Mật khẩu mới không được trùng với mật khẩu cũ  !!!",
@@ -61,7 +61,7 @@ public class UserController {
                     );
                 }
             } else {
-                return ResponseEntity.ok().body(
+                return ResponseEntity.badRequest().body(
                         new ResponseModel(
                                 "error",
                                 "Không đúng mật khẩu   !!!",
