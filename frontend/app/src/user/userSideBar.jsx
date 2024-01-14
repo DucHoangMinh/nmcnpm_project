@@ -1,4 +1,26 @@
+import { useState } from "react"
+import api from "../service/api"
+import { showNotice } from "../common/showNotice"
+import storage from "../service/storage"
+
 const UserSideBar = () => {
+
+  const [password, setPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [rePassword, setRePassword] = useState('')
+  const handleChangePassword = async () => {
+    try {
+        const response = await api.post(storage.getValue('user.id')+'/changePassword', {
+          oldPassword: password.trim(),
+          newPassword: newPassword.trim(),
+        });
+        if (response.status === 200) {
+          showNotice(1, 'Đổi mật khẩu thành công');
+        }
+      } catch (error) {
+        showNotice(0, 'Đổi mật khẩu thất bại, vui lòng kiểm tra lại')
+      }
+}
     return (
         <>
           <nav class="navbar navbar-expand-lg navbar-light bg-white" style={{marginTop: "100px"}}>
@@ -53,7 +75,10 @@ const UserSideBar = () => {
                     khẩu</a>
                   <a class="dropdown-item" href=""><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
                 </div>
-                <div style={{ zIndex: 999}} class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
+              </li>
+            </ul>
+          </div>
+          <div style={{ zIndex: 9}} class="modal" id="changePasswordModal" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content" style={{ zIndex: 9999}}>
                           <div class="modal-header">
@@ -63,33 +88,28 @@ const UserSideBar = () => {
                               </button>
                           </div>
                           <div class="modal-body">
-                              <form>
+                              <form onSubmit={e => {e.preventDefault(); handleChangePassword()}}>
                                   <div class="form-group">
                                       <label for="currentPassword">Mật khẩu hiện tại</label>
-                                      <input type="password" class="form-control" id="currentPassword"/>
+                                      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} class="form-control" id="currentPassword"/>
                                   </div>
                                   <div class="form-group">
                                       <label for="newPassword">Mật khẩu mới</label>
-                                      <input type="password" class="form-control" id="newPassword"/>
+                                      <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} class="form-control" id="newPassword"/>
                                   </div>
                                   <div class="form-group">
                                       <label for="confirmPassword">Xác nhận mật khẩu mới</label>
-                                      <input type="password" class="form-control" id="confirmPassword"/>
+                                      <input type="password" value={rePassword} onChange={(e) => setRePassword(e.target.value)} class="form-control" id="confirmPassword"/>
                                   </div>
                               </form>
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                              <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                              <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                           </div>
                       </div>
                   </div>
               </div>
-              
-
-              </li>
-            </ul>
-          </div>
         </nav>
         </>
     )

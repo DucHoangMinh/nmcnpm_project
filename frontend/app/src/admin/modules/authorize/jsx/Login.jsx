@@ -56,7 +56,7 @@ export const Login = () => {
                         </div>
                         <div className="d-flex justify-content-between align-items-center">
                             <button type="submit" className="mt-3 btn btn-primary px-4 shadow" name="login">Đăng nhập</button>
-                            <a href="register" type="submit" className="mt-3 px-4" name="login">Đăng ký tài khoản</a>
+                            <a href="register" className="mt-3 px-4" name="login">Đăng ký tài khoản</a>
                         </div>
                     </div>
                 </form> 
