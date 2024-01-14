@@ -7,12 +7,13 @@ import { Button } from "react-bootstrap";
 
 const UserMember = () => {
     const roomId = JSON.parse(storage.getValue('user'))?.room
+    const [currUserId, setCurrUserId] = useState('')
     const [memberList, setMemberList] = useState([])
     const [memberInfor, setMemberInfor] = useState({
         fullname: '',
         dob: '',
         identity: '',
-        sex: '',
+        sex: true,
         email: '',
         phone: ''
     })
@@ -22,6 +23,17 @@ const UserMember = () => {
             setMemberList(data.data[0])
         } catch (error) {
             showNotice(0, error.toString())
+        }
+    }
+
+    const updateUser = async() => {
+        try {
+            const { data } = await api.put(`v1/user/update/${currUserId}`, memberInfor)
+            console.log(data)
+            showNotice(1, 'Cập nhật thông tin thành viên thành công !')
+            await getAllPeopleInRoom()
+        }catch (e){
+            showNotice(0, "Cập nhật không thành công !")
         }
     }
 
@@ -58,7 +70,7 @@ const UserMember = () => {
                                 <td>{item.relationship}</td>
                                 <td>
                                     <Button data-toggle="modal"
-                                        data-target="#EditPersonalModal">Chỉnh sửa thông tin cá nhân</Button>
+                                        data-target="#EditPersonalModal" onClick={() => setCurrUserId(item.id)}>Chỉnh sửa thông tin cá nhân</Button>
                                     <div class="modal fade" id="EditPersonalModal" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -115,7 +127,7 @@ const UserMember = () => {
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                    <button type="button" class="btn btn-primary" onClick={() => updateUser()}>Cập nhật</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                                 </div>
                                             </div>
