@@ -8,9 +8,13 @@ const AdminChangePassword = () => {
 
   const [oldPass, setOldPass] = useState('')
   const [newPass, setNewPass] = useState('')
+  const [rePass, setRePass] = useState('')
 
   const handleChangePassword = async () => {
-    try {
+    if(newPass!==rePass) {
+      showNotice(0, 'Nhập lại mật khẩu không đúng, vui lòng thử  lại')
+    }else{
+      try {
         const response = await api.post(storage.getValue('user.id')+'/changePassword', {
           oldPassword: oldPass.trim(),
           newPassword: newPass.trim(),
@@ -21,6 +25,8 @@ const AdminChangePassword = () => {
       } catch (error) {
         showNotice(0, 'Đổi mật khẩu thất bại, vui lòng kiểm tra lại')
       }
+    }
+    
 }
   return (
     <>
@@ -45,7 +51,7 @@ const AdminChangePassword = () => {
                   </tr>
                   <tr>
                     <td>Nhập lại mật khẩu mới</td>
-                    <td><input name="password" type="password" className="form-control" id="confirmPassword" /></td>
+                    <td><input value={rePass} onChange={e => setRePass(e.target.value)} name="password" type="password" className="form-control" id="confirmPassword" /></td>
                   </tr>
                 </tbody>
                 <tfoot>

@@ -9,18 +9,23 @@ const UserSideBar = () => {
   const [newPassword, setNewPassword] = useState('')
   const [rePassword, setRePassword] = useState('')
   const handleChangePassword = async () => {
-    try {
-        const response = await api.post(storage.getValue('user.id')+'/changePassword', {
-          oldPassword: password.trim(),
-          newPassword: newPassword.trim(),
-        });
-        if (response.status === 200) {
-          showNotice(1, 'Đổi mật khẩu thành công');
+    if(newPassword!==rePassword){
+      showNotice(0, 'Nhập lại mật khẩu không đúng, vui lòng thử  lại')
+    }else{
+        try {
+          const response = await api.post(storage.getValue('user.id')+'/changePassword', {
+            oldPassword: password.trim(),
+            newPassword: newPassword.trim(),
+          });
+          if (response.status === 200) {
+            showNotice(1, 'Đổi mật khẩu thành công');
+          }
+        } catch (error) {
+          showNotice(0, 'Đổi mật khẩu thất bại, vui lòng kiểm tra lại')
         }
-      } catch (error) {
-        showNotice(0, 'Đổi mật khẩu thất bại, vui lòng kiểm tra lại')
       }
-}
+    }
+    
     return (
         <>
           <nav class="navbar navbar-expand-lg navbar-light bg-white" style={{marginTop: "100px"}}>
@@ -101,12 +106,14 @@ const UserSideBar = () => {
                                       <label for="confirmPassword">Xác nhận mật khẩu mới</label>
                                       <input type="password" value={rePassword} onChange={(e) => setRePassword(e.target.value)} class="form-control" id="confirmPassword"/>
                                   </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                  </div>
                               </form>
+                              
                           </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                              <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                          </div>
+                          
                       </div>
                   </div>
               </div>
