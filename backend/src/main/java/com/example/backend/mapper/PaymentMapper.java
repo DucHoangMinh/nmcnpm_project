@@ -9,7 +9,7 @@ public class PaymentMapper {
                 .id(newPayment.getId())
                 .roomID(newPayment.getRoom().getId())
                 .feeID(newPayment.getFee().getId())
-                .completed(newPayment.isCompleted())
+                .status(newPayment.getStatus())
                 .submittedDate(newPayment.getSubmittedDate())
                 .totalMoney(newPayment.getTotalMoney())
                 .build();

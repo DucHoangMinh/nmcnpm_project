@@ -1,48 +1,36 @@
 import SideBar from "../../../patials/sidebar";
+import {useEffect, useState} from "react";
+import {showNotice} from "../../../../common/showNotice";
+import api from "../../../../service/api";
+import {Button} from "react-bootstrap";
 
 const PopulationList = () => {
+  const [populationList, setPopulationList] = useState([])
+  const getPopulationList = async () => {
+    try {
+      const { data } = await api.get('v1/user/all')
+      console.log(data.data)
+      setPopulationList(data.data)
+    }catch (error){
+      showNotice(error.toString())
+    }
+  }
+
+  const [searchText, setSearchText] = useState('')
+
+  const initData = async () => {
+    await getPopulationList()
+  }
+
+  useEffect(() => {
+    initData()
+  }, []);
+
     return (
         <>
-  <meta charSet="UTF-8" />
-  <title>Quản lý tạm trú</title>
-  <link href="./images/favicon.png" rel="icon" />
-  <link
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <link href="./Apartment Manager_files/style.css" rel="stylesheet" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
-  />
-  <style
-    dangerouslySetInnerHTML={{
-      __html:
-        "\n        .navbar-nav {\n            margin-left: auto;\n        }\n    "
-    }}
-  />
-  <br />
-  <br />
-  <br />
   <SideBar/>
   <div className="container" style={{'margin-top': "-70px"}}>
-    <h2>Thông tin cư trú các thành viên</h2>
-    <button
-      type="button"
-      className="btn btn-primary mt-3"
-      data-toggle="modal"
-      data-target="#newResident"
-    >
-      <i className="bi bi-plus-square-fill" /> Thêm thành viên
-    </button>
-    <button
-      type="button"
-      className="btn btn-primary mt-3"
-      data-toggle="modal"
-      data-target="#tamtrungoai"
-    >
-      <i className="bi bi-plus-square-fill" /> Đăng ký tạm trú
-    </button>
+    <h2>Thông tin danh sách dân cư</h2>
     <button
       type="button"
       className="btn btn-primary mt-3"
@@ -197,133 +185,6 @@ const PopulationList = () => {
     </div>
     <div
       className="modal fade"
-      id="tamtrungoai"
-      tabIndex={-1}
-      role="dialog"
-      aria-labelledby=""
-      aria-hidden="true"
-    >
-      <div className="text-left modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title text-primary">Đăng ký tạm trú</h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div className="modal-body">
-            <form className="form-horizontal">
-              <div className="form-group">
-                <label className="control-label col-sm-10" htmlFor="email">
-                  Họ và tên người đăng ký
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10" htmlFor="pwd">
-                  Số căn cước
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">Mã đăng ký</label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" disabled="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">
-                  Địa chỉ đăng ký
-                </label>
-                <div className="col-sm-12">
-                  <select className="form-control form-select">
-                    <option selected="">Chọn phòng</option>
-                    <option value={1}>401</option>
-                    <option value={2}>402</option>
-                    <option value={3}>...</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">
-                  Họ và tên của chủ hộ
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" disabled="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">Số căn cước</label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" disabled="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">
-                  Quan hệ với chủ hộ
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10" htmlFor="pwd">
-                  Nội dung đề nghị
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" placeholder="Tạm trú" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label
-                  htmlFor="inputPassword3"
-                  className="col-sm-10 col-form-label"
-                >
-                  Từ ngày
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" type="date" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label
-                  htmlFor="inputPassword3"
-                  className="col-sm-10 col-form-label"
-                >
-                  Đến ngày
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" type="date" />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Đóng
-            </button>
-            <button type="button" className="btn btn-primary">
-              Thêm
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="modal fade"
       id="tamvangngoai"
       tabIndex={-1}
       role="dialog"
@@ -435,122 +296,6 @@ const PopulationList = () => {
         </div>
       </div>
     </div>
-    <div
-      className="modal fade"
-      id="thuongtru"
-      tabIndex={-1}
-      role="dialog"
-      aria-labelledby=""
-      aria-hidden="true"
-    >
-      <div className="text-left modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title text-primary">Đăng ký thường trú</h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div className="modal-body">
-            <form className="form-horizontal">
-              <div className="form-group">
-                <label className="control-label col-sm-10" htmlFor="email">
-                  Họ và tên người đăng ký
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10" htmlFor="pwd">
-                  Số căn cước
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">Mã đăng ký</label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" disabled="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">
-                  Địa chỉ đăng ký
-                </label>
-                <div className="col-sm-12">
-                  <select className="form-control form-select">
-                    <option selected="">Chọn phòng</option>
-                    <option value={1}>401</option>
-                    <option value={2}>402</option>
-                    <option value={3}>...</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">
-                  Họ và tên của chủ hộ
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" disabled="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">Số căn cước</label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" disabled="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10">
-                  Quan hệ với chủ hộ
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" defaultValue="" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-sm-10" htmlFor="pwd">
-                  Nội dung đề nghị
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" placeholder="Thường trú" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label
-                  htmlFor="inputPassword3"
-                  className="col-sm-10 col-form-label"
-                >
-                  Từ ngày
-                </label>
-                <div className="col-sm-12">
-                  <input className="form-control" type="date" />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Đóng
-            </button>
-            <button type="button" className="btn btn-primary">
-              Thêm
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
     <div className=" mt-3 mb-3">
       Bắt đầu thuê trong giai đoạn
       <table>
@@ -598,7 +343,7 @@ const PopulationList = () => {
       </table>
     </div>
     <div className="input-group mt-3 mb-3">
-      <input type="text" className="form-control" placeholder="Tìm kiếm" />
+      <input value={searchText} type="text" className="form-control" placeholder="Tìm kiếm" onChange={e => setSearchText(e.target.value)}/>
       <div className="input-group-append">
         <button className="btn btn-outline-secondary" type="button">
           <i className="bi bi-search" />
@@ -610,81 +355,84 @@ const PopulationList = () => {
         <tr>
           <th>#</th>
           <th>Họ và tên cư dân</th>
+          <th>Phòng ở</th>
           <th>Giới tính</th>
           <th>Số căn cước</th>
           <th>Số điện thoại liên hệ</th>
           <th>Ngày bắt đầu ở</th>
-          <th>Trạng thái</th>
           <th>Hành động</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td className="text-left name">a văn B</td>
-          <td>Nam</td>
-          <td>023233000020</td>
-          <td>19001008</td>
-          <td>12/12/1212</td>
-          <td>Tạm trú</td>
-          <td>
-            <button
-              className="btn btn-primary"
-              data-toggle="modal"
-              data-target="#detailresident"
-            >
-              <i className="bi bi-three-dots" />
-            </button>
-            <button className="btn btn-primary">
-              <i className="bi bi-x-square-fill" />
-            </button>
-            <div
-              className="modal fade"
-              id="detailresident"
-              tabIndex={-1}
-              role="dialog"
-              aria-labelledby="detailresident"
-              aria-hidden="true"
-            >
-              <div
-                className="text-left modal-dialog modal-fullscreen"
-                role="document"
+      {populationList.map(item => (
+          (item.fullname.startsWith(searchText) || searchText == '') && <tr key={item.id}>
+            <td>{item.id}</td>
+            <td>{item.fullname}</td>
+            <td>{item.room}</td>
+            <td>{item.sex ? 'Nam' : 'Nữ'}</td>
+            <td>{item.identity}</td>
+            <td>{item.phone}</td>
+            <td>
+              12 - 01 - 2013
+            </td>
+            <td>
+              <button
+                  className="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#detailresident"
               >
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h2 className="text-primary modal-title">
-                      Thông tin chi tiết
-                    </h2>
-                    <button
-                      type="button"
-                      className="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                    <div className="form-group">
-                      <label className="control-label col-sm-10" htmlFor="pwd">
-                        Ảnh chụp căn cước (2 mặt)
-                      </label>
-                      <div className="col-sm-12">
-                        <img src="" alt="Mặt trước" />
-                        <img src="" alt="Mặt sau" />
-                      </div>
+                <i className="bi bi-three-dots"/>
+              </button>
+              <button className="btn btn-primary">
+                <i className="bi bi-x-square-fill"/>
+              </button>
+              <div
+                  className="modal fade"
+                  id="detailresident"
+                  tabIndex={-1}
+                  role="dialog"
+                  aria-labelledby="detailresident"
+                  aria-hidden="true"
+              >
+                <div
+                    className="text-left modal-dialog modal-fullscreen"
+                    role="document"
+                >
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h2 className="text-primary modal-title">
+                        Thông tin chi tiết
+                      </h2>
+                      <button
+                          type="button"
+                          className="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
                     </div>
-                    <table className="text-left table table-borderless table-responsive">
-                      <thead></thead>
-                      <tbody>
+                    <div className="modal-body">
+                      <div className="form-group">
+                        <label className="control-label col-sm-10" htmlFor="pwd">
+                          Ảnh chụp căn cước (2 mặt)
+                        </label>
+                        <div className="col-sm-12">
+                          <img src="" alt="Mặt trước"/>
+                          <img src="" alt="Mặt sau"/>
+                        </div>
+                      </div>
+                      <table className="text-left table table-borderless table-responsive">
+                        <thead></thead>
+                        <tbody>
                         <tr>
                           <td>Họ và tên</td>
                           <td>
                             <input
-                              type="text"
-                              name=""
-                              id=""
-                              className="form-control"
+                                type="text"
+                                name=""
+                                id=""
+                                className="form-control"
                             />
                           </td>
                         </tr>
@@ -700,51 +448,51 @@ const PopulationList = () => {
                         <tr>
                           <td>Số căn cước</td>
                           <td className="form-group">
-                            <input className="form-control" placeholder="" />
+                            <input className="form-control" placeholder=""/>
                           </td>
                         </tr>
                         <tr>
                           <td>Ngày cấp</td>
                           <td>
                             <input
-                              type="date"
-                              name=""
-                              id=""
-                              className="form-control"
+                                type="date"
+                                name=""
+                                id=""
+                                className="form-control"
                             />
                           </td>
                         </tr>
                         <tr>
                           <td>Địa chỉ thường trú</td>
                           <td>
-                            <input type="text" className="form-control" />
+                            <input type="text" className="form-control"/>
                           </td>
                         </tr>
                         <tr>
                           <td>Số điện thoại liên hệ</td>
                           <td className="form-group">
-                            <input className="form-control" placeholder="" />
+                            <input className="form-control" placeholder=""/>
                           </td>
                         </tr>
                         <tr>
                           <td>Nghề nghiệp</td>
                           <td>
-                            <input type="text" className="form-control" />
+                            <input type="text" className="form-control"/>
                           </td>
                         </tr>
                         <tr>
                           <td>Nơi làm việc</td>
                           <td>
-                            <input type="text" className="form-control" />
+                            <input type="text" className="form-control"/>
                           </td>
                         </tr>
                         <tr>
                           <td>Đến chung cư từ ngày</td>
                           <td>
                             <input
-                              type="date"
-                              className="form-control"
-                              disabled=""
+                                type="date"
+                                className="form-control"
+                                disabled=""
                             />
                           </td>
                         </tr>
@@ -752,9 +500,9 @@ const PopulationList = () => {
                           <td>Mã hộ gia đình</td>
                           <td>
                             <input
-                              type="text"
-                              className="form-control"
-                              disabled=""
+                                type="text"
+                                className="form-control"
+                                disabled=""
                             />
                           </td>
                         </tr>
@@ -769,194 +517,194 @@ const PopulationList = () => {
                             </select>
                           </td>
                         </tr>
-                      </tbody>
-                    </table>
-                    <div className="text-center">
-                      <h4 className="mb-3 mt-3">Thông tin tạm trú</h4>
-                      <button
-                        className="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#tamtru"
-                      >
-                        Thêm
-                      </button>
-                      <div
-                        className="modal fade"
-                        id="tamtru"
-                        tabIndex={-1}
-                        role="dialog"
-                        aria-labelledby=""
-                        aria-hidden="true"
-                      >
-                        <div
-                          className="text-left modal-dialog modal-fullscreen"
-                          role="document"
+                        </tbody>
+                      </table>
+                      <div className="text-center">
+                        <h4 className="mb-3 mt-3">Thông tin tạm trú</h4>
+                        <button
+                            className="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#tamtru"
                         >
-                          <div className="modal-content">
-                            <div className="modal-header">
-                              <h5 className="modal-title">Đăng ký tạm trú</h5>
-                              <button
-                                type="button"
-                                className="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                              >
-                                <span aria-hidden="true">×</span>
-                              </button>
-                            </div>
-                            <div className="modal-body">
-                              <form className="form-horizontal">
-                                <div className="form-group">
-                                  <label
-                                    className="control-label col-sm-10"
-                                    htmlFor="email"
-                                  >
-                                    Họ và tên người đăng ký
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                          Thêm
+                        </button>
+                        <div
+                            className="modal fade"
+                            id="tamtru"
+                            tabIndex={-1}
+                            role="dialog"
+                            aria-labelledby=""
+                            aria-hidden="true"
+                        >
+                          <div
+                              className="text-left modal-dialog modal-fullscreen"
+                              role="document"
+                          >
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h5 className="modal-title">Đăng ký tạm trú</h5>
+                                <button
+                                    type="button"
+                                    className="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                >
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <div className="modal-body">
+                                <form className="form-horizontal">
+                                  <div className="form-group">
+                                    <label
+                                        className="control-label col-sm-10"
+                                        htmlFor="email"
+                                    >
+                                      Họ và tên người đăng ký
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    className="control-label col-sm-10"
-                                    htmlFor="pwd"
-                                  >
-                                    Số căn cước
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        className="control-label col-sm-10"
+                                        htmlFor="pwd"
+                                    >
+                                      Số căn cước
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label className="control-label col-sm-10">
-                                    Mã đăng ký
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                                  <div className="form-group">
+                                    <label className="control-label col-sm-10">
+                                      Mã đăng ký
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label className="control-label col-sm-10">
-                                    Địa chỉ đăng ký
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <select className="form-control form-select">
-                                      <option selected="">Chọn phòng</option>
-                                      <option value={1}>401</option>
-                                      <option value={2}>402</option>
-                                      <option value={3}>...</option>
-                                    </select>
+                                  <div className="form-group">
+                                    <label className="control-label col-sm-10">
+                                      Địa chỉ đăng ký
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <select className="form-control form-select">
+                                        <option selected="">Chọn phòng</option>
+                                        <option value={1}>401</option>
+                                        <option value={2}>402</option>
+                                        <option value={3}>...</option>
+                                      </select>
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label className="control-label col-sm-10">
-                                    Họ và tên của chủ hộ
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                                  <div className="form-group">
+                                    <label className="control-label col-sm-10">
+                                      Họ và tên của chủ hộ
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label className="control-label col-sm-10">
-                                    Số căn cước
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                                  <div className="form-group">
+                                    <label className="control-label col-sm-10">
+                                      Số căn cước
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label className="control-label col-sm-10">
-                                    Quan hệ với chủ hộ
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                    />
+                                  <div className="form-group">
+                                    <label className="control-label col-sm-10">
+                                      Quan hệ với chủ hộ
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    className="control-label col-sm-10"
-                                    htmlFor="pwd"
-                                  >
-                                    Nội dung đề nghị
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      placeholder="Tạm trú"
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        className="control-label col-sm-10"
+                                        htmlFor="pwd"
+                                    >
+                                      Nội dung đề nghị
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          placeholder="Tạm trú"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    htmlFor="inputPassword3"
-                                    className="col-sm-10 col-form-label"
-                                  >
-                                    Từ ngày
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      type="date"
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        htmlFor="inputPassword3"
+                                        className="col-sm-10 col-form-label"
+                                    >
+                                      Từ ngày
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          type="date"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    htmlFor="inputPassword3"
-                                    className="col-sm-10 col-form-label"
-                                  >
-                                    Đến ngày
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      type="date"
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        htmlFor="inputPassword3"
+                                        className="col-sm-10 col-form-label"
+                                    >
+                                      Đến ngày
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          type="date"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                              </form>
-                            </div>
-                            <div className="modal-footer">
-                              <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-dismiss="modal"
-                              >
-                                Đóng
-                              </button>
-                              <button type="button" className="btn btn-primary">
-                                Thêm
-                              </button>
+                                </form>
+                              </div>
+                              <div className="modal-footer">
+                                <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    data-dismiss="modal"
+                                >
+                                  Đóng
+                                </button>
+                                <button type="button" className="btn btn-primary">
+                                  Thêm
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <table className="table table-border mt-3">
-                        <thead>
+                        <table className="table table-border mt-3">
+                          <thead>
                           <tr>
                             <th>Mã đăng ký</th>
                             <th>Trạng thái đăng ký</th>
@@ -968,8 +716,8 @@ const PopulationList = () => {
                             <th>Số căn cước của chủ hộ</th>
                             <th>Quan hệ với chủ hộ</th>
                           </tr>
-                        </thead>
-                        <tbody>
+                          </thead>
+                          <tbody>
                           <tr>
                             <td>TT1</td>
                             <td>Tạm trú</td>
@@ -981,174 +729,174 @@ const PopulationList = () => {
                             <td>10223</td>
                             <td>Chủ hộ</td>
                           </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="text-center">
-                      <h4 className="mb-3 mt-3">Thông tin tạm vắng</h4>
-                      <button
-                        className="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#tamvang"
-                      >
-                        Thêm
-                      </button>
-                      <div
-                        className="modal fade"
-                        id="tamvang"
-                        tabIndex={-1}
-                        role="dialog"
-                        aria-labelledby=""
-                        aria-hidden="true"
-                      >
-                        <div
-                          className="text-left modal-dialog modal-fullscreen"
-                          role="document"
+                          </tbody>
+                        </table>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="mb-3 mt-3">Thông tin tạm vắng</h4>
+                        <button
+                            className="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#tamvang"
                         >
-                          <div className="modal-content">
-                            <div className="modal-header">
-                              <h5 className="modal-title">Đăng ký tạm vắng</h5>
-                              <button
-                                type="button"
-                                className="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                              >
-                                <span aria-hidden="true">×</span>
-                              </button>
-                            </div>
-                            <div className="modal-body">
-                              <form className="form-horizontal">
-                                <div className="form-group">
-                                  <label
-                                    className="control-label col-sm-10"
-                                    htmlFor="email"
-                                  >
-                                    Họ và tên người đăng ký
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                          Thêm
+                        </button>
+                        <div
+                            className="modal fade"
+                            id="tamvang"
+                            tabIndex={-1}
+                            role="dialog"
+                            aria-labelledby=""
+                            aria-hidden="true"
+                        >
+                          <div
+                              className="text-left modal-dialog modal-fullscreen"
+                              role="document"
+                          >
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h5 className="modal-title">Đăng ký tạm vắng</h5>
+                                <button
+                                    type="button"
+                                    className="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                >
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <div className="modal-body">
+                                <form className="form-horizontal">
+                                  <div className="form-group">
+                                    <label
+                                        className="control-label col-sm-10"
+                                        htmlFor="email"
+                                    >
+                                      Họ và tên người đăng ký
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    className="control-label col-sm-10"
-                                    htmlFor="pwd"
-                                  >
-                                    Số căn cước
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        className="control-label col-sm-10"
+                                        htmlFor="pwd"
+                                    >
+                                      Số căn cước
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label className="control-label col-sm-10">
-                                    Mã đăng ký
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      defaultValue=""
-                                      disabled=""
-                                    />
+                                  <div className="form-group">
+                                    <label className="control-label col-sm-10">
+                                      Mã đăng ký
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          defaultValue=""
+                                          disabled=""
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label className="control-label col-sm-10">
-                                    Địa chỉ đăng ký
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <select className="form-control form-select">
-                                      <option selected="">Chọn phòng</option>
-                                      <option value={1}>401</option>
-                                      <option value={2}>402</option>
-                                      <option value={3}>...</option>
-                                    </select>
+                                  <div className="form-group">
+                                    <label className="control-label col-sm-10">
+                                      Địa chỉ đăng ký
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <select className="form-control form-select">
+                                        <option selected="">Chọn phòng</option>
+                                        <option value={1}>401</option>
+                                        <option value={2}>402</option>
+                                        <option value={3}>...</option>
+                                      </select>
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    className="control-label col-sm-10"
-                                    htmlFor="pwd"
-                                  >
-                                    Nội dung đề nghị
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      placeholder="Tạm trú"
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        className="control-label col-sm-10"
+                                        htmlFor="pwd"
+                                    >
+                                      Nội dung đề nghị
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          placeholder="Tạm trú"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    htmlFor="inputPassword3"
-                                    className="col-sm-10 col-form-label"
-                                  >
-                                    Từ ngày
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      type="date"
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        htmlFor="inputPassword3"
+                                        className="col-sm-10 col-form-label"
+                                    >
+                                      Từ ngày
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          type="date"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    htmlFor="inputPassword3"
-                                    className="col-sm-10 col-form-label"
-                                  >
-                                    Đến ngày
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      type="date"
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        htmlFor="inputPassword3"
+                                        className="col-sm-10 col-form-label"
+                                    >
+                                      Đến ngày
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          type="date"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    className="control-label col-sm-10"
-                                    htmlFor="pwd"
-                                  >
-                                    Lý do
-                                  </label>
-                                  <div className="col-sm-12">
-                                    <input
-                                      className="form-control"
-                                      placeholder="Tạm trú"
-                                    />
+                                  <div className="form-group">
+                                    <label
+                                        className="control-label col-sm-10"
+                                        htmlFor="pwd"
+                                    >
+                                      Lý do
+                                    </label>
+                                    <div className="col-sm-12">
+                                      <input
+                                          className="form-control"
+                                          placeholder="Tạm trú"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                              </form>
-                            </div>
-                            <div className="modal-footer">
-                              <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-dismiss="modal"
-                              >
-                                Đóng
-                              </button>
-                              <button type="button" className="btn btn-primary">
-                                Thêm
-                              </button>
+                                </form>
+                              </div>
+                              <div className="modal-footer">
+                                <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    data-dismiss="modal"
+                                >
+                                  Đóng
+                                </button>
+                                <button type="button" className="btn btn-primary">
+                                  Thêm
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <table className="table table-border mt-3">
-                        <thead>
+                        <table className="table table-border mt-3">
+                          <thead>
                           <tr>
                             <th>Mã đăng ký</th>
                             <th>Trạng thái đăng ký</th>
@@ -1158,8 +906,8 @@ const PopulationList = () => {
                             <th>Đến ngày</th>
                             <th>Lý do</th>
                           </tr>
-                        </thead>
-                        <tbody>
+                          </thead>
+                          <tbody>
                           <tr>
                             <td>TV1</td>
                             <td>Tạm vắng</td>
@@ -1169,13 +917,13 @@ const PopulationList = () => {
                             <td>12/08/2021</td>
                             <td>Du lịch</td>
                           </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="text-center">
-                      <h4 className="mb-3 mt-3">Thông tin thường trú</h4>
-                      <table className="table table-border mt-3">
-                        <thead>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="mb-3 mt-3">Thông tin thường trú</h4>
+                        <table className="table table-border mt-3">
+                          <thead>
                           <tr>
                             <th>Mã đăng ký</th>
                             <th>Trạng thái đăng ký</th>
@@ -1186,8 +934,8 @@ const PopulationList = () => {
                             <th>Số căn cước của chủ hộ</th>
                             <th>Quan hệ với chủ hộ</th>
                           </tr>
-                        </thead>
-                        <tbody>
+                          </thead>
+                          <tbody>
                           <tr>
                             <td>TV1</td>
                             <td>Tạm vắng</td>
@@ -1198,49 +946,50 @@ const PopulationList = () => {
                             <td>10223</td>
                             <td>Chủ hộ</td>
                           </tr>
-                        </tbody>
-                      </table>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      data-dismiss="modal"
-                    >
-                      Đóng
-                    </button>
-                    <button type="button" className="btn btn-primary">
-                      Cập nhật
-                    </button>
+                    <div className="modal-footer">
+                      <button
+                          type="button"
+                          className="btn btn-secondary"
+                          data-dismiss="modal"
+                      >
+                        Đóng
+                      </button>
+                      <button type="button" className="btn btn-primary">
+                        Cập nhật
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </td>
-        </tr>
+            </td>
+          </tr>
+      ))}
       </tbody>
     </table>
     <p>
       <a href="#">Lên đầu trang</a>
     </p>
   </div>
-  <footer id="footer" className="footer">
-    <div className="copyright">
-      © Copyright{" "}
-      <strong>
-        <span>BlueMoon</span>
-      </strong>
-      . All Rights Reserved
-    </div>
-    <div className="credits">
-      Designed by{" "}
-      <a href="https://google.com/">
-        Group 10 - Introduction to Software Engineering - 2023.1
-      </a>
-    </div>
-  </footer>
-</>
+          <footer id="footer" className="footer">
+            <div className="copyright">
+              © Copyright{" "}
+              <strong>
+                <span>BlueMoon</span>
+              </strong>
+              . All Rights Reserved
+            </div>
+            <div className="credits">
+              Designed by{" "}
+              <a href="https://google.com/">
+                Group 10 - Introduction to Software Engineering - 2023.1
+              </a>
+            </div>
+          </footer>
+        </>
 
     )
 }

@@ -20,4 +20,5 @@ public class RoomDTO {
     private Float area; // diện tích căn
     @JsonProperty("is_active")
     private boolean active; // true nếu có người ở
+    private int numberOfMem;
 }

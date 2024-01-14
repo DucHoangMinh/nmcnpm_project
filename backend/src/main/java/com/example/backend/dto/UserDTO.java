@@ -33,5 +33,7 @@ public class UserDTO{
     private String room;
     @NotNull
     private String relationship;
+    @NotNull
+    private String identity;
 }
 

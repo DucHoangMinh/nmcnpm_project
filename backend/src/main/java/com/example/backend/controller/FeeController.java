@@ -94,4 +94,23 @@ public class FeeController {
             ));
         }
     }
+
+    // Lấy tất cả các khoản phí đã hoàn thành
+    @GetMapping("/done")
+    public ResponseEntity<ResponseModel> getDoneFees() {
+        try {
+            List<FeeDTO> feeDTOS = feeService.getDoneFees();
+            return ResponseEntity.ok(new ResponseModel(
+                    "ok",
+                    "Lấy các phí có trạng thái 'DONE' thành công",
+                    feeDTOS
+            ));
+        } catch (Exception message) {
+            return ResponseEntity.badRequest().body(new ResponseModel(
+                    "failed",
+                    message.getMessage(),
+                    ""
+            ));
+        }
+    }
 }

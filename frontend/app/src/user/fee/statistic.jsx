@@ -1,6 +1,44 @@
 import UserSideBar from "../userSideBar"
+import {useEffect, useState} from "react";
+import api from "../../service/api";
+import storage from "../../service/storage";
+import {Button} from "react-bootstrap";
 
 const UserFeeStatistic = () => {
+    const [feeList, setFeeList] = useState([])
+    const roomId = JSON.parse(storage.getValue("user")).room
+    const [completeList, setCompleteList] = useState([])
+    const [totalList, setTotalList] = useState([])
+    const getFeeList = async () => {
+        try{
+            const { data } = await api.get(`v1/room/${roomId}/incomplete`)
+            console.log(data.data)
+            await setFeeList(data.data)
+        }catch (e) {
+            console.log(e.toString())
+        }
+    }
+
+    const getCompleteList = async () => {
+        try{
+            const { data } = await api.get(`v1/room/${roomId}/complete`)
+            setCompleteList(data.data)
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const initData = async () => {
+        await getFeeList()
+        await getCompleteList()
+        setTotalList([...feeList,...completeList])
+        console.log([...feeList,...completeList])
+    }
+
+    useEffect(() => {
+        initData()
+    }, []);
+
     return (
         <>
         <UserSideBar/>
@@ -47,45 +85,27 @@ const UserFeeStatistic = () => {
                       </select></th>
                     <th><label for="filterType">Loại phí</label>
                       <select class="" id="typeSelect">
-                        <option value="total">Tổng</option>
-                        <option value="manager">Phí quản lý</option>
-                        <option value="service">Phí dịch vụ</option>
-                        <option value="vehicle">Phí gửi xe</option>
-                        <option value="motor">Phí gửi xe máy</option>
-                        <option value="car">Phí gửi ô tô</option>
-                        <option value="electric">Phí điện</option>
-                        <option value="water">Phí nước</option>
-                        <option value="voluntary">Phí tự nguyện</option>
-                        <option value="study">Quỹ khuyến học</option>
-                        <option value="gratitude">Quỹ tình nghĩa</option>
-                        <option value="old">Quỹ người cao tuổi</option>
-                        <option value="child">Quỹ vì trẻ thơ</option>
+                        <option value="total">Tất cả</option>
+                        <option value="child">Không Bắt buộc </option>
+                        <option>Bắt buộc </option>
                         
                       </select></th>
-                    <th>Phí (VNĐ)</th>
-                    <th>Tình trạng</th>
-                    <th>Hành động</th>
+                    <th>Tên phí</th>
+                      <th>Số tiền</th>
+                    <th>Trang thai</th>
                   </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td>12</td>
-                    <td>2023</td>
-                    <td>Tổng</td>
-                    <td>12.100</td>
-                    <td>Chưa đóng</td>
-                    <td><a href="./Pay Fee.html" class="btn btn-primary btn-sm" role="button">Đóng ngay</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>2023</td>
-                    <td>Tổng</td>
-                    <td>11.800</td>
-                    <td>Đã đóng</td>
-                    <td><a href="./Fee Payed.html" class="btn btn-primary btn-sm" role="button">Xem chi tiết</a>
-                    </td>
-                </tr>
+              {totalList.map(item => (
+                  <tr key={item.id}>
+                      <td>1</td>
+                      <td>2024</td>
+                      <td>{item[0].mandatory ? 'Bắt buộc' : 'Không bắt buộc'}</td>
+                      <td>{item[0].name}</td>
+                      <td>{item[0].price}</td>
+                      <td>{item[1]}</td>
+                  </tr>
+              ))}
               </tbody>
           </table>
         </div>

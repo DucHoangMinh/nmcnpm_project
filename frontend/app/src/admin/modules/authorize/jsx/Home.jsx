@@ -11,9 +11,6 @@ const Home = () => {
         <div class="table-responsive">
           <table class="table table-borderless table-responsive">
             <thead>
-              <tr>
-                <th scope="col"></th>
-              </tr>
             </thead>
             <tbody>
               <tr>
@@ -46,9 +43,6 @@ const Home = () => {
         <div class="table-responsive">
           <table class="table table-borderless table-responsive">
             <thead>
-              <tr>
-                <th scope="col"></th>
-              </tr>
             </thead>
             <tbody>
               <tr>

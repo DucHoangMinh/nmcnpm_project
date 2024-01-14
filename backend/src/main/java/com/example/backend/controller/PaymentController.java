@@ -86,7 +86,7 @@ public class PaymentController {
     // Lấy thông tin các khoản thanh toán của một hộ
     public ResponseEntity<ResponseModel> getPaymentsOfRoom(@RequestParam("room") Long roomId) {
         try {
-            List<PaymentDTO> paymentDTOS = paymentService.getPaymentsOfRoom(roomId);
+            List<Payment> paymentDTOS = paymentService.getPaymentsOfRoom(roomId);
             return ResponseEntity.ok(new ResponseModel(
                     "ok",
                     "Lấy thông tin các khoản thanh toán của hộ " + roomId,
@@ -100,6 +100,30 @@ public class PaymentController {
             ));
         }
     }
+
+    @PostMapping("/pending")
+    public ResponseEntity<ResponseModel> setPendingPayment(@RequestParam("room") Long roomId, @RequestParam("fee") Long feeId){
+        try{
+            Payment payment = paymentService.setPending(feeId, roomId);
+            return ResponseEntity.ok().body(
+                    new ResponseModel(
+                            "ok",
+                            "Set pending successfully!",
+                            payment
+                    )
+            );
+        }catch (Exception e){
+            System.out.println(e.toString());
+                return ResponseEntity.badRequest().body(
+                        new ResponseModel(
+                            "failed",
+                                e.getMessage(),
+                                ""
+                        )
+                );
+        }
+    }
+
     @PatchMapping("/complete")
     //http://localhost:8080/api/v1/payment/complete?room=1&fee=1
     //Đánh dấu hoàn thành phí nào đó cho căn hộ

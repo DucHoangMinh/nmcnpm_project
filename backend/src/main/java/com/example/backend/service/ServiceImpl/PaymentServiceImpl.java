@@ -20,10 +20,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
-import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @RequiredArgsConstructor
@@ -56,7 +57,7 @@ public class PaymentServiceImpl implements PaymentService {
                 Payment payment = Payment.builder()
                         .fee(fee)
                         .room(room)
-                        .completed(false)
+                        .status("NOTDONE")
                         .totalMoney(totalMoney)
                         .build();
                 Payment newPayment = paymentRepository.save(payment);
@@ -76,7 +77,7 @@ public class PaymentServiceImpl implements PaymentService {
         Fee fee = feeRepository.findById(feeId)
                 .orElseThrow(() -> new DataNotFoundException("Cannot find fee with id: " + feeId));
         Payment payment = paymentRepository.findByRoomIdAndFeeId(roomId, feeId);
-        payment.setCompleted(true);
+        payment.setStatus("DONE");
         payment.setSubmittedDate(LocalDate.now());
         Payment updatedPayment = paymentRepository.save(payment);
         PaymentDTO paymentDTO = PaymentMapper.toPaymentDTO(updatedPayment);
@@ -93,8 +94,8 @@ public class PaymentServiceImpl implements PaymentService {
         Page<Payment> payments = paymentRepository.findAll(pageable);
 
         // Get content for page object
-        List<Payment> listOfPayments = payments.getContent();
-        List<PaymentDTO> content = listOfPayments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
+        List<Payment> content = payments.getContent();
+        //List<PaymentDTO> content = listOfPayments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
         PaymentResponse paymentResponse = new PaymentResponse();
         paymentResponse.setContent(content);
         paymentResponse.setPageNo(payments.getNumber());
@@ -106,12 +107,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<PaymentDTO> getPaymentsOfRoom(Long roomId) {
+    public List<Payment> getPaymentsOfRoom(Long roomId) {
         Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + roomId));
         List<Payment> payments = paymentRepository.findByRoomId(roomId);
-        List<PaymentDTO> paymentDTOS = payments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
-        return paymentDTOS;
+//        List<PaymentDTO> paymentDTOS = payments.stream().map(payment -> PaymentMapper.toPaymentDTO(payment)).toList();
+        return payments;
     }
 
     @Override
@@ -135,5 +136,23 @@ public class PaymentServiceImpl implements PaymentService {
             throw new RuntimeException("Cannot upload more than 5 images");
         }
         return paymentImageRepository.save(newPaymentImage);
+    }
+
+    @Override
+    public int setPendingStatus(Long feeId, Long roomId){
+        paymentRepository.setPendingStatus(feeId, roomId);
+        return 0;
+    }
+
+    @Override
+    public Payment setPending(Long feeId, Long roomId){
+        List<Payment> payments = paymentRepository.findByFeeId(feeId);
+        List<Payment> filteredPayments = payments.stream()
+                .filter(p -> p.getRoom().getId() == roomId)
+                .collect(Collectors.toList());
+        Payment payment = filteredPayments.get(0);
+        payment.setStatus("PENDING");
+        paymentRepository.save(payment);
+        return filteredPayments.get(0);
     }
 }

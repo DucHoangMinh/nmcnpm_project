@@ -1,13 +1,16 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.UserDTO;
 import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.exception.UserException;
 import com.example.backend.model.CustomUserDetail;
 import com.example.backend.model.Room;
 import com.example.backend.model.User;
+import com.example.backend.payload.UpdateUserRequest;
 import com.example.backend.payload.UserResponse;
 import com.example.backend.repository.RoomRepository;
 import com.example.backend.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,11 +22,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private RoomRepository roomRepository;
+    private final UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
@@ -40,22 +41,18 @@ public class UserService implements UserDetailsService {
         User user = userOptional.get();
         return new CustomUserDetail(user);
     }
-    public Set<UserResponse> getUserOfRoom(Long roomId) {
-        Room room = roomRepository.findById(roomId)
-                .orElseThrow(() -> new DataNotFoundException("Cannot find room with id: " + roomId));
-        Set<User> users = userRepository.findByRoomId(roomId);
-        Set<UserResponse> userResponses = users.stream()
-                .map(user -> UserResponse.builder()
-                        .fullname(user.getFullname())
-                        .email(user.getEmail())
-                        .phone(user.getPhone())
-                        .dob(user.getDob())
-                        .sex(user.getSex())
-                        .role(user.getRole())
-                        .relationship(user.getRelationship())
-                        .identity(user.getIdentity())
-                        .build())
-                .collect(Collectors.toSet());
-        return userResponses;
+    public UpdateUserRequest updateInfo(Long userId, UpdateUserRequest updateUserRequest) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new DataNotFoundException("Cannot found user with id: " + userId));
+        if (updateUserRequest.getFullname() != null) {
+            user.setFullname(updateUserRequest.getFullname());
+        }
+        if (updateUserRequest.getSex() != null) user.setSex(updateUserRequest.getSex());
+        if (updateUserRequest.getPhone() != null) user.setPhone(updateUserRequest.getPhone());
+        if (updateUserRequest.getDob() != null) user.setDob(updateUserRequest.getDob());
+        if (updateUserRequest.getIdentity() != null) user.setIdentity(updateUserRequest.getIdentity());
+        if (updateUserRequest.getRelationship() != null) user.setRelationship(updateUserRequest.getRelationship());
+        userRepository.save(user);
+        return updateUserRequest;
     }
 }

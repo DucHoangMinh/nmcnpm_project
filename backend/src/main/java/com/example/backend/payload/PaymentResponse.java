@@ -1,6 +1,7 @@
 package com.example.backend.payload;
 
 import com.example.backend.dto.PaymentDTO;
+import com.example.backend.model.Payment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentResponse {
-    private List<PaymentDTO> content;
+    private List<Payment> content;
     private int pageNo;
     private int pageSize;
     private long totalElements;

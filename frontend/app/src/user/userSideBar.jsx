@@ -53,9 +53,9 @@ const UserSideBar = () => {
                     khẩu</a>
                   <a class="dropdown-item" href=""><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
                 </div>
-                <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
+                <div style={{ zIndex: 999}} class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
-                      <div class="modal-content">
+                      <div class="modal-content" style={{ zIndex: 9999}}>
                           <div class="modal-header">
                               <h5 class="modal-title" id="changePasswordLabel">Thay đổi mật khẩu</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">

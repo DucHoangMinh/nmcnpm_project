@@ -28,8 +28,8 @@ public class Payment {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @Column(name = "is_completed")
-    private boolean completed; // check đã nộp
+    @Column(name = "status")
+    private String status; // check đã nộp
 
     @Column(name = "submitted_date")
     private LocalDate submittedDate; // Ngày nộp

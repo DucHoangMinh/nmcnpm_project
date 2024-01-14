@@ -1,11 +1,13 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.UserDTO;
+import com.example.backend.exception.DataNotFoundException;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.CustomUserDetail;
 import com.example.backend.model.ResponseModel;
 import com.example.backend.model.Room;
 import com.example.backend.model.User;
+import com.example.backend.payload.ChangePasswordRequest;
 import com.example.backend.payload.LoginRequest;
 import com.example.backend.payload.LoginResponse;
 import com.example.backend.repository.RoomRepository;
@@ -21,6 +23,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +32,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class LoginController {
     @Autowired
     RoomRepository roomRepository;
@@ -62,6 +66,7 @@ public class LoginController {
                     )
             );
             UserDTO userDTO = userMapper.toUserDTO(((CustomUserDetail)authentication.getPrincipal()).getUser());
+            userDTO.setRoom(((CustomUserDetail)authentication.getPrincipal()).getUser().getRoom().getId().toString());
             // Nếu không xảy ra exception tức là thông tin hợp lệ
             // Set thông tin authentication vào Security Context
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -85,6 +90,7 @@ public class LoginController {
             );
         }
     }
+
     @PostMapping("/register")
     ResponseEntity<ResponseModel> handleRegisterNewAccount(@RequestBody UserDTO insertUser){
         System.out.println("Get register request!!");
@@ -105,7 +111,9 @@ public class LoginController {
                     User newUser = modelMapper.map(insertUser, User.class);
                     newUser.setPassword(passwordEncoder.encode(insertUser.getPassword()));
                     newUser.setRoom(room);
+                    System.out.println(newUser);
                     userRepository.save(newUser);
+                    System.out.println("hahah");
                     insertUser.setId(newUser.getId());
                     return ResponseEntity.ok().body(
                             new ResponseModel(
@@ -126,6 +134,7 @@ public class LoginController {
                 }
 
             } catch (Exception e) {
+                System.out.println(e);
                 return ResponseEntity.status(400).body(
                         new ResponseModel(
                                 "ok",
