@@ -52,19 +52,21 @@ const UserPayFee = () => {
     const handleConfirmPayFee = async (feeId) => {
         try{
             console.log(file)
-            const formData = new FormData()
-            await formData.append('file', file)
+            let formData = new FormData();
+
+            formData.append('file', file);
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                transformRequest: [(data, headers) => data]
             }
             await api.post(`v1/upload/payment/${feeId}`,formData, config)
             const { data } = await api.post(`v1/payment/pending?room=${roomId}&fee=${feeId}`)
             showNotice(1,"Gửi yêu cầu xác nhận đóng phí thành công")
             await initData()
         }catch (error) {
-            showNotice(2, data.data.message)
+            showNotice(2, data.data?.message)
         }
     }
 

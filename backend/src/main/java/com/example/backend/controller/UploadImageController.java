@@ -36,6 +36,7 @@ public class UploadImageController {
     // upload files
     @PostMapping("/payment/{id}")
     public ResponseEntity<ResponseModel> uploadBill(@PathVariable("id") Long paymentId, @RequestParam("file") MultipartFile multipartFile) {
+        System.out.println(multipartFile);
         try{
             Payment existingPayment = paymentRepository.findById(paymentId)
                    .orElseThrow(() -> new DataNotFoundException("Payment with id: " + paymentId + " doesn't exist"));
