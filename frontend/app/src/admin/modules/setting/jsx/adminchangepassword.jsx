@@ -15,7 +15,7 @@ const AdminChangePassword = () => {
       showNotice(0, 'Nhập lại mật khẩu không đúng, vui lòng thử  lại')
     }else{
       try {
-        const response = await api.post(storage.getValue('user.id')+'/changePassword', {
+        const response = await api.post('v1/user/' + JSON.parse(localStorage.getItem('user'))?.id+'/changePassword', {
           oldPassword: oldPass.trim(),
           newPassword: newPass.trim(),
         });

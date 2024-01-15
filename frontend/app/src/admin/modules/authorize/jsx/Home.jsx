@@ -15,7 +15,7 @@ const Home = () => {
             <tbody>
               <tr>
                 <th scope="row">Tổng số hộ khẩu</th>
-                <td>250</td>
+                <td>5</td>
               </tr>
               <tr>
                 <th scope="row">Mới đến trong tháng</th>
@@ -27,7 +27,7 @@ const Home = () => {
               </tr>
               <tr>
                 <th>Số căn hộ còn trống</th>
-                <td>50</td>
+                <td>1</td>
               </tr>
               <tr>
                 <th>Số căn hộ đang được thuê ngắn hạn</th>
@@ -47,23 +47,23 @@ const Home = () => {
             <tbody>
               <tr>
                 <th scope="row">Tổng số cư dân</th>
-                <td>1000</td>
+                <td>14</td>
               </tr>
               <tr>
                 <th scope="row">Tạm trú</th>
-                <td>590</td>
+                <td>0</td>
               </tr>
               <tr>
                 <th>Tạm vắng</th>
-                <td>11</td>
+                <td>0</td>
               </tr>
               <tr>
                 <th>Thường trú</th>
-                <td>300</td>
+                <td>14</td>
               </tr>
               <tr>
                 <th>Chưa đăng ký</th>
-                <td>99</td>
+                <td>0</td>
               </tr>
 
             </tbody>

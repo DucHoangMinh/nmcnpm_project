@@ -1,4 +1,5 @@
 import SideBar from "../../../patials/sidebar"
+import {showNotice} from "../../../../common/showNotice";
 
 const ResidentProcessing = () => {
     return (
@@ -47,19 +48,19 @@ const ResidentProcessing = () => {
         </h2>
         <div id="accordion">
           <div className="card">
-            <div className="card-header" id="headingOne">
-              <h5 className="mb-0">
-                <button
-                  className="btn btn-link"
-                  data-toggle="collapse"
-                  data-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Yêu cầu tạm trú
-                </button>
-              </h5>
-            </div>
+            {/*<div className="card-header" id="headingOne">*/}
+            {/*  <h5 className="mb-0">*/}
+            {/*    <button*/}
+            {/*      className="btn btn-link"*/}
+            {/*      data-toggle="collapse"*/}
+            {/*      data-target="#collapseOne"*/}
+            {/*      aria-expanded="true"*/}
+            {/*      aria-controls="collapseOne"*/}
+            {/*    >*/}
+            {/*      Yêu cầu tạm trú*/}
+            {/*    </button>*/}
+            {/*  </h5>*/}
+            {/*</div>*/}
             <div
               id="collapseOne"
               className="collapse show"
@@ -517,8 +518,8 @@ const ResidentProcessing = () => {
                       <tr>
                         <td>1</td>
                         <td>TT01</td>
-                        <td className="name">lê văn f</td>
-                        <td>12:15:00 14/6/2023</td>
+                        <td className="name">Le Van Tung</td>
+                        <td>15/1/2024</td>
                         <td>
                           <button
                             className="btn btn-primary"
@@ -566,7 +567,8 @@ const ResidentProcessing = () => {
                                         <input
                                           className="form-control"
                                           defaultValue=""
-                                          disabled=""
+                                          disabled
+                                          value="Le Van Tung"
                                         />
                                       </div>
                                     </div>
@@ -581,7 +583,8 @@ const ResidentProcessing = () => {
                                         <input
                                           className="form-control"
                                           defaultValue=""
-                                          disabled=""
+                                          disabled
+                                          value="123123"
                                         />
                                       </div>
                                     </div>
@@ -593,7 +596,7 @@ const ResidentProcessing = () => {
                                         <input
                                           className="form-control"
                                           defaultValue=""
-                                          disabled=""
+                                          disabled
                                         />
                                       </div>
                                     </div>
@@ -605,8 +608,9 @@ const ResidentProcessing = () => {
                                         <input
                                           type="text"
                                           className="form-control"
-                                          disabled=""
+                                          disabled
                                           placeholder={301}
+                                          value="501"
                                         />
                                       </div>
                                     </div>
@@ -621,7 +625,8 @@ const ResidentProcessing = () => {
                                         <input
                                           className="form-control"
                                           placeholder="Tạm trú"
-                                          disabled=""
+                                          disabled
+                                          value="Tạm vắng"
                                         />
                                       </div>
                                     </div>
@@ -636,7 +641,8 @@ const ResidentProcessing = () => {
                                         <input
                                           className="form-control"
                                           type="date"
-                                          disabled=""
+                                          disabled
+                                          value="2023-01-15"
                                         />
                                       </div>
                                     </div>
@@ -651,7 +657,8 @@ const ResidentProcessing = () => {
                                         <input
                                           className="form-control"
                                           type="date"
-                                          disabled=""
+                                          disabled
+                                          value="2023-01-20"
                                         />
                                       </div>
                                     </div>
@@ -666,7 +673,8 @@ const ResidentProcessing = () => {
                                         <input
                                           className="form-control"
                                           placeholder="Tạm trú"
-                                          disabled=""
+                                          disabled
+                                          value="Đi nghỉ mát"
                                         />
                                       </div>
                                     </div>
@@ -829,19 +837,19 @@ const ResidentProcessing = () => {
             </div>
           </div>
           <div className="card">
-            <div className="card-header" id="headingThree">
-              <h5 className="mb-0">
-                <button
-                  className="btn btn-link collapsed"
-                  data-toggle="collapse"
-                  data-target="#collapseThree"
-                  aria-expanded="false"
-                  aria-controls="collapseThree"
-                >
-                  Yêu cầu thường trú
-                </button>
-              </h5>
-            </div>
+            {/*<div className="card-header" id="headingThree">*/}
+            {/*  <h5 className="mb-0">*/}
+            {/*    <button*/}
+            {/*      className="btn btn-link collapsed"*/}
+            {/*      data-toggle="collapse"*/}
+            {/*      data-target="#collapseThree"*/}
+            {/*      aria-expanded="false"*/}
+            {/*      aria-controls="collapseThree"*/}
+            {/*    >*/}
+            {/*      Yêu cầu thường trú*/}
+            {/*    </button>*/}
+            {/*  </h5>*/}
+            {/*</div>*/}
             <div
               id="collapseThree"
               className="collapse"
@@ -893,7 +901,7 @@ const ResidentProcessing = () => {
                       <tr>
                         <td>1</td>
                         <td>TT01</td>
-                        <td className="name">lê văn f</td>
+                        <td className="name">lê văn fasd</td>
                         <td>12:15:00 14/6/2023</td>
                         <td>
                           <button
